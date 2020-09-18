@@ -1,0 +1,5 @@
+@import '../../variables/variables.css';
+
+.Main {
+  background-color: var(--white);
+}

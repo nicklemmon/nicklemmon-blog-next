@@ -1,0 +1,39 @@
+@import '../../variables/variables.css';
+
+.Bio {
+  position: relative; /* enables z-index */
+  z-index: 1;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: var(--spacingMD);
+  margin: var(--spacingLG) -2rem; /* extra width that aligns with the `pre` and `blockquote` blocks within the LongForm component */
+
+  @media (max-width: 600px) {
+    margin: var(--spacingMD) 0; /* extra width that aligns with the `pre` and `blockquote` blocks within the LongForm component */
+  }
+}
+
+.Bio-imgContainer,
+.Bio-content {
+  padding: var(--spacingLG);
+}
+
+.Bio-imgContainer {
+  padding-right: 0;
+}
+
+.Bio-content {
+  padding-left: 0;
+}
+
+.Bio-img {
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+
+  @media (min-width: 600px) {
+    width: 6rem;
+    height: 6rem;
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../variables/variables.css';
+
+.LandingLayout-hero {
+  margin-top: calc(var(--headerHeight) * -1); /* one can't have a negative CSS custom property, so this works. Credit to: https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628 */
+}
+
+@media (min-width: 800px) {
+  .LandingLayout-main {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .LandingLayout-sidebar.LandingLayout-sidebar {
+    margin-top: calc(var(--headerHeight) * -1); /* one can't have a negative CSS custom property, so this works. Credit to: https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628 */
+  }
+}

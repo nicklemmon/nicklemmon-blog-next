@@ -1,0 +1,27 @@
+@import '../../variables/variables.css';
+
+.Container {
+  padding: var(--spacingMD) var(--spacingMD);
+}
+
+@media (min-width: 600px) {
+  .Container {
+    padding-left: var(--spacingLG);
+    padding-right: var(--spacingLG);
+  }
+}
+
+.Container--lg {
+  padding-top: var(--spacingLG);
+  padding-bottom: var(--spacingLG);
+}
+
+.Container--xl {
+  padding-top: var(--spacingXL);
+  padding-bottom: var(--spacingXL);
+}
+
+.Container--xxl {
+  padding-top: var(--spacingXXL);
+  padding-bottom: var(--spacingXXL);
+}

@@ -1,0 +1,36 @@
+@import '../../variables/variables.css';
+
+.Header {
+  height: var(--headerHeight);  
+  position: relative;
+  z-index: 2;
+}
+
+.Header a {
+  text-decoration: none;
+}
+
+.Header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Header-brandLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacingMD);
+  height: 100%;
+  font-family: var(--fontFamilySecondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--outerSpace);
+  background-color: var(--white);
+}
+
+@media (min-width: 800px) {
+  .Header .MaxWidth {
+    width: 100%;
+    max-width: 100%;
+  }
+}

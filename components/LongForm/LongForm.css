@@ -1,0 +1,133 @@
+@import '../../variables/variables.css';
+
+.LongForm {
+  & * + * {
+    margin-top: var(--spacingMD);
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin-top: calc(var(--spacingMD) * 1.5);
+    margin-bottom: 0;
+  }
+
+  & h2 {
+    position: relative; /* allows absolute positioning within */
+    padding-bottom: var(--spacingSM);
+    margin-bottom: var(--spacingLG);
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: var(--spacingLG);
+      height: var(--spacingXS);
+      background-color: rgba(0, 0, 0, 0.125);
+    }
+  }
+
+  & p,
+  & li {
+    line-height: 1.75;
+    color: var(--boulder);
+
+    & a {
+      color: var(--blueRibbon);
+      padding-bottom: 1px;
+      border-bottom: 2px solid currentColor;
+    }
+
+    & .gatsby-resp-image-link {
+      border-bottom: 0; /* override for <a> styles */
+      padding-bottom: 0; /* override for <a> styles */
+    }
+
+    & code {
+      color: black;
+      background-color: transparent !important; /* 🙏 Forgive me for my sins - this prevents PrismJS styles from ever overriding these styles in the event of a package update on their end */
+      font-size: 0.85rem;
+    }
+  }
+
+  & p,
+  & .gatsby-highlight,
+  & ul,
+  & ol {
+    & + h2 {
+      margin-top: var(--spacingXL);
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+
+    & + p {
+      margin-top: var(--spacingMD);
+    }
+
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6 {
+      margin-top: var(--spacingLG);
+    }
+  }
+
+  & li {
+    margin-top: 0.25rem;
+
+    & ul,
+    & ol {
+      margin-top: 0.25rem;
+    }
+  }
+
+  /* Elements that 'break out' of the article flow */
+  & pre,
+  & blockquote {
+    margin: var(--spacingLG) -2rem;
+
+    @media (max-width: 600px) {
+      margin: var(--spacingMD) 0;
+    }
+  }
+
+  & pre {
+    display: block;
+    background-color: var(--outerSpace);
+    font-size: 0.9rem;
+    background: var(--outerSpace);
+    border-radius: var(--borderRadius);
+    padding: var(--spacingMD);
+    box-shadow: 0 1rem 1rem -1rem rgba(0, 0, 0, 0.33);
+
+    & code {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  & blockquote {
+    background-color: var(--seaShell);
+    padding: var(--spacingLG);
+    color: var(--outerSpace);
+    border-left: 0.5vw solid var(--outerSpace);
+
+    & p {
+      margin: 0;
+    }
+
+    & * {
+      color: var(--outerSpace);
+    }
+  }
+
+  & img {
+    width: 100%;
+  }
+}

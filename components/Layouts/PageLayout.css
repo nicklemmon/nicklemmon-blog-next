@@ -1,0 +1,14 @@
+@import '../../variables/variables.css';
+
+.PageLayout {
+  font-family: var(--fontFamilySecondary);
+  min-height: 100vh;
+
+  & .Navigation-bar {
+    background-color: var(--white);
+  }
+
+  & .Navigation-button {
+    outline-color: var(--white);
+  }
+}

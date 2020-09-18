@@ -1,0 +1,14 @@
+@import '../../variables/variables.css';
+
+.BlogPostLayout-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: var(--spacingMD);
+  
+  @media (min-width: 600px) {
+    margin-bottom: 2rem;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr;
+  }
+}

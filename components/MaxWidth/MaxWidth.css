@@ -1,0 +1,22 @@
+@import '../../variables/variables.css';
+
+.MaxWidth {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.MaxWidth--sm {
+  max-width: var(--breakpointSM);
+}
+
+.MaxWidth--md {
+  max-width: var(--breakpointMD);
+}
+
+.MaxWidth--lg {
+  max-width: var(--breakpointLG);
+}
+
+.MaxWidth--xl {
+  max-width: var(--breakpointXL);
+}

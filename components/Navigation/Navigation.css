@@ -1,0 +1,103 @@
+@import '../../variables/variables.css';
+
+.Navigation {
+  position: relative; /* allows absolute positioning within */
+}
+
+.Navigation-button {
+  position: relative; /* allows use of z-index */
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--headerHeight);
+  width: calc(var(--headerHeight) * 0.75);
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin-right: var(--spacingMD); /* NOTE: must align correctly with Container component padding */
+  transition: transform var(--duration) var(--easing);
+}
+
+.Navigation-button:hover,
+.Navigation-button:focus {
+  transform: scale(0.9);
+}
+
+.Navigation-button.is-open:focus {
+  outline-color: var(--white);
+}
+
+.Navigation-button.is-open .Navigation-bar {
+  margin: 0;
+  background-color: var(--white);
+}
+
+.Navigation-button.is-open .Navigation-bar--1 {
+  transform: translateY(1px) rotate(45deg);
+}
+
+.Navigation-button.is-open .Navigation-bar--2 {
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.Navigation-bar {
+  height: 2px;
+  width: calc(var(--headerHeight) * 0.75);
+  margin: 6px 0;
+  background-color: var(--white);
+  transition: transform var(--duration) var(--easing);
+}
+
+@media (min-width: 800px) {
+  .Navigation-bar {
+    background-color: var(--outerSpace);
+  }
+}
+
+.Navigation-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 71, 254, 0.95);
+  transition: transform calc(var(--duration) * 1.25) var(--easing),
+              opacity var(--duration) var(--easing),
+              visibility var(--duration) var(--easing),
+              border-radius calc(var(--duration) * 1.5) var(--easing);
+}
+
+.Navigation-nav.is-closed {
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 10vw;
+  transform: scale(0.9);
+}
+
+.Navigation-nav.is-open {
+  visibility: visible;
+  opacity: 1;
+  border-radius: 0;
+  transform: scale(1);
+}
+
+.Navigation-link {
+  font-family: var(--fontFamilySecondary);
+  font-size: calc(1.75rem + 0.5vw);
+  display: block;
+  color: var(--white);
+  padding: var(--spacingXS) var(--spacingSM);
+  text-align: right;
+  transition: transform var(--duration) var(--easing);
+}
+
+.Navigation-link:hover {
+  transform: translateY(-0.125rem);
+}

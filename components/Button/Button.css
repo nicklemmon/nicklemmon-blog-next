@@ -1,0 +1,68 @@
+@import '../../variables/variables.css';
+
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacingMD) var(--spacingLG);
+  font-family: var(--fontFamilySecondary);
+  border-radius: var(--borderRadius);
+  border: 2px solid #000; /* black is just a placeholder to be overidden */
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--duration) var(--easing);
+}
+
+.Button--full {
+  width: 100%;
+}
+
+.Button--centered {
+  margin: 0 auto;
+}
+
+.Button--primary {
+  background-color: var(--blueRibbon);
+  color: var(--white);
+  border-color: var(--blueRibbon);
+}
+
+.Button--primary:hover {
+  background-color: var(--blue);
+}
+
+.Button--primary:focus {
+  outline-color: var(--blue);
+}
+
+.Button--secondary {
+  background-color: var(--white);
+  color: var(--blueRibbon);
+  border-color: var(--blueRibbon);
+}
+
+.Button--tertiary {
+  background-color: var(--white);
+  color: var(--blueRibbon);
+  border-color: transparent;
+}
+
+.Button--secondary:hover,
+.Button--tertiary:hover {
+  background-color: var(--seaShell);
+}
+
+.Button--ghost {
+  background-color: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.Button-icon--pre {
+  margin-right: var(--spacingSM);
+}
+
+.Button-icon--post {
+  margin-left: var(--spacingSM);
+}

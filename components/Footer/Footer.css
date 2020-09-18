@@ -1,0 +1,39 @@
+@import '../../variables/variables.css';
+
+.Footer {
+  background-color: var(--seaShell);
+  color: var(--outerSpace);
+  font-family: var(--fontFamilySecondary);
+  text-align: center;
+}
+
+.Footer p {
+  margin: var(--spacingMD) 0;
+}
+
+.Footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Footer-socialLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.Footer-socialIcon {
+  width: calc(1.25rem + 1vw);
+  height: calc(1.25rem + 1vw);
+}
+
+.Footer-socialLink,
+.Footer-link {
+  color: currentColor;
+}
+
+.Footer-link {
+  border-bottom: 2px solid currentColor;
+}
