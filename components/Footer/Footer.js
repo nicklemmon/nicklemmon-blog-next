@@ -61,11 +61,11 @@ export default function Footer() {
 
         <div>
           <p>
-            All rights reserved,
+            All rights reserved,&nbsp;
             <PageLink className={styles.FooterLink} href="/">
               <strong>Nick Lemmon</strong>
             </PageLink>
-            {new Date().getFullYear()}
+            &nbsp;{new Date().getFullYear()}
           </p>
         </div>
       </Container>
