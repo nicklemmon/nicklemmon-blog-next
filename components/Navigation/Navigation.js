@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import { PageLink } from 'components/links'
 import classNames from 'classnames'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
 import styles from './Navigation.module.css'
@@ -87,25 +87,19 @@ export default class Navigation extends React.Component {
           id="nav-menu"
           data-cy="navigation-menu"
         >
-          <Link
-            className={styles.Link}
-            href="/"
-            onClick={this.handleClick}
-            data-cy="navigation-link"
-          >
+          <PageLink className={styles.Link} href="/" onClick={this.handleClick}>
             Home
-          </Link>
+          </PageLink>
 
-          <Link
+          <PageLink
             className={styles.Link}
             href="/archives"
             onClick={this.handleClick}
-            data-cy="navigation-link"
           >
             Archives
-          </Link>
+          </PageLink>
 
-          <Link
+          <PageLink
             className={styles.Link}
             href="/about"
             onClick={this.handleClick}
@@ -113,12 +107,11 @@ export default class Navigation extends React.Component {
             innerRef={(el) => {
               this.lastFocusable = el
             }}
-            data-cy="navigation-link"
           >
             About
-          </Link>
+          </PageLink>
 
-          {/* <Link
+          {/* <PageLink
             className={styles.Link}
             href="/resume"
             onClick={this.handleClick}

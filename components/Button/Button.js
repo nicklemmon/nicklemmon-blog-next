@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import { PageLink } from 'components/links'
 import { Icon } from 'react-icons-kit'
 import classNames from 'classnames'
 import styles from './Button.module.css'
@@ -17,7 +17,7 @@ export default function Button(props) {
   } = props
 
   return (
-    <Link
+    <PageLink
       href={href}
       className={classNames(
         styles.Button,
@@ -41,6 +41,6 @@ export default function Button(props) {
           <Icon className={styles.SuffixIcon} size="1rem" icon={suffixIcon} />
         )}
       </>
-    </Link>
+    </PageLink>
   )
 }

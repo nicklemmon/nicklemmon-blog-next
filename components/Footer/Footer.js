@@ -1,9 +1,10 @@
 import React from 'react'
-import Link from 'next/link'
+
 import { Icon } from 'react-icons-kit'
 import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
 import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
 import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
+import { PageLink } from 'components/links'
 import Container from 'components/Container'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
 import styles from './Footer.module.css'
@@ -60,10 +61,10 @@ export default function Footer() {
 
         <div>
           <p>
-            All rights reserved,{' '}
-            <Link className={styles.FooterLink} href="/">
+            All rights reserved,
+            <PageLink className={styles.FooterLink} href="/">
               <strong>Nick Lemmon</strong>
-            </Link>{' '}
+            </PageLink>
             {new Date().getFullYear()}
           </p>
         </div>
