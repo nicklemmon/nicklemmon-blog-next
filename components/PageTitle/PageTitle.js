@@ -4,8 +4,7 @@ import Container from 'components/Container'
 import MaxWidth from 'components/MaxWidth'
 import Heading from 'components/Heading'
 import Highlight from 'components/Highlight'
-import './PageTitle.css'
-import pageBackgroundImage from './page-bg.png'
+import styles from './PageTitle.module.css'
 
 export default class PageTitle extends React.Component {
   constructor(props) {
@@ -23,22 +22,22 @@ export default class PageTitle extends React.Component {
     const { className, headingContent, date } = this.props
 
     return (
-      <Container className={classNames('PageTitle', className)} size="xl">
-        <MaxWidth className="PageTitle-maxWidth" size="lg">
+      <Container className={classNames(styles.PageTitle, className)} size="xl">
+        <MaxWidth size="lg">
           <div tabIndex="-1" ref={this.title}>
-            <Heading className="PageTitle-heading" level="1">
+            <Heading className={styles.Heading} level="1">
               <Highlight>{headingContent}</Highlight>
             </Heading>
           </div>
 
-          {date && <div className="PageTitle-meta">{date}</div>}
+          {date && <div className={styles.Meta}>{date}</div>}
         </MaxWidth>
 
-        <div className="PageTitle-overlay" role="presentation" />
+        <div className={styles.Overlay} role="presentation" />
 
         <img
-          className="PageTitle-image"
-          src={pageBackgroundImage}
+          className={styles.Image}
+          src="public/page-bg.png"
           role="presentation"
           alt=""
         />

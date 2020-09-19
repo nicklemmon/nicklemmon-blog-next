@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .Container {
   padding: var(--spacingMD) var(--spacingMD);
 }
@@ -11,17 +9,17 @@
   }
 }
 
-.Container--lg {
+.Large {
   padding-top: var(--spacingLG);
   padding-bottom: var(--spacingLG);
 }
 
-.Container--xl {
+.ExtraLarge {
   padding-top: var(--spacingXL);
   padding-bottom: var(--spacingXL);
 }
 
-.Container--xxl {
+.ExtraExtraLarge {
   padding-top: var(--spacingXXL);
   padding-bottom: var(--spacingXXL);
 }

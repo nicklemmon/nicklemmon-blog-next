@@ -1,15 +1,17 @@
 import React from 'react'
 import classNames from 'classnames'
-import './MaxWidth.css'
+import styles from './MaxWidth.module.css'
 
-export default class MaxWidth extends React.Component {
-  render() {
-    const { children, className, size } = this.props
-
-    return (
-      <div className={classNames(`MaxWidth MaxWidth--${size}`, className)}>
-        {children}
-      </div>
-    )
-  }
+export default function MaxWidth({ children, className, size }) {
+  return (
+    <div
+      className={classNames(
+        styles.MaxWidth,
+        styles[`MaxWidth--${size}`],
+        className
+      )}
+    >
+      {children}
+    </div>
+  )
 }

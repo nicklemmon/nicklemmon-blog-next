@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .Bio {
   position: relative; /* enables z-index */
   z-index: 1;
@@ -14,20 +12,17 @@
   }
 }
 
-.Bio-imgContainer,
-.Bio-content {
+.ImgContainer {
   padding: var(--spacingLG);
-}
-
-.Bio-imgContainer {
   padding-right: 0;
 }
 
-.Bio-content {
+.Content {
+  padding: var(--spacingLG);
   padding-left: 0;
 }
 
-.Bio-img {
+.Img {
   border-radius: 50%;
   width: 4rem;
   height: 4rem;

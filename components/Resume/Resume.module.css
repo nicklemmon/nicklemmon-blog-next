@@ -1,6 +1,4 @@
-@import '../../variables/variables.css';
-
-.Resume-card + .Resume-card {
+.Card + .Card {
   margin-top: var(--spacingLG);
 }
 
@@ -12,7 +10,7 @@
   }
 }
 
-.Resume-position {
+.Position {
   display: grid;
   grid-gap: var(--spacingLG);
   padding: var(--spacingMD) 0 var(--spacingLG);
@@ -22,12 +20,12 @@
   }
 }
 
-.Resume-positionHeadingWrapper,
-.Resume-dateRange {
+.PositionHeadingWrapper,
+.DateRange {
   display: inline-block;
 }
 
-.Resume-positionSuperheadingWrapper {
+.PositionSuperheadingWrapper {
   position: relative; /* allows absolute positioning within */
 
   @media (min-width: 600px) {
@@ -35,7 +33,7 @@
   }
 }
 
-.Resume-positionSuperheading {
+.PositionSuperheading {
   display: inline-flex;
   align-items: center;
   padding: var(--spacingSM) var(--spacingSM);
@@ -50,11 +48,19 @@
   background-color: var(--blueRibbon);
   position: relative; /* enables z-index */
   z-index: var(--layerMD);
-  -webkit-clip-path: polygon(0 0, 0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 100%);
+  -webkit-clip-path: polygon(
+    0 0,
+    0 0,
+    90% 0,
+    100% 50%,
+    90% 100%,
+    0 100%,
+    0 100%
+  );
   clip-path: polygon(0 0, 0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 100%);
 }
 
-.Resume-positionSuberHeadingShadow {
+.PositionSuberHeadingShadow {
   position: absolute;
   width: 75%;
   height: var(--spacingLG);
@@ -66,19 +72,19 @@
   box-shadow: 0 var(--spacingSM) var(--spacingSM) -0.25rem var(--semiTransparentBlack);
 }
 
-.Resume-dateRange {
+.DateRange {
   margin-top: var(--spacingSM);
   font-weight: 700;
   font-size: 0.85rem;
 }
 
-.Resume-positionSecondHalf {
+.PositionSecondHalf {
   margin: 0;
-  
+
   & ul {
     margin: 0;
   }
-  
+
   @media (min-width: 600px) {
     border-left: 1px solid var(--semiTransparentBlack);
   }

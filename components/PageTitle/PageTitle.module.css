@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .PageTitle {
   background-color: var(--blueRibbon);
   color: var(--white);
@@ -8,7 +6,7 @@
   z-index: 1;
 }
 
-.PageTitle-heading {
+.Heading {
   position: relative;
   z-index: 3;
   text-align: center;
@@ -18,8 +16,8 @@
   }
 }
 
-.PageTitle-overlay,
-.PageTitle-image {
+.Overlay,
+.Image {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,18 +25,18 @@
   height: 100%;
 }
 
-.PageTitle-overlay {
+.Overlay {
   z-index: 2;
   background-color: var(--blueRibbon);
   opacity: 0.85;
 }
 
-.PageTitle-image {
+.Image {
   z-index: 1;
   object-fit: cover;
 }
 
-.PageTitle-meta {
+.Meta {
   position: relative;
   z-index: 3;
   width: 100%;

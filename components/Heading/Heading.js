@@ -1,19 +1,13 @@
 import React from 'react'
-import classNames from 'classnames'
-import './Heading.css'
 
-export default class Heading extends React.Component {
-  render() {
-    const { level, children, className } = this.props
+export default function Heading({ as, looksLike, children, className }) {
+  const Component = looksLike ? looksLike : as
+  console.log('as', as)
+  const ariaLevel = as.replace(/\D/g, '')
 
-    return (
-      <div
-        className={classNames( `Heading Heading--${level}`, className )}
-        role="heading"
-        aria-level={level}
-      >
-        {children}
-      </div>
-    )
-  }
+  return (
+    <Component role="heading" aria-level={ariaLevel} className={className}>
+      {children}
+    </Component>
+  )
 }

@@ -1,13 +1,9 @@
 import React from 'react'
 import classNames from 'classnames'
-import './Highlight.css'
+import styles from './Highlight.module.css'
 
-export default class Highlight extends React.Component {
-  render() {
-    const { children, className } = this.props
-
-    return (
-      <span className={classNames( `Highlight`, className )}>{children}</span>
-    )
-  }
+export default function Highlight({ children, className }) {
+  return (
+    <span className={classNames(styles.Highlight, className)}>{children}</span>
+  )
 }

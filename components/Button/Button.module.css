@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .Button {
   display: inline-flex;
   justify-content: center;
@@ -14,55 +12,55 @@
   transition: background-color var(--duration) var(--easing);
 }
 
-.Button--full {
+.FullWidth {
   width: 100%;
 }
 
-.Button--centered {
+.Centered {
   margin: 0 auto;
 }
 
-.Button--primary {
+.PrimaryVariant {
   background-color: var(--blueRibbon);
   color: var(--white);
   border-color: var(--blueRibbon);
 }
 
-.Button--primary:hover {
+.PrimaryVariant:hover {
   background-color: var(--blue);
 }
 
-.Button--primary:focus {
+.PrimaryVariant:focus {
   outline-color: var(--blue);
 }
 
-.Button--secondary {
+.SecondaryVariant {
   background-color: var(--white);
   color: var(--blueRibbon);
   border-color: var(--blueRibbon);
 }
 
-.Button--tertiary {
+.TertiaryVariant {
   background-color: var(--white);
   color: var(--blueRibbon);
   border-color: transparent;
 }
 
-.Button--secondary:hover,
-.Button--tertiary:hover {
+.SecondaryVariant:hover,
+.TertiaryVariant:hover {
   background-color: var(--seaShell);
 }
 
-.Button--ghost {
+.GhostVariant {
   background-color: transparent;
   color: var(--white);
   border-color: var(--white);
 }
 
-.Button-icon--pre {
+.PrefixIcon {
   margin-right: var(--spacingSM);
 }
 
-.Button-icon--post {
+.SuffixIcon {
   margin-left: var(--spacingSM);
 }

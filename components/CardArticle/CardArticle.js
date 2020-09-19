@@ -1,40 +1,38 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Link } from 'gatsby'
+import Link from 'next/link'
 import { Icon } from 'react-icons-kit'
 import { arrowRight } from 'react-icons-kit/feather/arrowRight'
 import Card from 'components/Card'
 import Subdued from 'components/Subdued'
 import Heading from 'components/Heading'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
-import './CardArticle.css'
+import styles from './CardArticle.module.css'
 
-export default class CardArticle extends React.Component {
-  render() {
-    const { className, date, headingContent, children, linkTo } = this.props
+export default function CardArticle(props) {
+  const { className, date, headingContent, children, linkTo } = props
 
-    return (
-      <Link className={classNames( 'CardArticle-link', className )} to={linkTo} data-cy="card-article">
-        <Card className="CardArticle">
-          <Subdued className="CardArticle-date">{date}</Subdued>
+  return (
+    <Link
+      className={classNames(styles.Link, className)}
+      to={linkTo}
+      data-cy="card-article"
+    >
+      <Card className={styles.CardArticle}>
+        <Subdued className={styles.Date}>{date}</Subdued>
 
-          <Heading level="3" className="CardArticle-heading">
-            {headingContent}
-          </Heading>
+        <Heading as="h3" className={styles.Heading}>
+          {headingContent}
+        </Heading>
 
-          {children}
+        {children}
 
-          <span className="CardArticle-readMore">
-            <Icon
-              icon={arrowRight}
-              size={'100%'}
-              className="CardArticle-icon"
-            />
+        <span className={styles.ReadMore}>
+          <Icon icon={arrowRight} size={'100%'} className={styles.Icon} />
 
-            <ScreenReaderOnly>Read More</ScreenReaderOnly>
-          </span>
-        </Card>
-      </Link>
-    )
-  }
+          <ScreenReaderOnly>Read More</ScreenReaderOnly>
+        </span>
+      </Card>
+    </Link>
+  )
 }

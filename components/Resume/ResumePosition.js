@@ -3,50 +3,45 @@ import Heading from 'components/Heading'
 import Subdued from 'components/Subdued'
 import LongForm from 'components/LongForm'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
-import './Resume.css'
+import styles from './Resume.module.css'
 
-function ResumePosition( props ) {
-  const {
-    heading,
-    subheading,
-    children,
-    startDate,
-    endDate
-  } = props
+export default function ResumePosition(props) {
+  const { heading, subheading, children, startDate, endDate } = props
 
   return (
-    <div className="Resume-position">
-      <div className="Resume-positionFirstHalf">
-        <div className="Resume-positionHeadingWrapper">
-          <div className="Resume-positionSuperheadingWrapper">
-            <Heading level="4" className="Resume-positionSuperheading">
-              { subheading }
+    <div className={styles.Position}>
+      <div className={styles.PositionFirstHalf}>
+        <div className={styles.PositionHeadingWrapper}>
+          <div className={styles.PositionSuperheadingWrapper}>
+            <Heading as="h4" className={styles.PositionSuperheading}>
+              {subheading}
             </Heading>
 
-            <span role="presentation" className="Resume-positionSuberHeadingShadow"></span>
+            <span
+              role="presentation"
+              className={styles.PositionSuberHeadingShadow}
+            ></span>
           </div>
 
-          <Heading level="5" className="Resume-positionHeading">{ heading }</Heading>
+          <Heading as="h5" className={styles.PositionHeading}>
+            {heading}
+          </Heading>
         </div>
-        
-        <Subdued className="Resume-dateRange">
-          <span className="Resume-date">{ startDate }&nbsp;</span>
+
+        <Subdued className={styles.DateRange}>
+          <span className={styles.Date}>{startDate}&nbsp;</span>
 
           <span>&mdash;</span>
 
           <ScreenReaderOnly>through</ScreenReaderOnly>
 
-          <span className="Resume-date">&nbsp;{ endDate }</span>
+          <span className={styles.Date}>&nbsp;{endDate}</span>
         </Subdued>
       </div>
-      
-      <div className="Resume-positionSecondHalf">
-        <LongForm>
-          { children }
-        </LongForm>
+
+      <div className={styles.PositionSecondHalf}>
+        <LongForm>{children}</LongForm>
       </div>
     </div>
   )
 }
-
-export default ResumePosition;

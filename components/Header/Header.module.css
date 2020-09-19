@@ -1,21 +1,18 @@
-@import '../../variables/variables.css';
-
 .Header {
-  height: var(--headerHeight);  
+  height: var(--headerHeight);
+  display: flex;
+  justify-content: space-between;
   position: relative;
   z-index: 2;
 }
 
-.Header a {
-  text-decoration: none;
-}
-
-.Header-container {
+.Container {
   display: flex;
   justify-content: space-between;
 }
 
-.Header-brandLink {
+.BrandLink {
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,11 +23,4 @@
   text-transform: uppercase;
   color: var(--outerSpace);
   background-color: var(--white);
-}
-
-@media (min-width: 800px) {
-  .Header .MaxWidth {
-    width: 100%;
-    max-width: 100%;
-  }
 }

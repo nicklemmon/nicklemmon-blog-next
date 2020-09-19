@@ -5,28 +5,20 @@ import PageTitle from 'components/PageTitle'
 import Main from 'components/Main'
 import Container from 'components/Container'
 import MaxWidth from 'components/MaxWidth'
-import './PageLayout.css'
+import styles from './PageLayout.module.css'
 
-export default class PageLayout extends React.Component {
-  render() {
-    const { className, title, date, children } = this.props
+export default function PageLayout(props) {
+  const { className, title, date, children } = props
 
-    return (
-      <DefaultLayout className={classNames('PageLayout', className)}>
-        <Main className="PageLayout-main">
-          <PageTitle
-            className="PageLayout-pageTitle"
-            headingContent={title}
-            date={date}
-          />
+  return (
+    <DefaultLayout className={classNames(styles.PageLayout, className)}>
+      <Main>
+        <PageTitle headingContent={title} date={date} />
 
-          <Container size="lg">
-            <MaxWidth size="lg" className="PageLayout-maxWidth">
-              {children}
-            </MaxWidth>
-          </Container>
-        </Main>
-      </DefaultLayout>
-    )
-  }
+        <Container size="lg">
+          <MaxWidth size="lg">{children}</MaxWidth>
+        </Container>
+      </Main>
+    </DefaultLayout>
+  )
 }

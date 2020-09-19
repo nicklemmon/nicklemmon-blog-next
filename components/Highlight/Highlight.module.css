@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .Highlight {
   position: relative; /* allows absolute positioning within */
 }

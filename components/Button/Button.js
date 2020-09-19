@@ -2,49 +2,45 @@ import React from 'react'
 import Link from 'next/link'
 import { Icon } from 'react-icons-kit'
 import classNames from 'classnames'
-import './Button.css'
+import styles from './Button.module.css'
 
-export default class Button extends React.Component {
-  render() {
-    const {
-      to,
-      type,
-      children,
-      fullWidth,
-      centered,
-      className,
-      preIcon,
-      postIcon,
-    } = this.props
+export default function Button(props) {
+  const {
+    href,
+    children,
+    fullWidth,
+    centered,
+    className,
+    prefixIcon,
+    suffixIcon,
+    variant,
+  } = props
 
-    return (
-      <Link
-        to={to}
-        className={classNames(
-          `Button Button--${type}`,
-          fullWidth ? 'Button--full' : '',
-          centered ? 'Button--centered' : '',
-          className
-        )}
-      >
-        {preIcon && (
-          <Icon
-            className="Button-icon Button-icon--pre"
-            size="1rem"
-            icon={preIcon}
-          />
+  return (
+    <Link
+      href={href}
+      className={classNames(
+        styles.Button,
+        variant === 'primary' && styles.PrimaryVariant,
+        variant === 'secondary' && styles.SecondaryVariant,
+        variant === 'tertiary' && styles.TertiaryVariant,
+        variant === 'ghost' && styles.GhostVariant,
+        fullWidth && styles.FullWidth,
+        centered && styles.Centered,
+        className
+      )}
+    >
+      <>
+        {prefixIcon && (
+          <Icon className={styles.PrefixIcon} size="1rem" icon={prefixIcon} />
         )}
 
         {children}
 
-        {postIcon && (
-          <Icon
-            className="Button-icon Button-icon--post"
-            size="1rem"
-            icon={postIcon}
-          />
+        {suffixIcon && (
+          <Icon className={styles.SuffixIcon} size="1rem" icon={suffixIcon} />
         )}
-      </Link>
-    )
-  }
+      </>
+    </Link>
+  )
 }

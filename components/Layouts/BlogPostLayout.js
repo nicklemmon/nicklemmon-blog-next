@@ -1,5 +1,4 @@
 import React from 'react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { androidArrowBack } from 'react-icons-kit/ionicons/androidArrowBack'
 import { androidArrowForward } from 'react-icons-kit/ionicons/androidArrowForward'
 import get from 'lodash/get'
@@ -9,57 +8,44 @@ import Button from 'components/Button'
 import Bio from 'components/Bio'
 import Heading from 'components/Heading'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
+import styles from './BlogPostLayout.module.css'
 
-import './BlogPostLayout.css'
+export default function BlogPostLayout() {
+  const post = this.props.pageResources.json.data.mdx
+  const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+  const { previous, next } = this.props.pathContext
 
-class BlogPostLayout extends React.Component {
-  render() {
-    const post = this.props.pageResources.json.data.mdx
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const { previous, next } = this.props.pathContext
+  return (
+    <PageLayout title={post.frontmatter.title} date={post.frontmatter.date}>
+      <LongForm>{post.body}</LongForm>
 
-    return (
-      <PageLayout
-        className="BlogPostLayout"
-        title={post.frontmatter.title}
-        date={post.frontmatter.date}
-      >
-        <LongForm className="BlogPostLayout-content">
-          <MDXRenderer>{post.body}</MDXRenderer>
-        </LongForm>
+      <Bio />
 
-        <Bio />
+      <ScreenReaderOnly>
+        <Heading as="h4">More Articles</Heading>
+      </ScreenReaderOnly>
 
-        <ScreenReaderOnly>
-          <Heading level="4">More Articles</Heading>
-        </ScreenReaderOnly>
+      <div className={styles.Buttons}>
+        {previous && (
+          <Button
+            variant="secondary"
+            to={previous.fields.slug}
+            prefixIcon={androidArrowBack}
+          >
+            {previous.frontmatter.title}
+          </Button>
+        )}
 
-        <div className="BlogPostLayout-buttons">
-          {previous && (
-            <Button
-              className="BlogPostLayout-button BlogPostLayout-button--prev"
-              type="secondary"
-              to={previous.fields.slug}
-              preIcon={androidArrowBack}
-            >
-              {previous.frontmatter.title}
-            </Button>
-          )}
-
-          {next && (
-            <Button
-              className="BlogPostLayout-button BlogPostLayout-button--next"
-              type="secondary"
-              to={next.fields.slug}
-              postIcon={androidArrowForward}
-            >
-              {next.frontmatter.title}
-            </Button>
-          )}
-        </div>
-      </PageLayout>
-    )
-  }
+        {next && (
+          <Button
+            variant="secondary"
+            to={next.fields.slug}
+            suffixIcon={androidArrowForward}
+          >
+            {next.frontmatter.title}
+          </Button>
+        )}
+      </div>
+    </PageLayout>
+  )
 }
-
-export default BlogPostLayout

@@ -1,8 +1,5 @@
-@import '../../variables/variables.css';
-@import '../Header/Header.css';
-
 .Hero,
-.Hero-container {
+.Container {
   position: relative;
 }
 
@@ -11,17 +8,18 @@
   z-index: 1;
 }
 
-.Hero-container {
+.Container {
   z-index: 3;
 }
 
-.Hero-title.Hero-title { /* specificity waaaars */
+.Title.Title {
+  /* specificity waaaars */
   font-weight: 700;
   margin-bottom: var(--spacingLG);
 }
 
-.Hero-overlay,
-.Hero-image {
+.Overlay,
+.Image {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,23 +27,23 @@
   height: 100%;
 }
 
-.Hero-overlay {
+.Overlay {
   z-index: 2;
   background-color: var(--blueRibbon);
   opacity: 0.75;
 }
 
-.Hero-image {
+.Image {
   z-index: 1;
   object-fit: cover;
 }
 
-.Hero-links {
+.Links {
   display: flex;
   justify-content: space-around;
 }
 
-.Hero-iconUnderlay {
+.IconUnderlay {
   position: absolute;
   z-index: 4;
   top: -25%;
@@ -54,32 +52,33 @@
   width: 150%;
   height: 150%;
   border-radius: 1.5rem;
-  box-shadow: 0 var(--spacingMD) var(--spacingMD) calc(var(--spacingMD) * -1) rgba(0, 0, 0, 0.33);
+  box-shadow: 0 var(--spacingMD) var(--spacingMD) calc(var(--spacingMD) * -1)
+    rgba(0, 0, 0, 0.33);
   transform: scale(0);
   visibility: hidden;
   opacity: 0;
   transition: transform var(--duration) var(--easing),
-              visibility var(--duration) var(--easing),
-              opacity var(--duration) var(--easing),
-              border-radius calc(var(--duration) * 2) var(--easing);
+    visibility var(--duration) var(--easing),
+    opacity var(--duration) var(--easing),
+    border-radius calc(var(--duration) * 2) var(--easing);
 }
 
-.Hero-iconLink {
+.IconLink {
   position: relative; /* allows absolute positioning within */
   color: currentColor;
   line-height: 0;
   outline-offset: 1.5rem;
 }
 
-.Hero-iconLink:focus .Hero-iconUnderlay,
-.Hero-iconLink:hover .Hero-iconUnderlay{
+.IconLink:focus .IconUnderlay,
+.IconLink:hover .IconUnderlay {
   transform: scale(1);
   border-radius: 50%;
   opacity: 1;
   visibility: visible;
 }
 
-.Hero-icon {
+.Icon {
   position: relative; /* allows use of z-index */
   z-index: 5;
   width: calc(2.5rem + 1.5vw);

@@ -1,5 +1,3 @@
-@import '../../variables/variables.css';
-
 .Footer {
   background-color: var(--seaShell);
   color: var(--outerSpace);
@@ -11,29 +9,29 @@
   margin: var(--spacingMD) 0;
 }
 
-.Footer-container {
+.Container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.Footer-socialLinks {
+.SocialLinks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
 
-.Footer-socialIcon {
+.SocialIcon {
   width: calc(1.25rem + 1vw);
   height: calc(1.25rem + 1vw);
 }
 
-.Footer-socialLink,
-.Footer-link {
+.SocialLink,
+.FooterLink {
   color: currentColor;
 }
 
-.Footer-link {
+.FooterLink {
   border-bottom: 2px solid currentColor;
 }

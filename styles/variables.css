@@ -1,0 +1,43 @@
+:root {
+  /* typography */
+  --fontFamilyPrimary: 'Source Sans Pro', serif;
+  --fontFamilySecondary: 'Source Sans Pro', sans-serif;
+
+  /* colors */
+  --blueRibbon: #0047fe;
+  --blue: #0c0fe7;
+  --outerSpace: #293038;
+  --seaShell: #f1f1f1;
+  --semiTransparentBlack: rgba(0, 0, 0, 0.125);
+  --boulder: #757575;
+  --white: #fff;
+
+  /* spacing */
+  --spacingXS: 0.25rem;
+  --spacingSM: 0.5rem;
+  --spacingMD: 1rem;
+  --spacingLG: 2rem;
+  --spacingXL: 4rem;
+  --spacingXXL: 8rem;
+
+  /* breakpoints */
+  --breakpointSM: 400px;
+  --breakpointMD: 600px;
+  --breakpointLG: 800px;
+  --breakpointXL: 1100px;
+
+  /* animation */
+  --duration: 0.2s;
+  --easing: ease-in-out;
+
+  /* layering */
+  --layerXS: -10;
+  --layerSM: -5;
+  --layerMD: 0;
+  --layerLG: 5;
+  --layerXL: 10;
+
+  /* misc */
+  --headerHeight: 3rem;
+  --borderRadius: 6px;
+}

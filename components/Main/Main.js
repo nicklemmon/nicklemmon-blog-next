@@ -1,13 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
-import './Main.css'
+import styles from './Main.module.css'
 
-export default class Main extends React.Component {
-  render() {
-    return (
-      <main className={classNames('Main', this.props.className)}>
-        {this.props.children}
-      </main>
-    )
-  }
+export default function Main({ children, className }) {
+  return <main className={classNames(styles.Main, className)}>{children}</main>
 }
