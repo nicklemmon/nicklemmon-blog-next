@@ -25,20 +25,20 @@
   transform: scale(0.9);
 }
 
-.Button.is-open:focus {
+.Button.isOpen:focus {
   outline-color: var(--white);
 }
 
-.Button.is-open .Bar {
+.Button.isOpen .Bar {
   margin: 0;
   background-color: var(--white);
 }
 
-.Button.is-open .Bar1 {
+.Button.isOpen .Bar1 {
   transform: translateY(1px) rotate(45deg);
 }
 
-.Button.is-open .Bar2 {
+.Button.isOpen .Bar2 {
   transform: translateY(-1px) rotate(-45deg);
 }
 

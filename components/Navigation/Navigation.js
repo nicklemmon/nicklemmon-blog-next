@@ -58,7 +58,7 @@ export default class Navigation extends React.Component {
     return (
       <div className={classNames(styles.Navigation, className)}>
         <button
-          className={classNames(styles.Button, isOpen ? 'is-open' : '')}
+          className={classNames(styles.Button, isOpen ? styles.isOpen : '')}
           aria-expanded={isOpen}
           aria-controls="nav-menu"
           onClick={this.handleClick}
