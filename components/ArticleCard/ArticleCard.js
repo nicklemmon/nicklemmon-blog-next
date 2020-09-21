@@ -7,18 +7,18 @@ import Card from 'components/Card'
 import Subdued from 'components/Subdued'
 import Heading from 'components/Heading'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
-import styles from './CardArticle.module.css'
+import styles from './ArticleCard.module.css'
 
-export default function CardArticle(props) {
-  const { className, date, headingContent, children, linkTo } = props
+export default function ArticleCard(props) {
+  const { className, date, heading, children, href } = props
 
   return (
-    <PageLink className={classNames(styles.Link, className)} href={linkTo}>
-      <Card className={styles.CardArticle}>
+    <PageLink className={classNames(styles.Link, className)} href={href}>
+      <Card className={styles.ArticleCard}>
         <Subdued className={styles.Date}>{date}</Subdued>
 
         <Heading as="h3" className={styles.Heading}>
-          {headingContent}
+          {heading}
         </Heading>
 
         {children}

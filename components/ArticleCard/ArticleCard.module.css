@@ -1,11 +1,11 @@
-.CardArticle {
+.ArticleCard {
   position: relative; /* allows absolute positioning within */
   color: var(--outerSpace);
   transition: transform var(--duration) var(--easing),
     box-shadow var(--duration) var(--easing);
 }
 
-.CardArticle p {
+.ArticleCard p {
   font-size: 0.9rem;
   font-family: var(--fontFamilySecondary);
   line-height: 1.5;
@@ -22,8 +22,8 @@
   margin-top: var(--spacingLG);
 }
 
-.Link .CardArticle:hover,
-.Link .CardArticle:focus {
+.Link .ArticleCard:hover,
+.Link .ArticleCard:focus {
   transform: scale(1.005) translateY(-2px);
   box-shadow: 0 var(--spacingSM) var(--spacingLG) rgba(0, 0, 0, 0.066);
 }
@@ -40,7 +40,7 @@
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--outerSpace);
-  margin-bottom: var(--spacingSM);
+  margin-bottom: var(--spacingLG);
 }
 
 .ReadMore {
