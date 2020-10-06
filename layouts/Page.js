@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import Default from 'layouts/Default'
 import Header from 'components/Header'
 import Main from 'components/Main'
@@ -9,18 +10,24 @@ import PageTitle from 'components/PageTitle'
 
 export default function Page({ title, date, children }) {
   return (
-    <Default>
-      <Header theme="light" />
+    <>
+      <Head>
+        <title>{title} | Nick Lemmon, Front End Web Developer</title>
+      </Head>
 
-      <Main>
-        {title ? <PageTitle date={date}>{title}</PageTitle> : null}
+      <Default>
+        <Header theme="light" />
 
-        <Container size="lg">
-          <MaxWidth size="lg">{children}</MaxWidth>
-        </Container>
-      </Main>
+        <Main>
+          {title ? <PageTitle date={date}>{title}</PageTitle> : null}
 
-      <Footer />
-    </Default>
+          <Container size="lg">
+            <MaxWidth size="lg">{children}</MaxWidth>
+          </Container>
+        </Main>
+
+        <Footer />
+      </Default>
+    </>
   )
 }
