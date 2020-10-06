@@ -4,6 +4,7 @@ import FocusLock from 'react-focus-lock'
 import classNames from 'classnames'
 import { PageLink } from 'components/links'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
+import { useKeyPress } from 'hooks'
 import styles from './Navigation.module.css'
 
 const animationStates = {
@@ -68,32 +69,46 @@ export default function Navigation({ className, theme }) {
 
         <AnimatePresence>
           {isOpen ? (
-            <motion.nav
-              transition={{ type: 'spring' }}
-              className={styles.Nav}
-              initial={animationStates.closed}
-              animate={animationStates.open}
-              exit={animationStates.closed}
-            >
-              <PageLink className={styles.Link} href="/">
-                Home
-              </PageLink>
-
-              <PageLink className={styles.Link} href="/archives">
-                Archives
-              </PageLink>
-
-              <PageLink className={styles.Link} href="/about">
-                About
-              </PageLink>
-
-              <PageLink className={styles.Link} href="/resume">
-                Resume
-              </PageLink>
-            </motion.nav>
+            <NavList handleEscKeyPress={() => setIsOpen(false)} />
           ) : null}
         </AnimatePresence>
       </FocusLock>
     </div>
+  )
+}
+
+function NavList({ handleEscKeyPress }) {
+  const escapeKeyPressed = useKeyPress('Escape')
+
+  useEffect(() => {
+    if (escapeKeyPressed) {
+      return handleEscKeyPress()
+    }
+  }, [escapeKeyPressed])
+
+  return (
+    <motion.nav
+      transition={{ type: 'spring' }}
+      className={styles.Nav}
+      initial={animationStates.closed}
+      animate={animationStates.open}
+      exit={animationStates.closed}
+    >
+      <PageLink className={styles.Link} href="/">
+        Home
+      </PageLink>
+
+      <PageLink className={styles.Link} href="/archives">
+        Archives
+      </PageLink>
+
+      <PageLink className={styles.Link} href="/about">
+        About
+      </PageLink>
+
+      <PageLink className={styles.Link} href="/resume">
+        Resume
+      </PageLink>
+    </motion.nav>
   )
 }
