@@ -9,6 +9,7 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "framer-motion": "^2.7.7",
     "next": "9.5.3",
     "prism-theme-night-owl": "^1.4.0",
     "prism-themes": "^1.4.1",

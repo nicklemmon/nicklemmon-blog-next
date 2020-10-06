@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
 import classNames from 'classnames'
 import { PageLink } from 'components/links'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
 import styles from './Navigation.module.css'
+
+const animationStates = {
+  closed: {
+    scale: 0.95,
+    opacity: 0,
+    borderRadius: '3rem',
+  },
+  open: {
+    scale: 1,
+    opacity: 1,
+    borderRadius: '0%',
+  },
+}
 
 export default function Navigation({ className, theme }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,7 +50,6 @@ export default function Navigation({ className, theme }) {
         <button
           className={classNames(styles.Button, isOpen ? styles.isOpen : '')}
           aria-expanded={isOpen}
-          aria-controls="nav-menu"
           onClick={() => setIsOpen(!isOpen)}
           data-cy="navigation-button"
         >
@@ -53,29 +66,33 @@ export default function Navigation({ className, theme }) {
           />
         </button>
 
-        <nav
-          className={classNames(
-            styles.Nav,
-            isOpen ? styles.isOpen : styles.isClosed
-          )}
-          id="nav-menu"
-        >
-          <PageLink className={styles.Link} href="/">
-            Home
-          </PageLink>
+        <AnimatePresence>
+          {isOpen ? (
+            <motion.nav
+              transition={{ type: 'spring' }}
+              className={styles.Nav}
+              initial={animationStates.closed}
+              animate={animationStates.open}
+              exit={animationStates.closed}
+            >
+              <PageLink className={styles.Link} href="/">
+                Home
+              </PageLink>
 
-          <PageLink className={styles.Link} href="/archives">
-            Archives
-          </PageLink>
+              <PageLink className={styles.Link} href="/archives">
+                Archives
+              </PageLink>
 
-          <PageLink className={styles.Link} href="/about">
-            About
-          </PageLink>
+              <PageLink className={styles.Link} href="/about">
+                About
+              </PageLink>
 
-          <PageLink className={styles.Link} href="/resume">
-            Resume
-          </PageLink>
-        </nav>
+              <PageLink className={styles.Link} href="/resume">
+                Resume
+              </PageLink>
+            </motion.nav>
+          ) : null}
+        </AnimatePresence>
       </FocusLock>
     </div>
   )
