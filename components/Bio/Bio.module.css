@@ -26,8 +26,10 @@
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .Img {
     width: 6rem;
     height: 6rem;
   }

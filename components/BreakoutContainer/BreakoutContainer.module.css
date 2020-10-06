@@ -7,8 +7,10 @@
 
 .BreakoutContainer:after {
   content: '';
+}
 
-  @media (min-width: 800px) {
+@media (min-width: 800px) {
+  .BreakoutContainer:after {
     position: absolute;
     bottom: calc(var(--spacingLG) * -1);
     left: 0;

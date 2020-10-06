@@ -1,4 +1,6 @@
-.DefaultLayout {
+.Page {
   border: 1vw solid var(--white);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

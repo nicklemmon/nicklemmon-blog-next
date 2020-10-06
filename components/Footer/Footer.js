@@ -18,8 +18,10 @@ export default function Footer() {
         <div className={styles.SocialLinks}>
           <a
             href="http://codepen.com/nicklemmon"
+            title="Opens in a new tab"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.SocialLink}
-            rel="noopener"
           >
             <Icon
               className={styles.SocialIcon}
@@ -32,8 +34,10 @@ export default function Footer() {
 
           <a
             href="http://github.com/nicklemmon"
+            title="Opens in a new tab"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.SocialLink}
-            rel="noopener"
           >
             <Icon
               className={styles.SocialIcon}
@@ -46,8 +50,10 @@ export default function Footer() {
 
           <a
             href="http://linkedin.com/in/nicklemmon"
+            title="Opens in a new tab"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.SocialLink}
-            rel="noopener"
           >
             <Icon
               className={styles.SocialIcon}

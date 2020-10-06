@@ -29,7 +29,8 @@
   outline-color: var(--white);
 }
 
-.Button.isOpen .Bar {
+/* Some specificity wars here */
+.Button.isOpen .Bar.Bar {
   margin: 0;
   background-color: var(--white);
 }
@@ -50,10 +51,18 @@
   transition: transform var(--duration) var(--easing);
 }
 
+.Navigation.DarkTheme .Bar {
+  background-color: var(--white);
+}
+
 @media (min-width: 800px) {
-  .Bar {
+  .Navigation.DarkTheme .Bar {
     background-color: var(--outerSpace);
   }
+}
+
+.Navigation.LightTheme .Bar {
+  background-color: var(--white);
 }
 
 .Nav {

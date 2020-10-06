@@ -1,17 +1,17 @@
 import React from 'react'
-import DefaultLayout from './DefaultLayout'
 import Hero from 'components/Hero'
 import Header from 'components/Header'
 import Main from 'components/Main'
 import Footer from 'components/Footer'
 import BreakoutContainer from 'components/BreakoutContainer'
 import MaxWidth from 'components/MaxWidth'
-import styles from './LandingLayout.module.css'
+import Default from './Default'
+import styles from './Landing.module.css'
 
 export default function LandingLayout({ children }) {
   return (
-    <DefaultLayout>
-      <Header className={styles.Header} />
+    <Default>
+      <Header className={styles.Header} theme="dark" />
 
       <Main className={styles.Main}>
         <Hero className={styles.Hero} />
@@ -22,6 +22,6 @@ export default function LandingLayout({ children }) {
       </Main>
 
       <Footer className={styles.Footer} />
-    </DefaultLayout>
+    </Default>
   )
 }

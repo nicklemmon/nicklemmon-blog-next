@@ -15,7 +15,6 @@
 .Link {
   display: block; /* fixes focus styling issues */
   outline-color: var(--blueRibbon);
-  margin: 0 0 var(--spacingLG) 0;
 }
 
 .Link + * {

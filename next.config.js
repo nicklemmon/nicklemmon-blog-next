@@ -1,11 +1,13 @@
+/* eslint-disable */
 const withMdxEnhanced = require('next-mdx-enhanced')
+const mdxPrism = require('@mapbox/rehype-prism')
 
 module.exports = withMdxEnhanced({
   layoutPath: 'layouts',
   defaultLayout: false,
   fileExtensions: ['mdx'],
   remarkPlugins: [],
-  rehypePlugins: [],
+  rehypePlugins: [mdxPrism],
   usesSrc: false,
   extendFrontMatter: {
     process: (mdxContent, frontMatter) => {},

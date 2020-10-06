@@ -3,6 +3,7 @@
   color: var(--outerSpace);
   font-family: var(--fontFamilySecondary);
   text-align: center;
+  flex: 1;
 }
 
 .Footer p {

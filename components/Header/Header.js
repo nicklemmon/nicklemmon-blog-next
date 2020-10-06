@@ -4,7 +4,7 @@ import { PageLink } from 'components/links'
 import Navigation from 'components/Navigation'
 import styles from './Header.module.css'
 
-export default function Header({ className }) {
+export default function Header({ className, theme = 'dark' }) {
   return (
     <header className={classNames(styles.Header, className)} data-cy="header">
       <div>
@@ -13,7 +13,7 @@ export default function Header({ className }) {
         </PageLink>
       </div>
 
-      <Navigation />
+      <Navigation theme={theme} />
     </header>
   )
 }

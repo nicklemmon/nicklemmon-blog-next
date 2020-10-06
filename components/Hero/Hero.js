@@ -11,7 +11,6 @@ import HeroIconLink from './HeroIconLink'
 import styles from './Hero.module.css'
 
 export default function Hero(props) {
-  const iconSize = '3rem'
   const { className } = props
 
   return (

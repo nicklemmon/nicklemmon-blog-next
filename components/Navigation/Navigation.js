@@ -52,11 +52,18 @@ export default class Navigation extends React.Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, theme } = this.props
     const { isOpen } = this.state
 
     return (
-      <div className={classNames(styles.Navigation, className)}>
+      <div
+        className={classNames(
+          styles.Navigation,
+          theme === 'light' && styles.LightTheme,
+          theme === 'dark' && styles.DarkTheme,
+          className
+        )}
+      >
         <button
           className={classNames(styles.Button, isOpen ? styles.isOpen : '')}
           aria-expanded={isOpen}
@@ -111,18 +118,17 @@ export default class Navigation extends React.Component {
             About
           </PageLink>
 
-          {/* <PageLink
+          <PageLink
             className={styles.Link}
             href="/resume"
             onClick={this.handleClick}
-            onKeyDown={e => this.handleEndKeypress( e )}
-            innerRef={el => {
+            onKeyDown={(e) => this.handleEndKeypress(e)}
+            innerRef={(el) => {
               this.lastFocusable = el
             }}
-            data-cy="navigation-link"
           >
             Resume
-          </Link> */}
+          </PageLink>
         </nav>
       </div>
     )

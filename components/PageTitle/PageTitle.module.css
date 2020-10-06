@@ -1,17 +1,20 @@
 .PageTitle {
   background-color: var(--blueRibbon);
   color: var(--white);
-  margin-top: -3rem;
   position: relative; /* enables use of z-index */
   z-index: 1;
+  margin-top: -3rem;
+  padding: var(--spacingXL);
 }
 
 .Heading {
   position: relative;
   z-index: 3;
   text-align: center;
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .Heading {
     text-align: left;
   }
 }
@@ -43,10 +46,13 @@
   color: var(--white);
   font-size: 1.125rem;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-top: var(--spacingMD);
+  text-align: center;
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .Meta {
     text-align: left;
   }
 }

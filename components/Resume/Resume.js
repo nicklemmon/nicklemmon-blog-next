@@ -19,7 +19,7 @@ export default function Resume() {
 
           <p>
             I am passionate about making great products, and making the teams
-            I'm on even greater.
+            I&rsquo;m on even greater.
           </p>
         </LongForm>
       </Card>

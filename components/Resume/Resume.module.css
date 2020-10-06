@@ -2,8 +2,8 @@
   margin-top: var(--spacingLG);
 }
 
-.Resume-skills {
-  @media (min-width: 800px) {
+@media (min-width: 800px) {
+  .Resume-skills {
     columns: 2;
     max-height: 30rem;
     column-gap: var(--spacingLG);
@@ -14,8 +14,10 @@
   display: grid;
   grid-gap: var(--spacingLG);
   padding: var(--spacingMD) 0 var(--spacingLG);
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .Position {
     grid-template-columns: 3fr 5fr;
   }
 }
@@ -27,8 +29,10 @@
 
 .PositionSuperheadingWrapper {
   position: relative; /* allows absolute positioning within */
+}
 
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .PositionSuperheadingWrapper {
     transform: translateX(-1.75rem);
   }
 }
@@ -78,14 +82,13 @@
   font-size: 0.85rem;
 }
 
-.PositionSecondHalf {
+.PositionSecondHalf,
+.PositionSecondHalf ul {
   margin: 0;
+}
 
-  & ul {
-    margin: 0;
-  }
-
-  @media (min-width: 600px) {
+@media (min-width: 600px) {
+  .PositionSecondHalf {
     border-left: 1px solid var(--semiTransparentBlack);
   }
 }

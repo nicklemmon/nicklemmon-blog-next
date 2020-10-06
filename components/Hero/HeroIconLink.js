@@ -8,7 +8,13 @@ export default class HeroLinkIcon extends React.Component {
     const { icon, href, screenReaderContent } = this.props
 
     return (
-      <a className={styles.IconLink} href={href} rel="noopener">
+      <a
+        className={styles.IconLink}
+        href={href}
+        title="Opens in a new tab"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Icon
           className={styles.Icon}
           size={'calc(2.5rem + 1.5vw)'}

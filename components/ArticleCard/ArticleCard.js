@@ -7,6 +7,7 @@ import Card from 'components/Card'
 import Subdued from 'components/Subdued'
 import Heading from 'components/Heading'
 import ScreenReaderOnly from 'components/ScreenReaderOnly'
+import { formatDate } from 'helpers'
 import styles from './ArticleCard.module.css'
 
 export default function ArticleCard(props) {
@@ -15,7 +16,7 @@ export default function ArticleCard(props) {
   return (
     <PageLink className={classNames(styles.Link, className)} href={href}>
       <Card className={styles.ArticleCard}>
-        <Subdued className={styles.Date}>{date}</Subdued>
+        <Subdued className={styles.Date}>{formatDate(date)}</Subdued>
 
         <Heading as="h3" className={styles.Heading}>
           {heading}

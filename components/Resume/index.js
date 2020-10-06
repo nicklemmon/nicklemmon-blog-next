@@ -1,2 +1,1 @@
-export { default as Resume } from './Resume'
-export { default as ResumePosition } from './ResumePosition'
+export { default } from './Resume'
