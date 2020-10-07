@@ -1,3 +1,7 @@
 .ArticlesHeading {
   margin-bottom: var(--spacingLG);
 }
+
+.ArticlesHeadingIcon {
+  margin-left: var(--spacingSM);
+}

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Icon } from 'react-icons-kit'
+import { androidArrowForward } from 'react-icons-kit/ionicons/androidArrowForward'
 import Landing from 'layouts/Landing'
 import Heading from 'components/Heading'
 import Highlight from 'components/Highlight'
@@ -18,6 +20,12 @@ export default function LandingPage() {
     <Landing>
       <Heading as="h2" className={styles.ArticlesHeading}>
         <Highlight>The latest</Highlight>
+
+        <Icon
+          className={styles.ArticlesHeadingIcon}
+          icon={androidArrowForward}
+          size="2rem"
+        />
       </Heading>
 
       <ArticleCards>
