@@ -1,0 +1,4 @@
+.ArticleCards {
+  display: grid;
+  grid-gap: var(--spacingLG);
+}

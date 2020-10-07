@@ -20,3 +20,7 @@
     box-shadow: 0 var(--spacingSM) var(--spacingMD) rgba(0, 0, 0, 0.033);
   }
 }
+
+.Container {
+  padding-bottom: 0;
+}

@@ -3,14 +3,15 @@ import Landing from 'layouts/Landing'
 import Heading from 'components/Heading'
 import Highlight from 'components/Highlight'
 import Button from 'components/Button'
+import ArticleCards from 'components/ArticleCards'
 import ArticleCard from 'components/ArticleCard'
 import { formatPath, sortPostsByDate } from 'helpers'
 import { frontMatter as allPosts } from './*.mdx'
-import styles from './styles/index.module.css'
+import styles from './index.module.css'
 
 export default function LandingPage() {
   const posts = sortPostsByDate(allPosts).filter(
-    (_post, postIndex) => postIndex < 3
+    (_post, postIndex) => postIndex < 4
   )
 
   return (
@@ -19,19 +20,23 @@ export default function LandingPage() {
         <Highlight>The latest</Highlight>
       </Heading>
 
-      {posts.map((post, index) => (
-        <ArticleCard
-          key={`article-card-${index}`}
-          heading={post.title}
-          description={post.description}
-          href={formatPath(post.__resourcePath)}
-          date={post.date}
-        />
-      ))}
+      <ArticleCards>
+        {posts.map((post, index) => {
+          return (
+            <ArticleCard
+              key={`article-card-${index}`}
+              heading={post.title}
+              description={post.description}
+              href={formatPath(post.__resourcePath)}
+              date={post.date}
+            />
+          )
+        })}
 
-      <Button variant="primary" href="/archives" fullWidth>
-        Archives
-      </Button>
+        <Button variant="primary" href="/archives" fullWidth>
+          Archives
+        </Button>
+      </ArticleCards>
     </Landing>
   )
 }

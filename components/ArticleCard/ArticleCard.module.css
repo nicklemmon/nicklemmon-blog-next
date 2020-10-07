@@ -1,4 +1,5 @@
 .ArticleCard {
+  height: 100%;
   position: relative; /* allows absolute positioning within */
   color: var(--outerSpace);
   transition: transform var(--duration) var(--easing),
@@ -17,29 +18,26 @@
   outline-color: var(--blueRibbon);
 }
 
-.Link + * {
-  margin-top: var(--spacingLG);
-}
-
 .Link .ArticleCard:hover,
 .Link .ArticleCard:focus {
   transform: scale(1.005) translateY(-2px);
-  box-shadow: 0 var(--spacingSM) var(--spacingLG) rgba(0, 0, 0, 0.066);
 }
 
 .Date {
-  float: right;
   font-family: var(--fontFamilySecondary);
   font-weight: 700;
   font-size: 0.85rem;
   color: var(--boulder);
 }
 
+.Header {
+  margin-bottom: var(--spacingMD);
+}
+
 .Heading.Heading {
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--outerSpace);
-  margin-bottom: var(--spacingLG);
 }
 
 .ReadMore {

@@ -6,7 +6,7 @@ import styles from './Post.module.css'
 
 export default function Post({ children, frontMatter }) {
   return (
-    <Page title={frontMatter.title}>
+    <Page title={frontMatter.title} date={frontMatter.date}>
       <LongForm>{children}</LongForm>
 
       <Bio className={styles.Bio} />
