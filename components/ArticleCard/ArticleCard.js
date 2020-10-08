@@ -13,7 +13,11 @@ export default function ArticleCard(props) {
   const { className, date, heading, children, href } = props
 
   return (
-    <PageLink className={classNames(styles.Link, className)} href={href}>
+    <PageLink
+      className={classNames(styles.Link, className)}
+      href={href}
+      data-id="article-card"
+    >
       <Card className={styles.ArticleCard}>
         <div className={styles.Header}>
           <Heading as="h3" className={styles.Heading}>

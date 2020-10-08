@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 
 export default function PageLink(props) {
@@ -5,7 +6,9 @@ export default function PageLink(props) {
 
   return (
     <Link href={href} passHref onKeyDown={onKeyDown} onClick={onClick}>
-      <a className={className}>{children}</a>
+      <a className={className} data-id={props['data-id']}>
+        {children}
+      </a>
     </Link>
   )
 }

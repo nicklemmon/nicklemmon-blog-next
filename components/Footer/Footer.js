@@ -17,8 +17,7 @@ export default function Footer() {
       <Container size="lg" className={styles.Container}>
         <div className={styles.SocialLinks}>
           <a
-            href="http://codepen.com/nicklemmon"
-            title="Opens in a new tab"
+            href="https://codepen.io/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.SocialLink}
@@ -29,12 +28,13 @@ export default function Footer() {
               size={iconDimensions}
             />
 
-            <ScreenReaderOnly>Nick Lemmon on Codepen</ScreenReaderOnly>
+            <ScreenReaderOnly>
+              Nick Lemmon on CodePen (Opens in a new tab)
+            </ScreenReaderOnly>
           </a>
 
           <a
-            href="http://github.com/nicklemmon"
-            title="Opens in a new tab"
+            href="https://github.com/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.SocialLink}
@@ -45,12 +45,13 @@ export default function Footer() {
               size={iconDimensions}
             />
 
-            <ScreenReaderOnly>Nick Lemmon on GitHub</ScreenReaderOnly>
+            <ScreenReaderOnly>
+              Nick Lemmon on GitHub (Opens in a new tab)
+            </ScreenReaderOnly>
           </a>
 
           <a
-            href="http://linkedin.com/in/nicklemmon"
-            title="Opens in a new tab"
+            href="https://linkedin.com/in/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.SocialLink}
@@ -61,7 +62,9 @@ export default function Footer() {
               size={iconDimensions}
             />
 
-            <ScreenReaderOnly>Nick Lemmon on LinkedIn</ScreenReaderOnly>
+            <ScreenReaderOnly>
+              Nick Lemmon on LinkedIn (Opens in a new tab)
+            </ScreenReaderOnly>
           </a>
         </div>
 

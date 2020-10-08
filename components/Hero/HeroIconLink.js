@@ -11,7 +11,6 @@ export default class HeroLinkIcon extends React.Component {
       <a
         className={styles.IconLink}
         href={href}
-        title="Opens in a new tab"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -21,7 +20,9 @@ export default class HeroLinkIcon extends React.Component {
           icon={icon}
         />
 
-        <ScreenReaderOnly>{screenReaderContent}</ScreenReaderOnly>
+        <ScreenReaderOnly>
+          {screenReaderContent} (Opens in a new tab)
+        </ScreenReaderOnly>
 
         <span className={styles.IconUnderlay} role="presentation" />
       </a>

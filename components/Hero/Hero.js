@@ -24,19 +24,19 @@ export default function Hero(props) {
 
           <MaxWidth size="sm" className={styles.Links}>
             <HeroIconLink
-              href="http://codepen.com/nicklemmon"
+              href="https://codepen.io/nicklemmon"
               icon={socialCodepen}
               screenReaderContent="Nick Lemmon on CodePen"
             />
 
             <HeroIconLink
-              href="http://github.com/nicklemmon"
+              href="https://github.com/nicklemmon"
               icon={socialGithub}
               screenReaderContent="Nick Lemmon on GitHub"
             />
 
             <HeroIconLink
-              href="http://linkedin.com/in/nicklemmon"
+              href="https://linkedin.com/in/nicklemmon"
               icon={socialLinkedin}
               screenReaderContent="Nick Lemmon on LinkedIn"
             />
