@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
 import classNames from 'classnames'
@@ -68,21 +69,19 @@ export default function Navigation({ className, theme }) {
         </button>
 
         <AnimatePresence>
-          {isOpen ? (
-            <NavList handleEscKeyPress={() => setIsOpen(false)} />
-          ) : null}
+          {isOpen ? <NavList handleClose={() => setIsOpen(false)} /> : null}
         </AnimatePresence>
       </FocusLock>
     </div>
   )
 }
 
-function NavList({ handleEscKeyPress }) {
+function NavList({ handleClose }) {
   const escapeKeyPressed = useKeyPress('Escape')
 
   useEffect(() => {
     if (escapeKeyPressed) {
-      return handleEscKeyPress()
+      return handleClose()
     }
   }, [escapeKeyPressed])
 
@@ -94,19 +93,19 @@ function NavList({ handleEscKeyPress }) {
       animate={animationStates.open}
       exit={animationStates.closed}
     >
-      <PageLink className={styles.Link} href="/">
+      <PageLink className={styles.Link} href="/" onClick={handleClose}>
         Home
       </PageLink>
 
-      <PageLink className={styles.Link} href="/archives">
+      <PageLink className={styles.Link} href="/archives" onClick={handleClose}>
         Archives
       </PageLink>
 
-      <PageLink className={styles.Link} href="/about">
+      <PageLink className={styles.Link} href="/about" onClick={handleClose}>
         About
       </PageLink>
 
-      <PageLink className={styles.Link} href="/resume">
+      <PageLink className={styles.Link} href="/resume" onClick={handleClose}>
         Resume
       </PageLink>
     </motion.nav>
