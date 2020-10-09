@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
 import classNames from 'classnames'
@@ -103,10 +102,6 @@ function NavList({ handleClose }) {
 
       <PageLink className={styles.Link} href="/about" onClick={handleClose}>
         About
-      </PageLink>
-
-      <PageLink className={styles.Link} href="/resume" onClick={handleClose}>
-        Resume
       </PageLink>
     </motion.nav>
   )
