@@ -54,7 +54,7 @@ export default function Navigation({ className, theme }) {
           onClick={() => setIsOpen(!isOpen)}
           data-cy="navigation-button"
         >
-          <ScreenReaderOnly>{isOpen ? 'Open' : 'Close'} Menu</ScreenReaderOnly>
+          <ScreenReaderOnly>{isOpen ? 'Close' : 'Open'} Menu</ScreenReaderOnly>
 
           <div
             className={classNames(styles.Bar, styles.Bar1)}
