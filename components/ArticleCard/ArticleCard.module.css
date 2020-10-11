@@ -16,6 +16,7 @@
 .Link {
   display: block; /* fixes focus styling issues */
   outline-color: var(--blueRibbon);
+  border: 0;
 }
 
 .Link .ArticleCard:hover,
