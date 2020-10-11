@@ -7,7 +7,7 @@ function Error({ statusCode }) {
     <Page title={`${statusCode} Error`}>
       <p>
         Sorry! Something went wrong on our end.&nbsp;
-        <PageLink href="/">Take me back somewhere safe.</PageLink>
+        <PageLink href="/">Take me back somewhere safe</PageLink>.
       </p>
     </Page>
   )
