@@ -23,4 +23,5 @@
   text-transform: uppercase;
   color: var(--outerSpace);
   background-color: var(--white);
+  border: 0;
 }
