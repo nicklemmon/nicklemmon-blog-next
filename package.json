@@ -14,7 +14,6 @@
     "framer-motion": "^2.7.7",
     "next": "9.5.3",
     "prism-theme-night-owl": "^1.4.0",
-    "prism-themes": "^1.4.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-focus-lock": "^2.4.1",
