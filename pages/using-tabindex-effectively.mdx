@@ -1,14 +1,22 @@
 ---
 title: Using tabindex Effectively
+description:
+  Changing the value of the tabindex can be dangerous - but sometimes critically
+  important. Learn how to use this attribute safely.
 date: '2018-11-03'
 layout: 'Post'
 ---
 
-From where I stand, `tabindex` is an underutilized HTML attribute. That being said, when used incorrectly, it can prove disastrous! Let's talk about the when and the how of `tabindex`.
+From where I stand, `tabindex` is an underutilized HTML attribute. That being
+said, when used incorrectly, it can prove disastrous! Let's talk about the when
+and the how of `tabindex`.
 
 ## Making "Non-Clickable" Elements Focusable
 
-With JavaScript, its easy to make an element clickable. Either through DOM manipulation or via a framework like React, making a `<div>` as interactive as a `<button>` is trivially easy. Unfortunately, a `<div>` will not be a part of the document's tab order like a `button`! That's where `tabindex` comes in handy.
+With JavaScript, its easy to make an element clickable. Either through DOM
+manipulation or via a framework like React, making a `<div>` as interactive as a
+`<button>` is trivially easy. Unfortunately, a `<div>` will not be a part of the
+document's tab order like a `button`! That's where `tabindex` comes in handy.
 
 Let's say we have a `<div>` that opens up a modal when clicked like so:
 
@@ -16,19 +24,28 @@ Let's say we have a `<div>` that opens up a modal when clicked like so:
 <div class="button">I trigger some behavior.</div>
 ```
 
-By default, the keyboard cannot find this element, and thus, neither will screen readers be informed that the elememnt is interactive. This is a huge problem from an accessibility standpoint! This is a clear violation of the [WCAG 2.1 guideline](https://www.w3.org/TR/WCAG21/#keyboard-accessible) regarding keyboard accessibility.
+By default, the keyboard cannot find this element, and thus, neither will screen
+readers be informed that the elememnt is interactive. This is a huge problem
+from an accessibility standpoint! This is a clear violation of the
+[WCAG 2.1 guideline](https://www.w3.org/TR/WCAG21/#keyboard-accessible)
+regarding keyboard accessibility.
 
-To remedy that, add `tabindex="0"` _and_ `role="button"` to inform screen readers that the element is interactive.
+To remedy that, add `tabindex="0"` _and_ `role="button"` to inform screen
+readers that the element is interactive.
 
 ```html
 <div class="button" tabindex="0" role="button">I trigger some behavior.</div>
 ```
 
-Ta-dah! The element can now receive keyboard focus whenever the user hits the tab key.
+Ta-dah! The element can now receive keyboard focus whenever the user hits the
+tab key.
 
 ## Making Elements Programmatically Focusable
 
-With JavaScript, moving focus to an element is often required in order to help improve user experience, and frequently a must-have when making complex interactions accessible for all users. THat being said, focus can't be moved to just any old element. Consider the following example:
+With JavaScript, moving focus to an element is often required in order to help
+improve user experience, and frequently a must-have when making complex
+interactions accessible for all users. THat being said, focus can't be moved to
+just any old element. Consider the following example:
 
 ```html
 <div class="alert alert--error" id="my-alert">Warning! Invalid password.</div>
@@ -40,7 +57,8 @@ Let's say we want to move focus to this alert:
 document.querySelector('#my-alert').focus()
 ```
 
-Unfortunately this won't work! We need to first add _some_ value for `tabindex`. So let's try `tabindex="0"` like before:
+Unfortunately this won't work! We need to first add _some_ value for `tabindex`.
+So let's try `tabindex="0"` like before:
 
 ```html
 <div class="alert alert--error" id="my-alert" tabindex="0">
@@ -50,11 +68,15 @@ Unfortunately this won't work! We need to first add _some_ value for `tabindex`.
 
 Woohoo! This works. Sort of.
 
-Unfortunately, what we've done is introduced the alert in to the keyboard tab order. As a user tabs through interactive elements, they then encounter the alert, only to find that it isn't actually an interactive element.
+Unfortunately, what we've done is introduced the alert in to the keyboard tab
+order. As a user tabs through interactive elements, they then encounter the
+alert, only to find that it isn't actually an interactive element.
 
 ### Negative tabindex to the Rescue!
 
-This is when leveraging `tabindex="-1"` comes in to play. This makes the element both programmatically focusable _and_ keeps the element outside of the tab order of the document.
+This is when leveraging `tabindex="-1"` comes in to play. This makes the element
+both programmatically focusable _and_ keeps the element outside of the tab order
+of the document.
 
 So, we end up with:
 
@@ -66,14 +88,22 @@ So, we end up with:
 
 ### Other Values for tabindex
 
-Other, positive values are technically valid for use with `tabindex`, however, these should _pretty much never ever be used_. By supplying positive values for `tabindex`, the "natural" tab order of the page can be modified, unfortunately resulting in accidental keyboard tab traps, a big [accessibility no-no](https://www.w3.org/TR/WCAG21/#no-keyboard-trap).
+Other, positive values are technically valid for use with `tabindex`, however,
+these should _pretty much never ever be used_. By supplying positive values for
+`tabindex`, the "natural" tab order of the page can be modified, unfortunately
+resulting in accidental keyboard tab traps, a big
+[accessibility no-no](https://www.w3.org/TR/WCAG21/#no-keyboard-trap).
 
 ## Wrapping Up
 
-`tabindex` is a critically important attribute, particularly when working to build a page that is usable for keyboard-only users _and_ our friendly neighborhood power user.
+`tabindex` is a critically important attribute, particularly when working to
+build a page that is usable for keyboard-only users _and_ our friendly
+neighborhood power user.
 
 To summarize:
 
-1. Add `tabindex="0"` to elements that are typically non-interactive that have been made interactive by JavaScript
-2. Add `tabindex="-1"` to elements that need to receive focus programmatically but should not be a part of the keyboard order of the document and
+1. Add `tabindex="0"` to elements that are typically non-interactive that have
+   been made interactive by JavaScript
+2. Add `tabindex="-1"` to elements that need to receive focus programmatically
+   but should not be a part of the keyboard order of the document and
 3. Never _ever_ use a positive value for `tabindex`

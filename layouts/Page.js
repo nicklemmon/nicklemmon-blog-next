@@ -8,11 +8,20 @@ import Container from 'components/Container'
 import MaxWidth from 'components/MaxWidth'
 import PageTitle from 'components/PageTitle'
 
-export default function Page({ title, date, children }) {
+export default function Page({ title, description, date, children }) {
   return (
     <>
       <Head>
         <title>{title} | Nick Lemmon, Front End Web Developer</title>
+        <meta property="og:title" content={title} />
+        <meta property="twitter:title" content={title} />
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta property="twitter:description" content={description} />
+        <meta
+          name="keywords"
+          content="javascript,testing,react,accessibility,css"
+        />
       </Head>
 
       <Default>

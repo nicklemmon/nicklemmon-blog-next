@@ -9,7 +9,10 @@ export default function ArchivesPage() {
   const posts = sortPostsByDate(allPosts)
 
   return (
-    <Page title="Archives">
+    <Page
+      title="Archives"
+      description="Read from a list of all posts ever written! EVER."
+    >
       <ArticleCards>
         {posts.map((post, index) => {
           return (

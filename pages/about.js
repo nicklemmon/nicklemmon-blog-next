@@ -4,7 +4,7 @@ import Bio from 'components/Bio'
 
 export default function AboutPage() {
   return (
-    <Page title="About">
+    <Page title="About" description="Learn more about me and my expertise.">
       <Bio />
     </Page>
   )
