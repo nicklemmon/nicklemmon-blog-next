@@ -1,0 +1,239 @@
+---
+title: Encouraging Accessibility Best Practices with Cypress.io
+date: '2021-01-24'
+layout: 'Post'
+---
+
+When building a web site or application with accessibility in mind, laundry
+lists of rules and requirements come to mind. This often leads organizations to
+adopt [accessibility checklists](http://accessibility.voxmedia.com/) that
+hopefully provide designers and engineers with a concrete series of requirements
+that all products must meet.
+
+Despite their complexity, nearly all of these requirements start with a
+foundation in semantically valid HTML. Though this may sound like a low bar to
+meet, many engineers struggle to write semantically valid markup, particluarly
+when those engineers may have more expertise in pure programming rather than the
+ins-and-outs of HTML.
+
+## Abstractions Upon Abstractions
+
+When building for the web using modern JavaScript frameworks, oftentimes the
+actual DOM that is being rendered to the page is abstracted away via several
+layers of custom components. These abstractions are great on the surface - they
+allow for code re-use, visual consistency, and UX consistency. Unfortunately,
+custom components can also cause engineers to lose the forest for the trees, and
+ignore the final, rendered markup with which end users interact.
+
+Take this JSX that renders a page with a data table of recipes:
+
+```jsx
+export function MyRecipesPage() {
+  <Page title="My Recipes">
+    <SortableTable data={recipes}>
+    <Button to="/">Go Back</Button>
+  </Page>
+}
+```
+
+Looks great! The page works as expected and the code is easy to read thanks to
+component abstractions. But how can an engineer have confidence that these
+components are rendering valid markup? What if that `<Button>` component is
+incorrectly rendering an HTML button instead of an anchor tag? What if
+`<SortableTable />` is just a series of `div` and `span` tags rather than a
+semantically meaningful data table?
+
+## Automated Testing
+
+Ideally, a layer of automated testing at the component level would catch these
+problems, while also encouraging engineers to choose components available to
+them that render semantically valid markup.
+
+### Enzyme Shallow Mounting
+
+For years in the React community, testing a page component like this would
+probably start with using [Enzyme](https://enzymejs.github.io/enzyme/), a
+library with utilities for testing React components in a Node-based virtual DOM
+environment like [jsdom](https://github.com/jsdom/jsdom#readme). One would
+probably start with something like this using Enzyme's `shallow` method:
+
+```js
+describe('MyRecipesPage', () => {
+  it('renders a Page with a title', () => {
+    const wrapper = shallow(<MyRecipesPage />)
+    const page = wrapper.find('Page')
+
+    expect(page).toExist()
+    expect(page).toHaveProp('title', 'My Recipes')
+  })
+
+  it('renders a SortableTable with recipes data', () => {
+    const mockRecipes = []
+    const wrapper = shallow(<MyRecipesPage recipes={mockRecipes} />)
+    const table = wrapper.find('SortableTable')
+
+    expect(table).toExist()
+    expect(table).toHaveProp('data', mockRecipes)
+  })
+
+  it('renders a Button that returns the user to the landing page', () => {
+    const wrapper = shallow(<MyRecipesPage recipes={mockRecipes} />)
+    const button = wrapper.find('Button')
+
+    expect(button).toExist()
+    expect(button).toHaveProp('to', '/')
+  })
+})
+```
+
+These tests look like they are verifying the rendered output - but all they are
+doing is verifying that the components used in the page component were actually
+returned. Do these tests provide future engineers with confidence in the final
+rendered DOM? Assuming future engineers were interested in testing the HTML
+semantics of the page, they might be concerned with answering the following
+questions:
+
+- Does `<MyRecipesPage />` have a valid heading?
+- Is the data rendered in a valid HTML table?
+- Does the button actually render as a link or does it (incorrectly) render as
+  an HTML button?
+
+### Cypress to the Rescue
+
+Refactoring these tests with [Cypress](https://cypress.io) can help address some
+of these concerns:
+
+```js
+describe('"My Recipes" page', () => {
+  beforeEach(() => cy.visit('/recipes'))
+
+  it('renders with a relevant page title', () => {
+    cy.title().should('include', 'My Recipes Page') // Checking for a unique <title />
+    cy.get('h1').should('be.visible').should('contain', 'My Recipes Page')
+  })
+
+  it('renders with a table that contains recipe data', () => {
+    cy.get('table').should('be.visible')
+    // Verify data renders as expected
+    cy.get('tbody tr').eq(0).should('contain', 'Chicken Pot Pie')
+    cy.get('tbody tr').eq(1).should('contain', 'Green Curry')
+  })
+
+  it('renders with a link to go back to the home page', () => {
+    cy.get('a')
+      .should('be.visible')
+      .should('contain', 'Go Back')
+      .should('have.attr', 'href', '/')
+  })
+})
+```
+
+Great! Now these tests run in the browser _and_ are grabbing elements from the
+DOM instead of React component abstractions that may or may not be producing the
+markup we are expecting.
+
+These tests can be taken a step further using
+[Cypress Testing Library](https://www.npmjs.com/package/@testing-library/cypress).
+
+#### Cypress Testing Library
+
+Cypress Testing Library offers a series of methods to help query elements more
+granularly, allowing room for code refactors as well as the addition of new
+features to the page. If the page were to introduce an additional link, for
+example, the prior test checking for the home page anchor tag would fail:
+
+```jsx
+export function MyRecipesPage() {
+  <Page title="My Recipes">
+    <SortableTable data={recipes}>
+    <Button to="/">Go Back</Button>
+    <Button to="https://google.com">Find More Recipes</Button>
+  </Page>
+}
+```
+
+And now this test would need to changed:
+
+```js
+it('renders with a link to go back to the home page', () => {
+  // This test was broken by the introduction of another anchor tag!
+  // Not ideal since the original "Go Back" link continued to work as expected.
+  cy.get('a')
+    .eq(0)
+    .should('be.visible')
+    .should('contain', 'Go Back')
+    .should('have.attr', 'href', '/')
+
+  cy.get('a')
+    .eq(1)
+    .should('be.visible')
+    .should('contain', 'Find More Recipes')
+    .should('have.attr', 'href', 'https://google.com')
+})
+```
+
+Instead of grabbing raw HTML elements, the `cy.findByRole` method (made
+available via Cypress Testing Library) can be used to check for valid,
+accessible DOM output all while reducing the risk of test brittleness:
+
+```js
+describe('"My Recipes" page', () => {
+  beforeEach(() => cy.visit('/recipes'))
+
+  it('renders with a relevant page title', () => {
+    cy.title().should('include', 'My Recipes Page')
+    // Using the `name` option helps grab the relevant heading that contains the content we are looking for
+    cy.findByRole('heading', { name: 'My Recipes Page' }).should('be.visible')
+  })
+
+  it('renders with a table that contains recipe data', () => {
+    cy.findByRole('table').within(() => {
+      cy.get('tbody').within(() => {
+        cy.findAllByRole('row').eq(0).should('contain', 'Chicken Pot Pie')
+        cy.findAllByRole('row').eq(1).should('contain', 'Green Curry')
+      })
+    })
+  })
+
+  it('renders with a link to go back to the home page', () => {
+    // This test will not be as brittle - it will find a link that has this content
+    // no matter how many links are added to the page.
+    cy.findByRole('link', { name: 'Go Back' }).should('have.attr', 'href', '/')
+    cy.findByRole('link', { name: 'Find More Recipes' }).should(
+      'have.attr',
+      'href',
+      'https://google.com'
+    )
+  })
+})
+```
+
+So Cypress Testing Library helped solve three key problems with testing the
+recipes page UI:
+
+1. The tests are much less brittle now that they no longer rely on the order of
+   DOM elements (nor will they break when new elements are introduced to the
+   page)
+2. The tests are able to handle valid HTML semantics whether they are derived
+   from native HTML tags _or_ valid
+   [ARIA roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques)
+3. When future engineers work on this page, it will be more difficult to
+   introduce invalid HTML even if such a bug were introduced via a higher level
+   abstraction
+
+An engineering team that leans heavily on `cy.findByRole` as their primary means
+of querying elements in their tests will also catch accessibility problems
+earlier. If an element is tough to query via `cy.findByRole`, that probably
+means that a screen reader user (or even search engine crawler) would have
+trouble interpreting the page as well and is an early indication that an
+accessibility bug is present.
+
+### Wrapping Up
+
+Moving away from testing higher level abstractions with tools like
+[Enzyme](https://enzymejs.github.io/enzyme/) helps protect against the
+introduction of invalid markup. By leveraging [Cypress](https://cypress.io) and
+[Cypress Testing Library](https://github.com/testing-library/cypress-testing-library)
+(particluarly the `cy.findByRole` method) engineers can make automated testing
+less brittle _and_ ensure their markup is meeting accessibility requirements all
+within a real browser environment.
