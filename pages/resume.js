@@ -4,7 +4,7 @@ import Resume from 'components/Resume'
 
 export default function ResumePage() {
   return (
-    <Page title="Resume">
+    <Page title="Resume" description="Read about my skills and experience">
       <Resume />
     </Page>
   )
