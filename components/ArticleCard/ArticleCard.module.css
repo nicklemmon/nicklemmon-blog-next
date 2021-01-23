@@ -25,7 +25,9 @@
 }
 
 .Date {
+  display: block;
   font-family: var(--fontFamilySecondary);
+  margin-top: var(--spacingSM);
   font-weight: 700;
   font-size: 0.85rem;
   color: var(--boulder);
