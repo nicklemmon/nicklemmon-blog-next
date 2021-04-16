@@ -16,20 +16,15 @@ export default function Bio({ className }) {
         <Heading as="h4">About Me</Heading>
 
         <p>
-          I&rsquo;m a frontend developer in Columbia, Maryland who also happens
-          to have an{' '}
+          I&rsquo;m a senior frontend engineer in Columbia, Maryland who also
+          happens to have an&nbsp;
           <a
-            rel="noopener"
+            rel="noopener noreferrer"
+            target="_blank"
+            title="Opens in a new tab"
             href="https://en.wikipedia.org/wiki/Master_of_Social_Work"
           >
             MSW
-          </a>
-          . I&rsquo;m&nbsp;also a certified{' '}
-          <a
-            href="https://www.accessibilityassociation.org/wascertification"
-            rel="noopener"
-          >
-            Web Accessibility Specialist
           </a>
           !
         </p>
