@@ -2,6 +2,9 @@
   "name": "nicklemmon-blog-next",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^14.15.0"
+  },
   "scripts": {
     "dev": "npm run clean && next dev",
     "build": "next build",
