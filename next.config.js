@@ -3,7 +3,7 @@ const withMdxEnhanced = require('next-mdx-enhanced')
 const mdxPrism = require('@mapbox/rehype-prism')
 
 module.exports = withMdxEnhanced({
-  layoutPath: 'layouts',
+  layoutPath: 'src/layouts',
   defaultLayout: false,
   fileExtensions: ['mdx'],
   remarkPlugins: [],
