@@ -1,4 +1,5 @@
 {
+  extends: ['config:base'],
   dependencyDashboard: true,
   labels: ['dependencies'],
   postUpdateOptions: ['npmDedupe'],
