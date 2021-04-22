@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Card from 'src/components/Card'
 import Heading from 'src/components/Heading'
 import LongForm from 'src/components/LongForm'
+import { ExternalLink } from 'src/components/links'
 import styles from './Bio.module.css'
 
 export default function Bio({ className }) {
@@ -16,16 +17,12 @@ export default function Bio({ className }) {
         <Heading as="h4">About Me</Heading>
 
         <p>
-          I&rsquo;m a senior frontend engineer in Columbia, Maryland who also
-          happens to have an&nbsp;
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            title="Opens in a new tab"
-            href="https://en.wikipedia.org/wiki/Master_of_Social_Work"
-          >
+          I&rsquo;m a Senior Frontend Engineer working for{' '}
+          <ExternalLink href="https://sparkpost.com">SparkPost</ExternalLink> in
+          Columbia, Maryland who also happens to have an&nbsp;
+          <ExternalLink href="https://en.wikipedia.org/wiki/Master_of_Social_Work">
             MSW
-          </a>
+          </ExternalLink>
           !
         </p>
 
