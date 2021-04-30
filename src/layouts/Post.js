@@ -8,6 +8,7 @@ export default function Post({ children, frontMatter }) {
   return (
     <Page
       title={frontMatter.title}
+      titleImg={frontMatter.titleImg}
       date={frontMatter.date}
       description={frontMatter.description}
     >

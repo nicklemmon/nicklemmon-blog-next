@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import classNames from 'classnames'
 import MaxWidth from 'src/components/MaxWidth'
 import Heading from 'src/components/Heading'
@@ -7,7 +8,7 @@ import { formatDate } from 'src/helpers'
 import styles from './PageTitle.module.css'
 
 export default function PageTitle(props) {
-  const { className, children, date } = props
+  const { className, children, date, backgroundImg = '/page-bg.png' } = props
 
   return (
     <div className={classNames(styles.PageTitle, className)} size="xl">
@@ -21,11 +22,13 @@ export default function PageTitle(props) {
 
       <div className={styles.Overlay} role="presentation" />
 
-      <img
+      <Image
         className={styles.Image}
-        src="page-bg.png"
+        src={backgroundImg}
         role="presentation"
         alt=""
+        layout="fill"
+        priority={true}
       />
     </div>
   )

@@ -8,7 +8,7 @@ import Container from 'src/components/Container'
 import MaxWidth from 'src/components/MaxWidth'
 import PageTitle from 'src/components/PageTitle'
 
-export default function Page({ title, description, date, children }) {
+export default function Page({ title, titleImg, description, date, children }) {
   return (
     <>
       <Head>
@@ -28,7 +28,11 @@ export default function Page({ title, description, date, children }) {
         <Header theme="light" />
 
         <Main>
-          {title ? <PageTitle date={date}>{title}</PageTitle> : null}
+          {title ? (
+            <PageTitle date={date} backgroundImg={titleImg}>
+              {title}
+            </PageTitle>
+          ) : null}
 
           <Container size="lg">
             <MaxWidth size="lg">{children}</MaxWidth>
