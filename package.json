@@ -11,7 +11,8 @@
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
-    "clean": "rm -rf .next"
+    "clean": "rm -rf .next",
+    "prepare": "husky install"
   },
   "dependencies": {
     "framer-motion": "4.1.11",
