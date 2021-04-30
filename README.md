@@ -1,4 +1,4 @@
-# nicklemmon.com!
+# nicklemmon.com
 
 ![Build and test](https://github.com/nicklemmon/nicklemmon-blog-next/workflows/Build%20and%20test/badge.svg)
 
@@ -6,6 +6,15 @@
 
 ```
 npm run dev
+```
+
+### Husky
+
+If git hooks aren't running, try:
+
+```bash
+chmod ug+x .husky/*
+chmod ug+x .git/hooks/*
 ```
 
 ## Production
