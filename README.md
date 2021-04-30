@@ -1,4 +1,4 @@
-# nicklemmon.com
+# nicklemmon.com!
 
 ![Build and test](https://github.com/nicklemmon/nicklemmon-blog-next/workflows/Build%20and%20test/badge.svg)
 
