@@ -29,7 +29,7 @@
     "@testing-library/cypress": "7.0.6",
     "babel-plugin-import-glob-array": "0.2.0",
     "cypress": "7.3.0",
-    "eslint": "7.26.0",
+    "eslint": "7.27.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
