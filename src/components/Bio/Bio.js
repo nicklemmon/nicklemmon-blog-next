@@ -17,9 +17,11 @@ export default function Bio({ className }) {
         <Heading as="h4">About Me</Heading>
 
         <p>
-          I&rsquo;m a Senior Frontend Engineer working for{' '}
-          <ExternalLink href="https://sparkpost.com">SparkPost</ExternalLink> in
-          Columbia, Maryland who also happens to have an&nbsp;
+          I&rsquo;m a Senior Principal Frontend Engineer working for{' '}
+          <ExternalLink href="https://truist.com">
+            Truist Financial
+          </ExternalLink>{' '}
+          in Columbia, Maryland who also happens to have an&nbsp;
           <ExternalLink href="https://en.wikipedia.org/wiki/Master_of_Social_Work">
             MSW
           </ExternalLink>
