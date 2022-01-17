@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.15.5",
-    "@mapbox/rehype-prism": "0.7.0",
+    "@mapbox/rehype-prism": "0.8.0",
     "@mdx-js/loader": "1.6.22",
     "@testing-library/cypress": "8.0.2",
     "babel-plugin-import-glob-array": "0.2.0",
