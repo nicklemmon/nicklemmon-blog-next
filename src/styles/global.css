@@ -87,3 +87,8 @@ pre,
 code {
   color: #fff;
 }
+
+iframe {
+  width: 100%;
+  min-height: 400px;
+}
