@@ -29,8 +29,8 @@ export default function Bio({ className }) {
         </p>
 
         <p>
-          I&rsquo;m driven to design and build accessible design systems with a
-          great underlying developer experience in mind.
+          I&rsquo;m driven to design and build accessible design systems and web
+          applications with a great underlying developer experience in mind.
         </p>
       </LongForm>
     </Card>
