@@ -1,7 +1,3 @@
-/* eslint-disable */
-const withMdxEnhanced = require('next-mdx-enhanced')
-const mdxPrism = require('@mapbox/rehype-prism')
-
 const REDIRECT_POST_PATHS = [
   'a-typescript-monster-battler',
   'automated-ui-testing-to-build-confidence',
