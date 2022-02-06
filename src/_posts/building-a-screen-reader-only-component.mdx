@@ -1,0 +1,232 @@
+---
+title: Building a Screen Reader Only Component
+description:
+  Learn how to build a re-usable component that hides content from everyone
+  *but* screen reader users
+date: '2020-10-21'
+---
+
+import { Icon } from 'react-icons-kit'
+import { menu } from 'react-icons-kit/iconic/menu'
+import Demo from 'src/components/Demo'
+import ScreenReaderOnly from 'src/components/ScreenReaderOnly'
+
+When building sites or applications, users encounter elements that require
+accessible names, however, do not have them by default. There are several
+different means by which to add names that only screen reader users can access,
+however, one of the most simple is a reusable, composable, `<ScreenReaderOnly/>`
+component.
+
+## Use Cases
+
+A common use case for such a component, is a `<button />` that visually contains
+an icon and no visible text content. In the following example, we'll render a
+`<HamburgerButton/>` component with an icon imported from
+[React Icons Kit](https://react-icons-kit.now.sh/):
+
+<Demo>
+  <button style={{ border: 0, padding: '20px', borderRadius: '50%' }}>
+    <Icon icon={menu} />
+  </button>
+</Demo>
+
+```jsx
+import React from 'react'
+import { Icon } from 'react-icons-kit'
+import { menu } from 'react-icons-kit/iconic/menu'
+
+const styles = {
+  border: 0,
+  outline: 0,
+  padding: '20px',
+  borderRadius: '50%',
+}
+
+function HamburgerButton({ onClick }) {
+  return (
+    <button style={styles} onClick={onClick}>
+      <Icon icon={menu} />
+    </button>
+  )
+}
+```
+
+Visually, I can interpret the button as some sort of a menu, as I am aware of
+the common pattern of using three bars to represent navigation-related buttons.
+Unfortunately, for users who are unable to see the icon visually, the button is
+unnamed, and thus, it becomes impossible to determine its purpose.
+
+We **could** add visible content next to the icon, solving the problem. Though
+this functionally resolves the issue, creating an experience without the content
+visually rendered is still possible.
+
+## A Simple Solution
+
+A flexible `<ScreenReaderOnly/>` or `<VisuallyHidden/>` component can resolve
+this problem, and help address similar situations in the future. Our component
+needs to do two things:
+
+1. It must render content to the DOM that a screen reader can interpret and
+2. said content must not be visible to non-screen reader users.
+
+### Rendering Content
+
+First, let's just build a simple component that renders a `<span/>` with any
+passed in children:
+
+```jsx
+import React from 'react'
+
+function ScreenReaderOnly({ children }) {
+  return <span>{children}</span>
+}
+```
+
+### Hiding the Content
+
+Next, let's hide the content. This can be accomplished with a series of CSS
+properties in conjunction with one another. Since other developers have done the
+legwork, let's put ourselves on the shoulders of giants to give us a head start.
+Take this example from
+[Gaël Poupard on GitHub](https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034).
+
+```jsx
+import React from 'react'
+
+const styles = {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+		clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+function ScreenReaderOnly({ children }) {
+  return <span style={styles}>{children}</span>
+}
+```
+
+Now, we add the component to our `<HamburgerButton/>` with the content "Menu",
+and the rendered `<button/>` has an invisible (yet accessible) name:
+
+```jsx
+import React from 'react'
+import { Icon } from 'react-icons-kit'
+import { menu } from 'react-icons-kit/iconic/menu'
+import { ScreenReaderOnly } from 'src/components'
+
+const styles = {
+  border: 0,
+  padding: '20px',
+  borderRadius: '50%',
+}
+
+function HamburgerButton({ onClick }) {
+  return (
+    <button style={styles} onClick={onClick}>
+      <Icon icon={menu} />
+
+      <ScreenReaderOnly>Menu</ScreenReaderOnly>
+    </button>
+  )
+}
+```
+
+<Demo>
+  <button style={{ border: 0, padding: '20px', borderRadius: '50%' }}>
+    <Icon icon={menu} />
+    <ScreenReaderOnly>Menu</ScreenReaderOnly>
+  </button>
+</Demo>
+
+All done! Right?
+
+### Going the Extra Mile
+
+We can make our component more robust, by adding an `as` prop (a la
+[Styled Components](https://styled-components.com/)):
+
+```jsx
+...
+
+function ScreenReaderOnly({ as = 'span', children }) {
+  const Component = as;
+
+  return <Component style={styles}>{children}</Component>
+}
+```
+
+By adding support for `as`, a developer can pass in any valid HTML element _or_
+React component, and make it visually hidden. This can be particularly helpful
+when the order of elements is important for semantics, especially when adding
+extra wrapping `<div>` or `<span>` elements might introduce problems. Let's take
+a `<fieldset/>` with a visually hidden `<legend/>`, for example:
+
+```jsx
+import React from 'react'
+import { ScreenReaderOnly } from 'src/components'
+
+function MyRadioGroup({ title, children }) {
+  return (
+    <fieldset>
+      <ScreenReaderOnly as="legend">Favorite Ice Cream Flavor</ScreenReaderOnly>
+
+      <label htmlFor="radio-button-chocolate">
+        <input
+          type="radio"
+          id="radio-button-chocolate"
+          name="favoriteFlavor"
+          value="chocolate"
+        />
+        Chocolate is my favorite ice cream flavor
+      </label>
+
+      <label htmlFor="radio-button-vanilla">
+        <input
+          type="radio"
+          id="radio-button-vanilla"
+          name="favoriteFlavor"
+          value="vanilla"
+        />
+        Vanilla is my favorite ice cream flavor
+      </label>
+
+      <label htmlFor="radio-button-strawberry">
+        <input
+          type="radio"
+          id="radio-button-strawberry"
+          name="favoriteFlavor"
+          value="strawberry"
+        />
+        Strawberry is my favorite ice cream flavor
+      </label>
+    </fieldset>
+  )
+}
+```
+
+In order for this component to have valid HTML, the `<legend/>` is supposed to
+be the first, immediate child of the `<fieldset/>`. By adding the `as` prop to
+the `<ScreenReaderOnly/>` component, we are able to both write valid HTML, and
+create the visual design and user experience we were hoping for.
+
+## Wrapping Up
+
+Creating this component is the easy part! Knowing when to use it, is a much more
+involved endeavor.
+
+Take a look at a few good articles I've found on the subject to get you started
+on your journey with your fancy, new `<ScreenReaderOnly/>` component:
+
+- [Places it’s tempting to use display: none;, but don’t](https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/)
+  by Chris Coyier
+- [How to Hide Content](https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/)
+  by Dave Rupert
+- [CSS in Action: Invisible content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/)
+  by the fine folks st WebAIM

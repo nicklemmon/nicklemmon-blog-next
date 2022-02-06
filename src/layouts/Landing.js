@@ -5,10 +5,10 @@ import Main from 'src/components/Main'
 import Footer from 'src/components/Footer'
 import BreakoutContainer from 'src/components/BreakoutContainer'
 import MaxWidth from 'src/components/MaxWidth'
-import Default from './Default'
+import { Default } from './Default'
 import styles from './Landing.module.css'
 
-export default function LandingLayout({ children }) {
+export function Landing({ children }) {
   return (
     <Default>
       <Header className={styles.Header} theme="dark" />

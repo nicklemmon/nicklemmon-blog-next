@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import Default from 'src/layouts/Default'
+import { Default } from 'src/layouts/Default'
 import Header from 'src/components/Header'
 import Main from 'src/components/Main'
 import Footer from 'src/components/Footer'
@@ -8,7 +8,7 @@ import Container from 'src/components/Container'
 import MaxWidth from 'src/components/MaxWidth'
 import PageTitle from 'src/components/PageTitle'
 
-export default function Page({ title, description, date, children }) {
+export function Page({ title, description, date, children }) {
   return (
     <>
       <Head>

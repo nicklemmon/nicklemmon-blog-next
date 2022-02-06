@@ -1,13 +1,10 @@
 import React from 'react'
-import Page from 'src/layouts/Page'
+import { Page } from 'src/layouts'
 import ArticleCards from 'src/components/ArticleCards'
 import ArticleCard from 'src/components/ArticleCard'
-import { formatPath, sortPostsByDate } from 'src/helpers'
-import { frontMatter as allPosts } from './*.mdx'
+import { getPosts, mapPostFrontmatter, sortPostsByDate } from 'src/helpers'
 
-export default function ArchivesPage() {
-  const posts = sortPostsByDate(allPosts)
-
+export default function ArchivesPage({ posts }) {
   return (
     <Page
       title="Archives"
@@ -18,14 +15,26 @@ export default function ArchivesPage() {
           return (
             <ArticleCard
               key={`article-card-${index}`}
-              heading={post.title}
-              description={post.description}
-              href={formatPath(post.__resourcePath)}
-              date={post.date}
+              heading={post.frontmatter.title}
+              description={post.frontmatter.description}
+              href={`/post/${post.slug}`}
+              date={post.frontmatter.date}
             />
           )
         })}
       </ArticleCards>
     </Page>
   )
+}
+
+export async function getStaticProps() {
+  const posts = await getPosts()
+  const postsWithFrontmatter = posts.map(mapPostFrontmatter)
+  const sortedPosts = sortPostsByDate(postsWithFrontmatter)
+
+  return {
+    props: {
+      posts: sortedPosts,
+    },
+  }
 }

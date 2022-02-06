@@ -1,21 +1,16 @@
 import React from 'react'
 import { Icon } from 'react-icons-kit'
 import { androidArrowForward } from 'react-icons-kit/ionicons/androidArrowForward'
-import Landing from 'src/layouts/Landing'
+import { Landing } from 'src/layouts'
 import Heading from 'src/components/Heading'
 import Highlight from 'src/components/Highlight'
 import Button from 'src/components/Button'
 import ArticleCards from 'src/components/ArticleCards'
 import ArticleCard from 'src/components/ArticleCard'
-import { formatPath, sortPostsByDate } from 'src/helpers'
-import { frontMatter as allPosts } from './*.mdx'
+import { getPosts, sortPostsByDate, mapPostFrontmatter } from 'src/helpers'
 import styles from './index.module.css'
 
-export default function LandingPage() {
-  const posts = sortPostsByDate(allPosts).filter(
-    (_post, postIndex) => postIndex < 4
-  )
-
+export default function LandingPage({ posts }) {
   return (
     <Landing>
       <Heading as="h2" className={styles.ArticlesHeading}>
@@ -33,10 +28,10 @@ export default function LandingPage() {
           return (
             <ArticleCard
               key={`article-card-${index}`}
-              heading={post.title}
-              description={post.description}
-              href={formatPath(post.__resourcePath)}
-              date={post.date}
+              heading={post.frontmatter.title}
+              description={post.frontmatter.description}
+              href={`/post/${post.slug}`}
+              date={post.frontmatter.date}
             />
           )
         })}
@@ -47,4 +42,19 @@ export default function LandingPage() {
       </ArticleCards>
     </Landing>
   )
+}
+
+export async function getStaticProps() {
+  const posts = await getPosts()
+  const postsWithFrontmatter = posts.map(mapPostFrontmatter)
+  const sortedPosts = sortPostsByDate(postsWithFrontmatter)
+  const latestPosts = sortedPosts.filter((post, index) => {
+    if (index < 4) return post
+  })
+
+  return {
+    props: {
+      posts: latestPosts,
+    },
+  }
 }

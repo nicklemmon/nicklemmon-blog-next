@@ -1,0 +1,102 @@
+---
+title: Building a Collapsible Web Component with Lit
+description: Learn how to build a re-usable web component using slots
+date: '2022-02-04'
+---
+
+Web components allow engineers to author re-usable, custom HTML elements which
+can be used across platforms and frameworks. With a web component, an engineer
+can build a custom component once, and re-use it within a React project, an
+Angular project, or even a Ruby on Rails project.
+
+I've written about
+[implementing a collapsible component accessibly](/building-an-accessible-collapsible-element)
+with vanilla HTML, so let's dive in with implementing this component using
+[Lit](https://lit.dev).
+
+## A simple example
+
+For starters, let's take a look at a non-compound collapsible element:
+
+<iframe src="https://stackblitz.com/edit/blogbuilding-a-compound-web-component-with-lit-01?ctl=1&embed=1&file=src/my-collapsible.ts&hideExplorer=1&hideNavigation=1&theme=dark"></iframe>
+
+In this example, a single component controls the state of the element as well as
+passed-in content. A `title` prop is used to handle the content of the
+triggering element. Everything works! We can use our component like any other
+HTML element, and it works as expected:
+
+```html
+<my-collapsible title="My Collapsible Element">
+  <p>This content will show and hide dynamically</p>
+</my-collapsible>
+```
+
+After patting ourselves on the back, we quickly receive a request for a new
+feature - an implementing team now wants to add a custom icon inside the
+triggering button. OK, that should be easy enough - we can just add a
+`title-icon` prop:
+
+```html
+<my-collapsible
+  title="My Collapsible Element"
+  title-icon="<svg id='some-inline-svg'></svg>"
+>
+  <p>This content will show and hide dynamically</p>
+</my-collapsible>
+```
+
+Nice! This solves our problem. Except, what do we do if an implementing team
+wants to use a `.png` as an icon? Or maybe they want to pass in a custom web
+component instead of an inline SVG? And what if they want to put the icon on
+either side of the triggering element content? Or maybe they want to apply a
+color to that particular icon instance? We could quickly end up creating a
+component with a lot of hard-to-manage surface area:
+
+```html
+<!-- some call this the apropcaplypse -->
+<my-collapsible
+  title="My Collapsible Element"
+  title-icon=""
+  title-icon-image="/path/to/icon.png"
+  title-icon-color="hotpink"
+  icon-position="left"
+>
+  <p>This content will show and hide dynamically</p>
+</my-collapsible>
+```
+
+## Slots to the rescue
+
+Fortunately for us, the
+[slot element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
+allows us to expose multiple places within our component in which to render
+child content, including arbitrary HTML or custom elements:
+
+<iframe src="https://stackblitz.com/edit/blogbuilding-a-compound-web-component-with-lit-02?ctl=1&embed=1&file=src/my-collapsible.ts&hideExplorer=1"></iframe>
+
+We have removed the `title` prop entirely, and have no need for any of the
+icon-related props either, as an implementing team can slot in whatever content
+they want via the `"title"` slot.
+
+```html
+<my-collapsible>
+  <h2 slot="title">
+    Click Me
+    <svg id="this-is-my-inline-svg">...</svg>
+  </h2>
+  <p slot="content">This content will show and hide dynamically</p>
+</my-collapsible>
+```
+
+### Wrapping Up
+
+In this example, we implemented a simple, accessible collapsible custom element
+using [Lit](https://lit.dev). By leveraging slots over props, we were able to
+dramatically simplify the component API, reducing our maintenance overhead as
+well as the risk of defects.
+
+In a future post, I'll discuss a more complex pattern that can offer even more
+control to implementing teams, all while maintaining a simple component API
+using the
+[compound component](https://kentcdodds.com/blog/compound-components-with-react-hooks)
+pattern.
