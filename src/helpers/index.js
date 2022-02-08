@@ -1,8 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-
-const postsPath = `${process.cwd()}/src/_posts`
+import { POSTS_PATH } from 'src/constants'
 
 export function sortPostsByDate(posts) {
   return posts.sort(
@@ -20,11 +19,11 @@ export function formatDate(date) {
 
 /** Retrieves all posts from `src/_posts` */
 export async function getPosts() {
-  const dir = fs.readdirSync(postsPath)
+  const dir = fs.readdirSync(POSTS_PATH)
 
   return Promise.all(
     dir.map(async (filename) => {
-      const file = fs.readFileSync(path.join(postsPath, filename))
+      const file = fs.readFileSync(path.join(POSTS_PATH, filename))
       const slug = filename.replace(/\.mdx$/, '')
       const fileContent = file.toString()
 
@@ -46,7 +45,7 @@ export function mapPostFrontmatter(post) {
 }
 
 export async function getPost(slug) {
-  const file = fs.readFileSync(path.join(postsPath, `${slug}.mdx`))
+  const file = fs.readFileSync(path.join(POSTS_PATH, `${slug}.mdx`))
   const fileContent = file.toString().trim()
 
   return fileContent

@@ -2,7 +2,6 @@ const REDIRECT_POST_PATHS = [
   'a-typescript-monster-battler',
   'automated-ui-testing-to-build-confidence',
   'building-a-collapsible-web-component-with-lit',
-  'building-a-screen-reader-only-component',
   'building-an-accessible-collapsible-element',
   'building-an-accessible-heading-component',
   'buttons-that-look-like-links',

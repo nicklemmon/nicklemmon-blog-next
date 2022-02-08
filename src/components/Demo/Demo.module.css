@@ -1,9 +1,0 @@
-.Demo {
-  margin: var(--spacingLG) -2rem; /* extra width that aligns with the `pre` and `blockquote` blocks within the LongForm component */
-}
-
-@media (max-width: 600px) {
-  .Demo {
-    margin: var(--spacingMD) 0 0 0; /* extra width that aligns with the `pre` and `blockquote` blocks within the LongForm component */
-  }
-}

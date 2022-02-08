@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from 'src/layouts/Page'
+import { Page } from 'src/layouts'
 import Resume from 'src/components/Resume'
 
 export default function ResumePage() {
