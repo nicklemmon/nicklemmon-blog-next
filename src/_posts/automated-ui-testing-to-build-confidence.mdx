@@ -1,0 +1,242 @@
+---
+title: Automated UI Testing to Build Confidence
+description:
+  Automated tests should help teams ship confidently and quickly by building
+  confidence.
+date: '2019-09-19'
+---
+
+The frontend ecosystem is rife with frameworks, tools, and libraries to help
+make automated testing of user interface a cornerstone of ongoing development.
+Like much of the JavaScript world, there are so many tools available, it can be
+daunting to make a decision and move forward with an approach. This can be
+particularly challenging when team members have different perspectives on what
+problem is being solved with in the first place.
+
+## The Problem
+
+At the end of the day, tests are designed to address one thing - confidence that
+your code is doing what it was meant to do. This confidence is important to
+maintain from two distinct perspectives:
+
+1. The developer perspective
+2. the user perspective
+
+### The Developer Perspective
+
+A developer needs to know that a given library or module functions as expected
+with confidence. When someone reaches for React or Lodash, they can safely
+assume that these libraries work as advertised, as they are backed up by unit
+tests to ensure that inputs always result in their intended outputs.
+
+To give a common example, let's say we have a function called `add` that returns
+the sum total of the two passed in values:
+
+```javascript
+function add(valueOne, valueTwo) {
+  return valueOne + valueTwo
+}
+```
+
+As a developer, I need to be confident that `add(3, 5)` returns `8` with
+confidence! If I use this function within a user interface, however, the user
+does _not_ need to know that `add(3, 5)` returns `8`. This is the key difference
+between the developer perspective and the user perspective.
+
+Tests that support the developer perspective generally take the form of unit
+tests. Within the JavaScript world, using [Jest](https://jestjs.io) is the
+defacto standard. By using Jest (and authoring code
+[functionally](https://en.wikipedia.org/wiki/Functional_programming)), one can
+ensure that an API (whether its a component API like a React component or
+otherwise) remains consistent and predictable over time.
+
+### The User Perspective
+
+A user, on the other hand, has no idea _how_ an interface works nor should they
+care. All the user is concerned with is accomplishing their goal through the UI.
+In fact, authoring tests that test UI implementation details are probably a time
+sink that not only wastes time upfront but also hampers future efforts by making
+refactoring more difficult.
+
+To most closely emulate the user's experience, tests that support the user
+perspective should check the DOM directly rather than implementation details
+like React components and their props. This can be accomplished in a few ways:
+
+1. Authoring integration tests using a library like
+   [Airbnb's Enzyme](https://github.com/airbnb/enzyme) or
+   [React Testing Library](https://github.com/testing-library/react-testing-library)
+   and avoiding
+   [shallow rendering](https://airbnb.io/enzyme/docs/api/shallow.html)
+2. _and_ using a tool like [Selenium](https://www.seleniumhq.org/) or
+   [Cypress](https://cypress.io) for additional integration testing as well as
+   end-to-end testing
+
+### A Cohesive Strategy
+
+In order to best address the concerns of both developers and users, using a
+combination of **unit testing**, **integration testing**, and **end-to-end
+testing** is the recommended approach.
+
+#### 1. Unit Tests for Developers
+
+For re-usable UI components, write unit tests to ensure that components produce
+results based on passed in props using
+[shallow rendering](https://airbnb.io/enzyme/docs/api/shallow.html):
+
+```javascript
+import React from 'react'
+import { shallow } from 'enzyme'
+import Collapsible from './Collapsible'
+
+describe('Collapsible', () => {
+  it('renders the open state when passing `true` to the `isOpen` prop', () => {
+    const wrapper = shallow(<Collapsible isOpen={true} />)
+
+    expect(wrapper.find('button')).toHaveProp('aria-expanded', 'true')
+    expect(wrapper.find('CollapsibleContent')).toExist()
+  })
+})
+```
+
+This test provides developers with a reasonable level of confidence that passing
+in `true` to the `isOpen` prop produces the desired result. In this case, the
+developer knows that the relevant WAI-ARIA attribute will be updated _and_ the
+content of the collapsible component will be visible. Its important to note that
+this test will fail if the component implementation is refactored. For example,
+if the prop name changes from `isOpen` to `open`, the test will fail even if the
+user interaction continues to work as expected - such a change would represent a
+change in the exposed component API - and as a result, would be a breaking
+change for developers using the component rather than for users.
+
+#### 2. Unit Tests for Users
+
+For UI components, write unit tests that simulate user interaction using
+[mount](https://airbnb.io/enzyme/docs/api/ReactWrapper/mount.html) to
+realistically emulate the actual environment in which the interaction will take
+place. In this scenario, a custom `.toHaveTextContent` matcher is being used
+with Enzyme in order to avoid testing implementation details like class names,
+IDs, or even HTML elements:
+
+```javascript
+const toHaveTextContent = (received, expectedContent) => {
+  const text = received.debug && received.debug()
+
+  return {
+    message: () => `expected component to have content "${expectedContent}"`,
+    pass: RegExp(expectedContent).test(text),
+  }
+}
+
+export default toHaveTextContent
+```
+
+```javascript
+import React from 'react'
+import { mount } from 'enzyme'
+import Collapsible from './Collapsible'
+
+describe('Collapsible', () => {
+  it('opens when clicked', () => {
+    const wrapper = mount(
+      <Collapsible>I am content that will show and hide</Collapsible>
+    )
+
+    wrapper.find('button').simulate('click')
+
+    expect(wrapper.find('button')).toHaveProp('aria-expanded', 'true')
+    expect(wrapper).toHaveTextContent('I am content that will show and hide')
+  })
+})
+```
+
+This test provides developers with confidence that the user can interact with
+the component in a consistent manner that will continue to remain relevant even
+if the underlying component implementation is refactored.
+
+#### 3. Integration Tests
+
+For flows and features, write integration tests using
+[Cypress](https://cypress.io) to ensure that components work well together when
+handling real user interactions and mock API requests that match any contracts
+between the frontend and the backend with regards to data structure.
+
+Testing the UI using fixtures is relatively straightforward. First, we author a
+fixture as a JSON file called `accounts.json`:
+
+```json
+[
+  {
+    "type": "savings",
+    "name": "My Savings Account"
+  },
+  {
+    "type": "checking",
+    "name": "My Checking Account"
+  }
+]
+```
+
+We then reference `accounts.json` as a fixture, using that data to render the
+view instead of a real network request:
+
+```javascript
+/// <reference types="Cypress" />
+
+describe('The accounts collapsible', () => {
+  before(() => {
+    cy.server()
+    cy.visit('/accounts')
+    cy.route('GET', 'accounts/*', 'fixture:accounts.json')
+  })
+
+  it('renders the accounts list when clicked on', () => {
+    cy.contains('My Accounts').click()
+
+    cy.contains('My Savings Account').should('be.visible')
+    cy.contains('My Checking Account').should('be.visible')
+  })
+})
+```
+
+**NOTE:** This sort of testing is not possible with Selenium-based testing tools
+as Selenium does not have access to the browser directly! From my perspective,
+this is the primary reason to use Cypress over other available end-to-end
+testing tools.
+
+#### 4. End to End Tests
+
+For very important flows and features, write end-to-end tests using either
+Cypress or Selenium. For simplicity's sake, this example will use Cypress to
+clearly demonstrate the distinction between the integration and end-to-end test:
+
+```javascript
+/// <reference types="Cypress" />
+
+describe('The accounts collapsible', () => {
+  before(() => {
+    cy.visit('/accounts')
+  })
+
+  it('renders the accounts list when clicked on without errors', () => {
+    cy.contains('My Accounts').click()
+
+    cy.contains('Accounts failed to load').should('not.be.visible')
+  })
+})
+```
+
+In this situation, because the relevant account names and content are not known
+ahead of time, making assertions based on those results is not possible,
+however, we do want to check that the request succeeds and that no error occurs.
+Cypress also automatically fails tests that cause errors in the console, and as
+a result, just visiting and interacting with the page increases confidence in
+the implementation.
+
+## Final Thoughts
+
+Ultimately, automated tests should promote confidence in the product that is
+being developed such that developers can easily make changes to a codebase all
+while understanding the impacts those changes have. In order to develop this
+level of confidence within a project, the right testing approach has to be used,
+otherwise tests can become a source of frustration rather than a means by which
+to work more efficiently and improve the end user experience.

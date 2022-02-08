@@ -23,7 +23,7 @@ export default function PageTitle(props) {
 
       <img
         className={styles.Image}
-        src="page-bg.png"
+        src="/page-bg.png"
         role="presentation"
         alt=""
       />
