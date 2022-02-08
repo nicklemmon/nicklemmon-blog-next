@@ -198,13 +198,13 @@ export default function Resume() {
             <li>BB&amp;T Olympian Award winner</li>
 
             <li>
-              Master's of Social Work from the University of North Carolina at
-              Chapel Hill
+              Master&rsquo;s of Social Work from the University of North
+              Carolina at Chapel Hill
             </li>
 
             <li>
-              Bachelor's of Psychology from the University of North Carolina at
-              Chapel Hill
+              Bachelor&rsquo;s of Psychology from the University of North
+              Carolina at Chapel Hill
             </li>
           </ul>
         </LongForm>

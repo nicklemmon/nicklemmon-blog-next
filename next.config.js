@@ -11,12 +11,9 @@ const REDIRECT_POST_PATHS = [
 
 module.exports = {
   webpack: (config, { isServer }) => {
-    // Fixes npm packages that depend on `fs` module
     // See: https://stackoverflow.com/questions/64926174/module-not-found-cant-resolve-fs-in-next-js-application
     if (!isServer) {
-      config.node = {
-        fs: 'empty',
-      }
+      config.resolve.fallback.fs = false
     }
 
     return config
