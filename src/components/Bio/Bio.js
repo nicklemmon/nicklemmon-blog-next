@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import classNames from 'classnames'
 import Card from 'src/components/Card'
 import Heading from 'src/components/Heading'
@@ -10,7 +11,13 @@ export default function Bio({ className }) {
   return (
     <Card className={classNames(styles.Bio, className)}>
       <div className={styles.ImgContainer}>
-        <img className={styles.Img} src="/me.png" alt="Nick Lemmon" />
+        <Image
+          className={styles.Img}
+          src="/me.png"
+          alt="Nick Lemmon"
+          width="100%"
+          height="100%"
+        />
       </div>
 
       <LongForm className={styles.Content}>

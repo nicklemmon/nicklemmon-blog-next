@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
 import MaxWidth from 'src/components/MaxWidth'
 import Heading from 'src/components/Heading'
 import Highlight from 'src/components/Highlight'
@@ -21,11 +22,13 @@ export default function PageTitle(props) {
 
       <div className={styles.Overlay} role="presentation" />
 
-      <img
+      <Image
         className={styles.Image}
         src="/page-bg.png"
         role="presentation"
         alt=""
+        layout="fill"
+        objectFit="cover"
       />
     </div>
   )

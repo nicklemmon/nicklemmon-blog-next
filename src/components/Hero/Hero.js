@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import Image from 'next/image'
 import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
 import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
 import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
@@ -46,11 +47,13 @@ export default function Hero(props) {
 
       <div className={styles.Overlay} role="presentation" />
 
-      <img
+      <Image
         className={styles.Image}
         src="/hero-bg.png"
         role="presentation"
         alt=""
+        layout="fill"
+        objectFit="cover"
       />
     </div>
   )

@@ -17,6 +17,7 @@
     width: 100%;
     height: var(--spacingLG);
     background-color: var(--white);
+    z-index: var(--layerMD);
     box-shadow: 0 var(--spacingSM) var(--spacingMD) rgba(0, 0, 0, 0.033);
   }
 }
