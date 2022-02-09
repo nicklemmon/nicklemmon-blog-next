@@ -15,6 +15,7 @@ export default function Bio({ className }) {
           className={styles.Img}
           src="/me.png"
           alt="Nick Lemmon"
+          layout="intrinsic"
           width="100%"
           height="100%"
         />
