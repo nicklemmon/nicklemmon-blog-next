@@ -21,7 +21,7 @@
     "react-icons-kit": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.16.12",
+    "@babel/core": "7.17.2",
     "@mapbox/rehype-prism": "0.8.0",
     "@testing-library/cypress": "8.0.2",
     "cypress": "9.3.1",
