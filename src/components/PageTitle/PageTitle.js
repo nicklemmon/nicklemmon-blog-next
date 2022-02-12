@@ -8,7 +8,12 @@ import { formatDate } from 'src/helpers'
 import styles from './PageTitle.module.css'
 
 export default function PageTitle(props) {
-  const { className, children, date } = props
+  const {
+    className,
+    children,
+    date,
+    image = 'kenan-alboshi-UCbY7s2bF4o-unsplash.webp',
+  } = props
 
   return (
     <div className={classNames(styles.PageTitle, className)} size="xl">
@@ -24,7 +29,7 @@ export default function PageTitle(props) {
 
       <Image
         className={styles.Image}
-        src="/page-bg.png"
+        src={`/images/posts/${image}`}
         role="presentation"
         alt=""
         layout="fill"

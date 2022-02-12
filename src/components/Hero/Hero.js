@@ -49,7 +49,7 @@ export default function Hero(props) {
 
       <Image
         className={styles.Image}
-        src="/hero-bg.png"
+        src="/hero-bg.webp"
         role="presentation"
         alt=""
         layout="fill"

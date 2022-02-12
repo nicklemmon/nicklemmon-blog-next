@@ -13,7 +13,7 @@ export default function Bio({ className }) {
       <div className={styles.ImgContainer}>
         <Image
           className={styles.Img}
-          src="/me.png"
+          src="/me.webp"
           alt="Nick Lemmon"
           layout="intrinsic"
           width="100%"
