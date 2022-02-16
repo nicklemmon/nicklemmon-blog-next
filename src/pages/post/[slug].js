@@ -1,13 +1,29 @@
 import React, { useMemo } from 'react'
+import { useRouter } from 'next/router'
 import { bundleMDX } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
 import mdxPrism from '@mapbox/rehype-prism'
 import { getPosts, getPost } from 'src/helpers'
+import PageTitle from 'src/components/PageTitle'
 import { Post } from 'src/layouts'
 import { POSTS_PATH } from 'src/constants'
+import styles from './[slug].module.css'
 
 export default function PostPage({ code, frontmatter }) {
+  const { query } = useRouter()
   const MdxContent = useMemo(() => getMDXComponent(code), [code])
+
+  if (query?.view === 'social-preview') {
+    return (
+      <PageTitle
+        className={styles.SocialPreview}
+        date={frontmatter.date}
+        image={frontmatter.image}
+      >
+        {frontmatter.title}
+      </PageTitle>
+    )
+  }
 
   return (
     <Post frontMatter={frontmatter}>
