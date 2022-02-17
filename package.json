@@ -14,7 +14,7 @@
     "classnames": "2.3.1",
     "framer-motion": "6.2.6",
     "gray-matter": "4.0.3",
-    "next": "12.0.10",
+    "next": "12.1.0",
     "prism-theme-night-owl": "1.4.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@babel/core": "7.17.5",
     "@mapbox/rehype-prism": "0.8.0",
-    "@next/eslint-plugin-next": "12.0.10",
+    "@next/eslint-plugin-next": "12.1.0",
     "@testing-library/cypress": "8.0.2",
     "cypress": "9.5.0",
     "del": "6.0.0",
