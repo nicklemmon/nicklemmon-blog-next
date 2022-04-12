@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "classnames": "2.3.1",
-    "framer-motion": "6.2.9",
+    "framer-motion": "6.2.10",
     "gray-matter": "4.0.3",
     "next": "12.1.4",
     "prism-theme-night-owl": "1.4.0",
