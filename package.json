@@ -31,7 +31,7 @@
     "esbuild": "0.14.39",
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-jest": "26.2.0",
+    "eslint-plugin-jest": "26.2.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.5.0",
     "husky": "8.0.1",
