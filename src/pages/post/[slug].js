@@ -50,7 +50,7 @@ export async function getStaticProps({ params }) {
   const { code, frontmatter } = await bundleMDX({
     source,
     cwd: POSTS_PATH,
-    xdmOptions(options) {
+    mdxOptions(options) {
       options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
 
       return options
