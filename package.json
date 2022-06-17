@@ -28,7 +28,7 @@
     "@testing-library/cypress": "8.0.3",
     "cypress": "9.7.0",
     "del": "6.1.1",
-    "esbuild": "0.14.44",
+    "esbuild": "0.14.45",
     "eslint": "8.17.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jest": "26.5.3",
