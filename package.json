@@ -29,7 +29,7 @@
     "cypress": "9.7.0",
     "del": "6.1.1",
     "esbuild": "0.14.54",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jest": "26.8.2",
     "eslint-plugin-react": "7.30.1",
