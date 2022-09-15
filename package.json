@@ -6,6 +6,7 @@
     "dev": "npm run prep:images && next dev",
     "build": "npm run prep:images && next build",
     "start": "next start",
+    "type-check": "twc --noEmit",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
     "prep:images": "node ./scripts/images.js"
