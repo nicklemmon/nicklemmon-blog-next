@@ -22,7 +22,7 @@
     "react-icons-kit": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
+    "@babel/core": "7.21.4",
     "@mapbox/rehype-prism": "0.8.0",
     "@next/eslint-plugin-next": "12.3.4",
     "@testing-library/cypress": "8.0.7",
