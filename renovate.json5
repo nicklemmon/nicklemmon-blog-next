@@ -1,6 +1,5 @@
 {
-  extends: ['config:base'],
-  dependencyDashboard: true,
+  extends: ['config:recommended', ':dependencyDashboard'],
   labels: ['dependencies'],
   postUpdateOptions: ['npmDedupe'],
   packageRules: [
