@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import MaxWidth from 'src/components/MaxWidth'
 import Heading from 'src/components/Heading'
 import Highlight from 'src/components/Highlight'

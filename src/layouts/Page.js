@@ -12,7 +12,7 @@ export function Page({ title, titleImage, description, date, children }) {
   return (
     <>
       <Head>
-        <title>{title} | Nick Lemmon, Front End Web Developer</title>
+        <title>{`${title} | Nick Lemmon, Front End Web Developer`}</title>
         <meta property="og:title" content={title} />
         <meta property="twitter:title" content={title} />
         <meta name="description" content={description} />
