@@ -16,8 +16,8 @@ export default function Bio({ className }) {
           src="/me.webp"
           alt="Nick Lemmon"
           layout="intrinsic"
-          width="100%"
-          height="100%"
+          width={120}
+          height={120}
         />
       </div>
 

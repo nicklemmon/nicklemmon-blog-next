@@ -7,7 +7,7 @@ export default function PageLink(props) {
   const { onClick, onKeyDown, children, href, className } = props
 
   return (
-    <Link href={href} passHref onKeyDown={onKeyDown}>
+    <Link href={href} passHref onKeyDown={onKeyDown} legacyBehavior>
       <a
         className={classNames(styles.PageLink, className)}
         data-id={props['data-id']}
