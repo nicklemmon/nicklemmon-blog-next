@@ -32,7 +32,7 @@ export async function getPosts() {
         fileContent,
       }
     })
-  );
+  )
 }
 
 export function mapPostFrontmatter(post) {

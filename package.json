@@ -1,11 +1,12 @@
 {
   "name": "nicklemmon-blog-next",
   "packageManager": "yarn@4.0.0",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "yarn run prep:images && next dev",
     "build": "yarn run prep:images && next build",
+    "lint": "yarn eslint .",
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
