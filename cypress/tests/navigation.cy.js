@@ -48,7 +48,7 @@ describe('The navigation', () => {
     cy.findByRole('banner').within(() => {
       cy.findByRole('button', { name: 'Open Menu' }).click()
     })
-    cy.focused().type('{esc}')
+    cy.focused().realType('{esc}')
     cy.findByRole('navigation').should('not.be.visible')
   })
 })
