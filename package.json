@@ -1,10 +1,11 @@
 {
   "name": "nicklemmon-blog-next",
+  "packageManager": "yarn@4.0.0",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run prep:images && next dev",
-    "build": "npm run prep:images && next build",
+    "dev": "yarn run prep:images && next dev",
+    "build": "yarn run prep:images && next build",
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
@@ -41,7 +42,7 @@
     "mdx-prism": "0.3.4",
     "prettier": "2.8.7",
     "rehype": "12.0.1",
-    "sharp": "0.32.0"
+    "sharp": "0.32.6"
   },
   "husky": {
     "hooks": {
