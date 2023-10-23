@@ -1,6 +1,6 @@
 # nicklemmon.com
 
-![Build and test](https://github.com/github/docs/actions/workflows/build-and-test.yml/badge.svg?branch=main)
+![Build and test](https://github.com/nicklemmon/nicklemmon-blog-next/actions/workflows/build-and-test.yml/badge.svg?branch=main)
 
 ## Development
 
