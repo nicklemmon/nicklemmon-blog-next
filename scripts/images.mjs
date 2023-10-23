@@ -1,7 +1,7 @@
-const sharp = require('sharp')
-const fs = require('fs')
-const path = require('path')
-const del = require('del')
+import sharp from "sharp";
+import fs from "fs";
+import path from "path";
+import { deleteAsync } from "del";
 
 const RAW_IMAGES_PATH = `${process.cwd()}/src/images`
 const OPTIMIZED_IMAGES_PATH = `${process.cwd()}/public/images/posts`
@@ -9,7 +9,7 @@ const OPTIMIZED_WIDTH = 1200
 const OPTIMIZED_HEIGHT = 800
 
 async function cleanImages() {
-  await del(`${process.cwd()}/public/images/posts/**`)
+  await deleteAsync(`${process.cwd()}/public/images/posts/**`)
 }
 
 async function optimizeImages() {

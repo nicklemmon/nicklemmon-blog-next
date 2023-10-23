@@ -9,7 +9,7 @@
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
-    "prep:images": "node ./scripts/images.js"
+    "prep:images": "node ./scripts/images.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "1.1.1",
@@ -24,24 +24,24 @@
     "react-icons-kit": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.23.2",
     "@mapbox/rehype-prism": "0.8.0",
-    "@next/eslint-plugin-next": "12.3.4",
-    "@testing-library/cypress": "8.0.7",
-    "cypress": "10.11.0",
-    "del": "6.1.1",
-    "esbuild": "0.17.15",
-    "eslint": "8.37.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-jest": "26.9.0",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
+    "@next/eslint-plugin-next": "13.5.6",
+    "@testing-library/cypress": "10.0.1",
+    "cypress": "13.3.2",
+    "del": "7.1.0",
+    "esbuild": "0.19.5",
+    "eslint": "8.52.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-jest": "27.4.3",
+    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "8.0.3",
-    "lint-staged": "13.2.0",
+    "lint-staged": "15.0.2",
     "mdx-bundler": "9.2.1",
     "mdx-prism": "0.3.4",
-    "prettier": "2.8.7",
-    "rehype": "12.0.1",
+    "prettier": "3.0.3",
+    "rehype": "13.0.1",
     "sharp": "0.32.6"
   },
   "husky": {
