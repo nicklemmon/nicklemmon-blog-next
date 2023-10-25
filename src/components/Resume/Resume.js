@@ -1,7 +1,7 @@
 import React from 'react'
-import Card from '../components/card'
-import Heading from '../components/heading'
-import LongForm from '../components/long-form'
+import Card from '../card'
+import Heading from '../heading'
+import LongForm from '../long-form'
 import ResumePosition from './resume-position'
 import styles from './resume.module.css'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ANALYTICS_TRACKING_ID } from './constants'
+import { ANALYTICS_TRACKING_ID } from '../constants'
 
 const ANALYTICS_SCRIPT = `
   window.dataLayer = window.dataLayer || [];

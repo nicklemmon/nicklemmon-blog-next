@@ -1,1 +1,1 @@
-export { default } from './BreakoutContainer'
+export { default } from './breakout-container'
