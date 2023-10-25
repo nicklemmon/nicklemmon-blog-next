@@ -1,9 +1,9 @@
 import React from 'react'
-import Heading from 'src/components/Heading'
-import Subdued from 'src/components/Subdued'
-import LongForm from 'src/components/LongForm'
-import ScreenReaderOnly from 'src/components/ScreenReaderOnly'
-import styles from './Resume.module.css'
+import Heading from 'src/components/heading'
+import Subdued from 'src/components/subdued'
+import LongForm from 'src/components/long-form'
+import ScreenReaderOnly from 'src/components/screen-reader-only'
+import styles from './resume.module.css'
 
 export default function ResumePosition(props) {
   const { heading, subheading, children, startDate, endDate } = props

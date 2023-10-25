@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import styles from './Container.module.css'
+import styles from './container.module.css'
 
 export default function Container(props) {
   const { size, children, className } = props

@@ -1,12 +1,12 @@
 import React from 'react'
-import Hero from 'src/components/Hero'
-import Header from 'src/components/Header'
-import Main from 'src/components/Main'
-import Footer from 'src/components/Footer'
-import BreakoutContainer from 'src/components/BreakoutContainer'
-import MaxWidth from 'src/components/MaxWidth'
-import { Default } from './Default'
-import styles from './Landing.module.css'
+import Hero from 'src/components/hero'
+import Header from 'src/components/header'
+import Main from 'src/components/main'
+import Footer from 'src/components/footer'
+import BreakoutContainer from 'src/components/breakout-container'
+import MaxWidth from 'src/components/max-width'
+import { Default } from './default'
+import styles from './landing.module.css'
 
 export function Landing({ children }) {
   return (

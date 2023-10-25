@@ -1,15 +1,15 @@
 import React from 'react'
 import classNames from 'classnames'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
 import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
 import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
-import Container from 'src/components/Container'
-import MaxWidth from 'src/components/MaxWidth'
-import Heading from 'src/components/Heading'
-import Highlight from 'src/components/Highlight'
-import HeroIconLink from './HeroIconLink'
-import styles from './Hero.module.css'
+import Container from 'src/components/container'
+import MaxWidth from 'src/components/max-width'
+import Heading from 'src/components/heading'
+import Highlight from 'src/components/highlight'
+import HeroIconLink from './hero-icon-link'
+import styles from './hero.module.css'
 
 export default function Hero(props) {
   const { className } = props

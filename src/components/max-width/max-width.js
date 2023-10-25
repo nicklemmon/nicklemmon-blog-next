@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import styles from './MaxWidth.module.css'
+import styles from './max-width.module.css'
 
 export default function MaxWidth({ children, className, size }) {
   return (

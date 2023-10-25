@@ -2,7 +2,7 @@ import React from 'react'
 import { PageLink } from 'src/components/links'
 import { Icon } from 'react-icons-kit'
 import classNames from 'classnames'
-import styles from './Button.module.css'
+import styles from './button.module.css'
 
 export default function Button(props) {
   const {

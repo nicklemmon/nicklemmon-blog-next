@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from 'react-icons-kit'
-import ScreenReaderOnly from 'src/components/ScreenReaderOnly'
+import ScreenReaderOnly from 'src/components/screen-reader-only'
 import styles from './Hero.module.css'
 
 export default function HeroIconLink(props) {

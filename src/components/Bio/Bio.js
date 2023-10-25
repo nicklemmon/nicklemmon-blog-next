@@ -1,11 +1,11 @@
 import React from 'react'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import classNames from 'classnames'
-import Card from 'src/components/Card'
-import Heading from 'src/components/Heading'
-import LongForm from 'src/components/LongForm'
+import Card from 'src/components/card'
+import Heading from 'src/components/heading'
+import LongForm from 'src/components/long-form'
 import { ExternalLink } from 'src/components/links'
-import styles from './Bio.module.css'
+import styles from './bio.module.css'
 
 export default function Bio({ className }) {
   return (

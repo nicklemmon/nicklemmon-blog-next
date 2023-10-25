@@ -3,11 +3,11 @@ import classNames from 'classnames'
 import { Icon } from 'react-icons-kit'
 import { arrowRight } from 'react-icons-kit/feather/arrowRight'
 import { PageLink } from 'src/components/links'
-import Card from 'src/components/Card'
-import Subdued from 'src/components/Subdued'
-import Heading from 'src/components/Heading'
+import Card from 'src/components/card'
+import Subdued from 'src/components/subdued'
+import Heading from 'src/components/heading'
 import { formatDate } from 'src/helpers'
-import styles from './ArticleCard.module.css'
+import styles from './article-card.module.css'
 
 export default function ArticleCard(props) {
   const { className, date, heading, children, href } = props

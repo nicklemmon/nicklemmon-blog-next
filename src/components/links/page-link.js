@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import Link from 'next/link'
-import styles from './PageLink.module.css'
+import styles from './page-link.module.css'
 
 export default function PageLink(props) {
   const { onClick, onKeyDown, children, href, className } = props

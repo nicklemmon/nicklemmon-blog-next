@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from 'src/components/Container'
+import Container from 'src/components/container'
 import styles from './BreakoutContainer.module.css'
 
 export default function BreakoutContainer({ children }) {

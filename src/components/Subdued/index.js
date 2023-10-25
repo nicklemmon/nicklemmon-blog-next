@@ -1,1 +1,1 @@
-export { default } from './Subdued'
+export { default } from './subdued'

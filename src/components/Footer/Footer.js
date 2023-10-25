@@ -1,13 +1,12 @@
 import React from 'react'
-
 import { Icon } from 'react-icons-kit'
 import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
 import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
 import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
 import { PageLink } from 'src/components/links'
-import Container from 'src/components/Container'
-import ScreenReaderOnly from 'src/components/ScreenReaderOnly'
-import styles from './Footer.module.css'
+import Container from 'src/components/container'
+import ScreenReaderOnly from 'src/components/screen-reader-only'
+import styles from './footer.module.css'
 
 export default function Footer() {
   const iconDimensions = 'calc(1.25rem + 1vw)'

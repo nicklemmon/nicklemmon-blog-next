@@ -1,12 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-import { Default } from 'src/layouts/Default'
-import Header from 'src/components/Header'
-import Main from 'src/components/Main'
-import Footer from 'src/components/Footer'
-import Container from 'src/components/Container'
-import MaxWidth from 'src/components/MaxWidth'
-import PageTitle from 'src/components/PageTitle'
+import { Default } from 'src/layouts/default'
+import Header from 'src/components/header'
+import Main from 'src/components/main'
+import Footer from 'src/components/footer'
+import Container from 'src/components/container'
+import MaxWidth from 'src/components/max-width'
+import PageTitle from 'src/components/page-title'
 
 export function Page({ title, titleImage, description, date, children }) {
   return (

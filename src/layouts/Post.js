@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page } from 'src/layouts'
-import LongForm from 'src/components/LongForm'
-import Bio from 'src/components/Bio'
+import LongForm from 'src/components/long-form'
+import Bio from 'src/components/bio'
 import styles from './Post.module.css'
 
 export function Post({ children, frontMatter }) {

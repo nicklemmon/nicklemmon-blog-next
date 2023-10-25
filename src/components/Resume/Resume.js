@@ -1,9 +1,9 @@
 import React from 'react'
-import Card from 'src/components/Card'
-import Heading from 'src/components/Heading'
-import LongForm from 'src/components/LongForm'
-import ResumePosition from './ResumePosition'
-import styles from './Resume.module.css'
+import Card from 'src/components/card'
+import Heading from 'src/components/heading'
+import LongForm from 'src/components/long-form'
+import ResumePosition from './resume-position'
+import styles from './resume.module.css'
 
 export default function Resume() {
   return (

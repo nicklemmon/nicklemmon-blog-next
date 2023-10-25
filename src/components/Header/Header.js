@@ -1,8 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 import { PageLink } from 'src/components/links'
-import Navigation from 'src/components/Navigation'
-import styles from './Header.module.css'
+import Navigation from 'src/components/navigation'
+import styles from './header.module.css'
 
 export default function Header({ className, theme = 'dark' }) {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import Heading from 'src/components/Heading'
+import Heading from 'src/components/heading'
 import styles from './unsubscribe.module.css'
 
 export default function UnsubscribePage() {

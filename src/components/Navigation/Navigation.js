@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
 import classNames from 'classnames'
 import { PageLink } from 'src/components/links'
-import ScreenReaderOnly from 'src/components/ScreenReaderOnly'
+import ScreenReaderOnly from 'src/components/screen-reader-only'
 import { useKeyPress } from 'src/hooks'
-import styles from './Navigation.module.css'
+import styles from './navigation.module.css'
 
 const animationStates = {
   closed: {
