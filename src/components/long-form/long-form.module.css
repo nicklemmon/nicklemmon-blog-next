@@ -1,0 +1,112 @@
+.LongForm * + * {
+  margin-top: var(--spacingMD);
+}
+
+.LongForm * + h2 {
+  margin-top: var(--spacingLG);
+}
+
+.LongForm * + h3,
+.LongForm * + h4,
+.LongForm * + h5,
+.LongForm * + h6 {
+  margin-top: var(--spacingMD);
+  margin-bottom: 0;
+}
+
+.LongForm p + h3,
+.LongForm p + h4,
+.LongForm p + h5,
+.LongForm p + h6 {
+  margin-top: var(--spacingLG);
+}
+
+.LongForm * + li {
+  margin-top: var(--spacingSM);
+}
+
+.LongForm h2 {
+  position: relative;
+  padding-bottom: var(--spacingSM);
+}
+
+.LongForm h2:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--spacingLG);
+  height: var(--spacingXS);
+  background-color: rgba(0, 0, 0, 0.125);
+}
+
+.LongForm p {
+  margin-bottom: 0;
+}
+
+.LongForm p,
+.LongForm li {
+  line-height: 1.75;
+  color: var(--boulder);
+}
+
+.LongForm p a,
+.LongForm li a {
+  color: var(--blueRibbon);
+  padding-bottom: 1px;
+  border-bottom: 2px solid currentColor;
+}
+
+.LongForm code {
+  color: black;
+  background-color: transparent !important;
+  font-size: 0.85rem;
+}
+
+.LongForm.LongForm pre,
+.LongForm blockquote {
+  margin: var(--spacingLG) -2rem;
+}
+
+@media (max-width: 600px) {
+  .LongForm.LongForm pre,
+  .LongForm blockquote {
+    margin: var(--spacingMD) 0;
+  }
+}
+
+.LongForm.LongForm pre {
+  display: block;
+  background-color: var(--outerSpace);
+  background: var(--outerSpace);
+  border-radius: var(--borderRadius);
+  padding: var(--spacingMD);
+  box-shadow: 0 1rem 1rem -1rem rgba(0, 0, 0, 0.33);
+}
+
+.LongForm.LongForm pre code {
+  background: transparent;
+  color: #fff;
+  box-shadow: none;
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.LongForm blockquote {
+  background-color: var(--seaShell);
+  padding: var(--spacingLG);
+  color: var(--outerSpace);
+  border-left: 0.5vw solid var(--outerSpace);
+}
+
+.LongForm blockquote p {
+  margin: 0;
+}
+
+.LongForm blockquote * {
+  color: var(--outerSpace);
+}
+
+.LongForm img {
+  width: 100%;
+}

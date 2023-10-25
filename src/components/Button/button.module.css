@@ -1,0 +1,66 @@
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacingMD) var(--spacingLG);
+  font-family: var(--fontFamilySecondary);
+  border-radius: var(--borderRadius);
+  border: 2px solid #000; /* black is just a placeholder to be overidden */
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--duration) var(--easing);
+}
+
+.FullWidth {
+  width: 100%;
+}
+
+.Centered {
+  margin: 0 auto;
+}
+
+.PrimaryVariant {
+  background-color: var(--blueRibbon);
+  color: var(--white);
+  border-color: var(--blueRibbon);
+}
+
+.PrimaryVariant:hover {
+  background-color: var(--blue);
+}
+
+.PrimaryVariant:focus {
+  outline-color: var(--blue);
+}
+
+.SecondaryVariant {
+  background-color: var(--white);
+  color: var(--blueRibbon);
+  border-color: var(--blueRibbon);
+}
+
+.TertiaryVariant {
+  background-color: var(--white);
+  color: var(--blueRibbon);
+  border-color: transparent;
+}
+
+.SecondaryVariant:hover,
+.TertiaryVariant:hover {
+  background-color: var(--seaShell);
+}
+
+.GhostVariant {
+  background-color: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.PrefixIcon {
+  margin-right: var(--spacingSM);
+}
+
+.SuffixIcon {
+  margin-left: var(--spacingSM);
+}

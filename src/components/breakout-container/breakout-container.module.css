@@ -1,0 +1,27 @@
+.BreakoutContainer {
+  position: relative;
+  background-color: var(--white);
+  margin: 0 auto;
+  background-color: var(--white);
+}
+
+.BreakoutContainer:after {
+  content: '';
+}
+
+@media (min-width: 800px) {
+  .BreakoutContainer:after {
+    position: absolute;
+    bottom: calc(var(--spacingLG) * -1);
+    left: 0;
+    width: 100%;
+    height: var(--spacingLG);
+    background-color: var(--white);
+    z-index: var(--layerMD);
+    box-shadow: 0 var(--spacingSM) var(--spacingMD) rgba(0, 0, 0, 0.033);
+  }
+}
+
+.Container {
+  padding-bottom: 0;
+}

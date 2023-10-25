@@ -1,0 +1,57 @@
+.ArticleCard {
+  height: 100%;
+  position: relative; /* allows absolute positioning within */
+  color: var(--outerSpace);
+  transition: transform var(--duration) var(--easing),
+    box-shadow var(--duration) var(--easing);
+}
+
+.ArticleCard p {
+  font-size: 0.9rem;
+  font-family: var(--fontFamilySecondary);
+  line-height: 1.5;
+  margin-bottom: var(--spacingLG);
+}
+
+.Link {
+  display: block; /* fixes focus styling issues */
+  outline-color: var(--blueRibbon);
+  border: 0;
+}
+
+.Link .ArticleCard:hover,
+.Link .ArticleCard:focus {
+  transform: scale(1.005) translateY(-2px);
+}
+
+.Date {
+  display: block;
+  font-family: var(--fontFamilySecondary);
+  margin-top: var(--spacingSM);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--boulder);
+}
+
+.Header {
+  margin-bottom: var(--spacingMD);
+}
+
+.Heading.Heading {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--outerSpace);
+}
+
+.ReadMore {
+  color: var(--blueRibbon);
+  position: absolute;
+  bottom: var(--spacingMD);
+  right: var(--spacingMD);
+}
+
+.Icon {
+  fill: var(--blueRibbon);
+  width: 1rem;
+  height: 1rem;
+}

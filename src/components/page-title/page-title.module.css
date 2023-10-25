@@ -1,0 +1,58 @@
+.PageTitle {
+  background-color: var(--blueRibbon);
+  color: var(--white);
+  position: relative; /* enables use of z-index */
+  z-index: 1;
+  margin-top: -3rem;
+  padding: var(--spacingXL);
+}
+
+.Heading {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .Heading {
+    text-align: left;
+  }
+}
+
+.Overlay,
+.Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Overlay {
+  z-index: 2;
+  background-color: var(--blueRibbon);
+  opacity: 0.85;
+}
+
+.Image {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.Meta {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  color: var(--white);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: left;
+  margin-top: var(--spacingMD);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .Meta {
+    text-align: left;
+  }
+}
