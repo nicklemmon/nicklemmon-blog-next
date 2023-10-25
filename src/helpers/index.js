@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { POSTS_PATH } from 'src/constants'
+import { POSTS_PATH } from '../constants'
 
 export function sortPostsByDate(posts) {
   return posts.sort(
