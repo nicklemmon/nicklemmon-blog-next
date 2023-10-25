@@ -25,20 +25,17 @@ export default function Bio({ className }) {
         <Heading as="h4">About Me</Heading>
 
         <p>
-          I&rsquo;m a Senior Principal Frontend Engineer working for{' '}
+          I&rsquo;m a frontend engineering manager working for{' '}
           <ExternalLink href="https://truist.com">
             Truist Financial
           </ExternalLink>{' '}
-          in Columbia, Maryland who also happens to have an&nbsp;
-          <ExternalLink href="https://en.wikipedia.org/wiki/Master_of_Social_Work">
-            MSW
-          </ExternalLink>
-          !
+          currently based in in Columbia, Maryland.
         </p>
 
         <p>
-          I&rsquo;m driven to design and build accessible design systems and web
-          applications with a great underlying developer experience in mind.
+          I&rsquo;m driven to spearhead, design, and build accessible design
+          systems and web applications with a great underlying developer
+          experience in mind.
         </p>
       </LongForm>
     </Card>
