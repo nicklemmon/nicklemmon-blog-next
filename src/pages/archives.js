@@ -1,8 +1,8 @@
 import React from 'react'
-import { Page } from 'src/layouts'
-import ArticleCards from 'src/components/article-cards'
-import ArticleCard from 'src/components/article-card'
-import { getPosts, mapPostFrontmatter, sortPostsByDate } from 'src/helpers'
+import { Page } from '../layouts'
+import ArticleCards from '../components/article-cards'
+import ArticleCard from '../components/article-card'
+import { getPosts, mapPostFrontmatter, sortPostsByDate } from '../helpers'
 
 export default function ArchivesPage({ posts }) {
   return (

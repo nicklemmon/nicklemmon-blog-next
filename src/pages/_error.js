@@ -1,6 +1,6 @@
 import React from 'react'
-import { Page } from 'src/layouts'
-import { PageLink } from 'src/components/links'
+import { Page } from '../layouts'
+import { PageLink } from '../components/links'
 
 function Error({ statusCode }) {
   return (

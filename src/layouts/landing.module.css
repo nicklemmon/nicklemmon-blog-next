@@ -1,0 +1,18 @@
+.Hero {
+  margin-top: calc(
+    var(--headerHeight) * -1
+  ); /* one can't have a negative CSS custom property, so this works. Credit to: https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628 */
+}
+
+@media (min-width: 800px) {
+  .Main {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .Sidebar.Sidebar {
+    margin-top: calc(
+      var(--headerHeight) * -1
+    ); /* one can't have a negative CSS custom property, so this works. Credit to: https://github.com/css-modules/postcss-icss-values/issues/64#issuecomment-241285628 */
+  }
+}

@@ -1,10 +1,10 @@
 import React from 'react'
 import classNames from 'classnames'
 import Image from 'next/legacy/image'
-import MaxWidth from 'src/components/max-width'
-import Heading from 'src/components/heading'
-import Highlight from 'src/components/highlight'
-import { formatDate } from 'src/helpers'
+import MaxWidth from '../max-width'
+import Heading from '../heading'
+import Highlight from '../highlight'
+import { formatDate } from '../../helpers'
 import styles from './page-title.module.css'
 
 export default function PageTitle(props) {

@@ -1,0 +1,94 @@
+.Navigation {
+  position: relative; /* allows absolute positioning within */
+}
+
+.Button {
+  position: relative; /* allows use of z-index */
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--headerHeight);
+  width: calc(var(--headerHeight) * 0.75);
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin-right: var(
+    --spacingMD
+  ); /* NOTE: must align correctly with Container component padding */
+  transition: transform var(--duration) var(--easing);
+}
+
+.Button:hover,
+.Button:focus {
+  transform: scale(0.9);
+}
+
+.Button.isOpen:focus {
+  outline-color: var(--white);
+}
+
+/* Some specificity wars here */
+.Button.isOpen .Bar.Bar {
+  margin: 0;
+  background-color: var(--white);
+}
+
+.Button.isOpen .Bar1 {
+  transform: translateY(1px) rotate(45deg);
+}
+
+.Button.isOpen .Bar2 {
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.Bar {
+  height: 2px;
+  width: calc(var(--headerHeight) * 0.75);
+  margin: 6px 0;
+  background-color: var(--white);
+  transition: transform var(--duration) var(--easing);
+}
+
+.Navigation.DarkTheme .Bar {
+  background-color: var(--white);
+}
+
+@media (min-width: 800px) {
+  .Navigation.DarkTheme .Bar {
+    background-color: var(--outerSpace);
+  }
+}
+
+.Navigation.LightTheme .Bar {
+  background-color: var(--white);
+}
+
+.Nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 71, 254, 0.95);
+}
+
+.Link {
+  font-family: var(--fontFamilySecondary);
+  font-size: calc(1.75rem + 0.5vw);
+  display: block;
+  color: var(--white);
+  padding: var(--spacingXS) var(--spacingSM);
+  text-align: right;
+  transition: transform var(--duration) var(--easing);
+}
+
+.Link:hover {
+  transform: translateY(-0.125rem);
+}

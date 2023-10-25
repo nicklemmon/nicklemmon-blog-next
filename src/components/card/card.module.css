@@ -1,0 +1,8 @@
+.Card {
+  background-color: var(--white);
+  padding: var(--spacingMD);
+  border-radius: 6px;
+  border: 1px solid var(--semiTransparentBlack);
+  box-shadow: 0 var(--spacingLG) var(--spacingLG) calc(-1 * var(--spacingLG))
+    rgba(0, 0, 0, 0.125);
+}

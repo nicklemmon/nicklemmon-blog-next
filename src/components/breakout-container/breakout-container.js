@@ -1,6 +1,6 @@
 import React from 'react'
-import Container from 'src/components/container'
-import styles from './BreakoutContainer.module.css'
+import Container from '../container'
+import styles from './breakout-container.module.css'
 
 export default function BreakoutContainer({ children }) {
   return (

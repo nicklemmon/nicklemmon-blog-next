@@ -1,0 +1,94 @@
+.Hero,
+.Container {
+  position: relative;
+}
+
+.Hero {
+  color: var(--white);
+  z-index: 1;
+}
+
+.Container {
+  z-index: 3;
+}
+
+.Title.Title {
+  /* specificity waaaars */
+  font-weight: 700;
+  margin-bottom: var(--spacingLG);
+}
+
+.Overlay,
+.Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Overlay {
+  z-index: 2;
+  background-color: var(--blueRibbon);
+  opacity: 0.75;
+}
+
+.Image {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.Links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.IconUnderlay {
+  position: absolute;
+  z-index: 4;
+  top: -25%;
+  left: -25%;
+  background-color: var(--blueRibbon);
+  width: 150%;
+  height: 150%;
+  border-radius: 1.5rem;
+  box-shadow: 0 var(--spacingMD) var(--spacingMD) calc(var(--spacingMD) * -1)
+    rgba(0, 0, 0, 0.33);
+  transform: scale(0);
+  visibility: hidden;
+  opacity: 0;
+  transition: transform var(--duration) var(--easing),
+    visibility var(--duration) var(--easing),
+    opacity var(--duration) var(--easing),
+    border-radius calc(var(--duration) * 2) var(--easing);
+}
+
+.IconLink {
+  position: relative; /* allows absolute positioning within */
+  color: currentColor;
+  line-height: 0;
+  outline-offset: 1.5rem;
+}
+
+.IconLink:focus .IconUnderlay,
+.IconLink:hover .IconUnderlay {
+  transform: scale(1);
+  border-radius: 50%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.Icon {
+  position: relative; /* allows use of z-index */
+  z-index: 5;
+  width: calc(2.5rem + 1.5vw);
+  height: calc(2.5rem + 1.5vw);
+}
+
+@media (min-width: 800px) {
+  .Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
