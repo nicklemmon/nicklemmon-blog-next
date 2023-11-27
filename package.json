@@ -31,7 +31,7 @@
     "cypress": "13.6.0",
     "cypress-real-events": "1.11.0",
     "del": "7.1.0",
-    "esbuild": "0.19.7",
+    "esbuild": "0.19.8",
     "eslint": "8.54.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-jest": "27.6.0",
