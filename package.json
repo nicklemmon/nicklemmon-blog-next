@@ -12,7 +12,7 @@
     "prep:images": "node ./scripts/images.mjs"
   },
   "dependencies": {
-    "@vercel/analytics": "1.2.0",
+    "@vercel/analytics": "1.2.1",
     "classnames": "2.5.1",
     "framer-motion": "10.18.0",
     "gray-matter": "4.0.3",
