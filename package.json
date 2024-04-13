@@ -20,7 +20,7 @@
     "prism-theme-night-owl": "1.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-focus-lock": "2.11.2",
+    "react-focus-lock": "2.11.3",
     "react-icons-kit": "2.0.0"
   },
   "devDependencies": {
