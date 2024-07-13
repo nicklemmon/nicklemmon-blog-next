@@ -41,7 +41,7 @@
     "lint-staged": "15.2.7",
     "mdx-bundler": "9.2.1",
     "mdx-prism": "0.3.4",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "rehype": "13.0.1",
     "sharp": "0.32.6"
   },
