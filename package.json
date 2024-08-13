@@ -38,7 +38,7 @@
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "8.0.3",
-    "lint-staged": "15.2.8",
+    "lint-staged": "15.2.9",
     "mdx-bundler": "9.2.1",
     "mdx-prism": "0.3.4",
     "prettier": "3.3.3",
