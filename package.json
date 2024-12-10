@@ -14,7 +14,7 @@
   "dependencies": {
     "@vercel/analytics": "1.4.1",
     "classnames": "2.5.1",
-    "framer-motion": "10.18.0",
+    "framer-motion": "11.13.5",
     "gray-matter": "4.0.3",
     "next": "13.5.7",
     "prism-theme-night-owl": "1.4.0",
