@@ -7,8 +7,209 @@ date: '2025-01-22'
 image: 'omar-flores-lQT_bOWtysE-unsplash.webp'
 ---
 
-Hello, world
+## The promise of design systems
 
-```html
-<h1>Hello</h1>
+UI component libraries and design systems enable brand consistency at scale. By
+leveraging a design system, large organizations can ship consistently branded
+digital experiences without the need to re-build repetitive UI elements across
+multiple applications simultaneously.
+
+Designers may view a component library as a means of establishing visual control
+over disparate teams and processes, narrowing the range of possibilities that
+can be produced across a large digital footprint.
+
+For example, the component may include some opinions about where icons can be
+placed. In our initial draft, we built a button component that accepts an `icon`
+prop:
+
+```tsx
+import { Button } from '@company/ui'
+
+function MyApp() {
+  return <Button icon="plus-circle">Click me</Button>
+}
 ```
+
+> Designers may view a component library as a means of establishing visual
+> control over disparate teams and processes, narrowing the range of
+> possibilities that can be produced across a large digital footprint.
+
+Ta-dah! In this example, the `Button` handles the icon via a unique identifier,
+rendering it on the right hand side of the element only. Now we can _require_
+teams within our company to only position icons on the right and make sure we
+keep our buttons visually consistent across applications.
+
+## Uh oh
+
+Unfortunately, we immediately get a request to support icons on the left &mdash;
+and the requesting team has a very strong argument for doing so that we never
+could have anticipated when we first started. How can we handle this without
+publishing a breaking change to our component? Maybe the better original
+component API would have looked something like this:
+
+```tsx
+import { Button } from '@company/ui'
+
+function MyApp() {
+  // `iconPosition` can be "right" or "left", defaulting to "right" when nothing is set
+  return (
+    <Button icon="plus-circle" iconPosition="left">
+      Click me
+    </Button>
+  )
+}
+```
+
+Ta-dah! We did it. Now we have solved our problem and we can ride in to the
+sunset truly and confidently victorious. We do have two separate props that are
+tightly coupled, but at least they both start with the name `icon` so that
+shouldn't be too painful...
+
+## Uh oh (not again)
+
+Once again we receive a request from a team building an application &mdash; and
+they really need **two icons at once**, one icon on each side _simultaneously_.
+Well, this will be difficult to support with our existing component API but
+let's roll our sleeves and give it a shot.
+
+```tsx
+import { Button } from '@company/ui'
+
+function MyApp() {
+  return (
+    <>
+      {/* We still need to support our old API, so let's leave this as an example of what that looks like */}
+      <Button icon="plus-circle" iconPosition="left">
+        Click me
+      </Button>
+      {/* We can also support this newer approach (definitely bulletproof this time!) */}
+      <Button rightIcon="plus-circle" leftIcon="checkmark">
+        Click me
+      </Button>
+    </>
+  )
+}
+```
+
+I'm not sure what would happen if an engineer tried to use `iconPosition` and
+`leftIcon` at the same time, but surely no one would do something so foolish,
+right?
+
+## It won't stop
+
+After declaring victory, we ride in to the sunset. At least until another team
+requests our help with the `Button` component. This time they aren't too
+concerned with `iconPosition`, but they do want to change the color of the icon
+somehow &mdash; and ideally they could use a design token to do so.
+
+Well, that shouldn't be too hard (though we do have to support all of our
+existing component API surface when we make this change):
+
+```tsx
+import { Button } from '@company/ui'
+
+function MyApp() {
+  return (
+    <>
+      {/* Well, `iconColor` will work here but we definitely can't have two different colors at once */}
+      <Button icon="plus-circle" iconPosition="left" iconColor="fg.action">
+        Click me
+      </Button>
+      {/* Aha! We *can* support two different colors with this API though */}
+      <Button
+        rightIcon="plus-circle"
+        leftIcon="checkmark"
+        rightIconColor="fg.action"
+        leftIconColor="fg.success"
+      >
+        Click me
+      </Button>
+    </>
+  )
+}
+```
+
+> What started with good intentions (control over design) has quickly devolved
+> in to a mess for the engineering team, all without any material benefit to the
+> designers.
+
+Well, we made the consuming team happy but this is getting really gnarly and
+hard to maintain. In order to support icons in two positions, each with distinct
+imagery and color, we now have _7 props we need to maintain_ &mdash; and nearly
+all of them are tightly coupled with one another, meaning each time we need to
+change 1 we put the other 6 at risk of a break. Not good.
+
+Not to mention, the design team's goal of controlling the visual positioning of
+icons within buttons has now been lost. Now we have lost consistency _and_ we
+have a highly complex component simultaneously. What a mess.
+
+What started with good intentions (control over design) has quickly devolved in
+to a mess for the engineering team, all without any material benefit to the
+designers.
+
+## Enter component composition and inversion of control
+
+Looking from the end result, it's easy to see how a component API like this can
+naturally evolve over time and end in a unenviable place. A rather simple
+component that accepts an icon is now extremely complex and brittle to maintain
+&mdash; if we could hop in a time machine here, how could we handle this better?
+
+Instead of using string props, it's time to use `children` to make the component
+surface area much smaller while keeping everyone happy (especially the design
+system engineering team):
+
+```tsx
+import { Button, ButtonIcon } from '@company/ui'
+
+function MyApp() {
+  return (
+    <>
+      {/* To reposition the icon, we just put it first in the DOM order just like regular HTML */}
+      <Button>
+        <ButtonIcon icon="plus-circled" />
+        Click me
+      </Button>
+      {/* And here is the same icon on the right */}
+      <Button>
+        Click me
+        <ButtonIcon icon="plus-circled" />
+      </Button>
+      {/* And now one icon on each side */}
+      <Button>
+        <ButtonIcon icon="success" />
+        Click me
+        <ButtonIcon icon="plus-circled" />
+      </Button>
+      {/* And now each icon has its own color */}
+      <Button>
+        <ButtonIcon icon="success" color="fg.success" />
+        Click me
+        <ButtonIcon icon="plus-circled" color="fg.action" />
+      </Button>
+    </>
+  )
+}
+```
+
+Success! We have accomplished a few things with this approach:
+
+1. We have decoupled props &mdash; the `ButtonIcon` component has its own props
+   that control its appearance, but they are distinct from the parent `Button`
+2. Teams can implement icons in whichever order they choose in an
+   easy-to-understand way, no component API documentation required
+3. The `Button` component is much less likely to break accidentally when its
+   internal structure changes compared to the old approach
+4. Teams can even use conditional logic within a button instance more easily,
+   using JSX to conditionally add and remove icons based on conditions relevant
+   to their users
+
+### Empowerment over control
+
+By empowering application teams to understand the needs of their users, design
+system teams can build components with a much better developer experience all
+while reducing the risk of regression defects in the future. Teams may build
+wild and crazy things using their newfound power of component composition
+&mdash; and at the end of the day that's OK. Application teams are _almost
+always closer to their users and the needs of the business_ and giving
+application teams the keys to their own destiny is the only way to effectively
+build a design system at scale
