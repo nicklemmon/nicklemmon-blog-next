@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Icon } from 'react-icons-kit'
-import { arrowRight } from 'react-icons-kit/feather/arrowRight'
+import { IoArrowForwardSharp } from 'react-icons/io5'
 import { PageLink } from '../links'
 import Card from '../card'
 import Subdued from '../subdued'
@@ -30,7 +29,7 @@ export default function ArticleCard(props) {
         {children}
 
         <span className={styles.ReadMore}>
-          <Icon icon={arrowRight} size="100%" className={styles.Icon} />
+          <IoArrowForwardSharp className={styles.Icon} />
         </span>
       </Card>
     </PageLink>

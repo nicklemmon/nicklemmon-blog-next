@@ -1,20 +1,10 @@
 import React from 'react'
-import { Icon } from 'react-icons-kit'
 import classNames from 'classnames'
 import { PageLink } from '../links'
 import styles from './button.module.css'
 
 export default function Button(props) {
-  const {
-    href,
-    children,
-    fullWidth,
-    centered,
-    className,
-    prefixIcon,
-    suffixIcon,
-    variant,
-  } = props
+  const { href, children, fullWidth, centered, className, variant } = props
 
   return (
     <PageLink
@@ -30,17 +20,7 @@ export default function Button(props) {
         className
       )}
     >
-      <>
-        {prefixIcon && (
-          <Icon className={styles.PrefixIcon} size="1rem" icon={prefixIcon} />
-        )}
-
-        {children}
-
-        {suffixIcon && (
-          <Icon className={styles.SuffixIcon} size="1rem" icon={suffixIcon} />
-        )}
-      </>
+      {children}
     </PageLink>
   )
 }

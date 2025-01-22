@@ -1,9 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import Image from 'next/legacy/image'
-import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
-import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
-import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
+import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import Container from '../container'
 import MaxWidth from '../max-width'
 import Heading from '../heading'
@@ -13,6 +11,7 @@ import styles from './hero.module.css'
 
 export default function Hero(props) {
   const { className } = props
+  const iconSize = 'calc(2.5rem + 1.5vw)'
 
   return (
     <div className={classNames(styles.Hero, className)}>
@@ -27,21 +26,24 @@ export default function Hero(props) {
           <MaxWidth size="sm" className={styles.Links}>
             <HeroIconLink
               href="https://codepen.io/nicklemmon"
-              icon={socialCodepen}
               screenReaderContent="Nick Lemmon on CodePen"
-            />
+            >
+              <IoLogoCodepen size={iconSize} className={styles.Icon} />
+            </HeroIconLink>
 
             <HeroIconLink
               href="https://github.com/nicklemmon"
-              icon={socialGithub}
               screenReaderContent="Nick Lemmon on GitHub"
-            />
+            >
+              <IoLogoGithub size={iconSize} className={styles.Icon} />
+            </HeroIconLink>
 
             <HeroIconLink
               href="https://linkedin.com/in/nicklemmon"
-              icon={socialLinkedin}
               screenReaderContent="Nick Lemmon on LinkedIn"
-            />
+            >
+              <IoLogoLinkedin size={iconSize} className={styles.Icon} />
+            </HeroIconLink>
           </MaxWidth>
         </Container>
       </MaxWidth>

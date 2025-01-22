@@ -1,10 +1,9 @@
 import React from 'react'
-import { Icon } from 'react-icons-kit'
 import ScreenReaderOnly from '../screen-reader-only'
 import styles from './hero.module.css'
 
 export default function HeroIconLink(props) {
-  const { icon, href, screenReaderContent } = props
+  const { href, screenReaderContent, children } = props
 
   return (
     <a
@@ -13,7 +12,7 @@ export default function HeroIconLink(props) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Icon className={styles.Icon} size={'calc(2.5rem + 1.5vw)'} icon={icon} />
+      {children}
 
       <ScreenReaderOnly>
         {screenReaderContent} (Opens in a new tab)

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Icon } from 'react-icons-kit'
-import { androidArrowForward } from 'react-icons-kit/ionicons/androidArrowForward'
+import { IoArrowForwardSharp } from 'react-icons/io5'
 import { Landing } from '../layouts'
 import Heading from '../components/heading'
 import Highlight from '../components/highlight'
@@ -16,9 +15,8 @@ export default function LandingPage({ posts }) {
       <Heading as="h2" className={styles.ArticlesHeading}>
         <Highlight>The latest</Highlight>
 
-        <Icon
+        <IoArrowForwardSharp
           className={styles.ArticlesHeadingIcon}
-          icon={androidArrowForward}
           size="2rem"
         />
       </Heading>

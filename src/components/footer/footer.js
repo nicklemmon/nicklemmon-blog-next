@@ -1,8 +1,5 @@
 import React from 'react'
-import { Icon } from 'react-icons-kit'
-import { socialCodepen } from 'react-icons-kit/ionicons/socialCodepen'
-import { socialGithub } from 'react-icons-kit/ionicons/socialGithub'
-import { socialLinkedin } from 'react-icons-kit/ionicons/socialLinkedin'
+import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import { PageLink } from '../links'
 import Container from '../container'
 import ScreenReaderOnly from '../screen-reader-only'
@@ -21,9 +18,8 @@ export default function Footer() {
             rel="noopener noreferrer"
             className={styles.SocialLink}
           >
-            <Icon
+            <IoLogoCodepen
               className={styles.SocialIcon}
-              icon={socialCodepen}
               size={iconDimensions}
             />
 
@@ -38,11 +34,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className={styles.SocialLink}
           >
-            <Icon
-              className={styles.SocialIcon}
-              icon={socialGithub}
-              size={iconDimensions}
-            />
+            <IoLogoGithub className={styles.SocialIcon} size={iconDimensions} />
 
             <ScreenReaderOnly>
               Nick Lemmon on GitHub (Opens in a new tab)
@@ -55,9 +47,8 @@ export default function Footer() {
             rel="noopener noreferrer"
             className={styles.SocialLink}
           >
-            <Icon
+            <IoLogoLinkedin
               className={styles.SocialIcon}
-              icon={socialLinkedin}
               size={iconDimensions}
             />
 
