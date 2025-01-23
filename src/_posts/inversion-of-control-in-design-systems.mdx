@@ -14,9 +14,10 @@ leveraging a design system, large organizations can ship consistently branded
 digital experiences without the need to re-build repetitive UI elements across
 multiple applications simultaneously.
 
-Designers may view a component library as a means of establishing visual control
-over disparate teams and processes, narrowing the range of possibilities that
-can be produced across a large digital footprint.
+Designers and engineers on a design system team may view a component library as
+a means of establishing visual and logical control over disparate teams and
+processes, narrowing the range of possibilities that can be produced across a
+large digital footprint.
 
 For example, the component may include some opinions about where icons can be
 placed. In our initial draft, we built a button component that accepts an `icon`
@@ -30,16 +31,17 @@ function MyApp() {
 }
 ```
 
-> Designers may view a component library as a means of establishing visual
-> control over disparate teams and processes, narrowing the range of
-> possibilities that can be produced across a large digital footprint.
+> Designers and engineers on a design system team may view a component library
+> as a means of establishing visual and logical control over disparate teams and
+> processes, narrowing the range of possibilities that can be produced across a
+> large digital footprint.
 
 Ta-dah! In this example, the `Button` handles the icon via a unique identifier,
 rendering it on the right hand side of the element only. Now we can _require_
 teams within our company to only position icons on the right and make sure we
 keep our buttons visually consistent across applications.
 
-## Uh oh
+## Fix #1
 
 Unfortunately, we immediately get a request to support icons on the left &mdash;
 and the requesting team has a very strong argument for doing so that we never
@@ -65,12 +67,12 @@ sunset truly and confidently victorious. We do have two separate props that are
 tightly coupled, but at least they both start with the name `icon` so that
 shouldn't be too painful...
 
-## Uh oh (not again)
+## Fix #2 (not again)
 
 Once again we receive a request from a team building an application &mdash; and
 they really need **two icons at once**, one icon on each side _simultaneously_.
 Well, this will be difficult to support with our existing component API but
-let's roll our sleeves and give it a shot.
+let's roll up our sleeves and give it a shot.
 
 ```tsx
 import { Button } from '@company/ui'
@@ -95,7 +97,7 @@ I'm not sure what would happen if an engineer tried to use `iconPosition` and
 `leftIcon` at the same time, but surely no one would do something so foolish,
 right?
 
-## It won't stop
+## Fix #3 (It won't stop)
 
 After declaring victory, we ride in to the sunset. At least until another team
 requests our help with the `Button` component. This time they aren't too
@@ -130,8 +132,8 @@ function MyApp() {
 ```
 
 > What started with good intentions (control over design) has quickly devolved
-> in to a mess for the engineering team, all without any material benefit to the
-> designers.
+> in to a mess for the engineering team, all without any material benefit with
+> regards to design consistency and standardization.
 
 Well, we made the consuming team happy but this is getting really gnarly and
 hard to maintain. In order to support icons in two positions, each with distinct
@@ -144,17 +146,20 @@ icons within buttons has now been lost. Now we have lost consistency _and_ we
 have a highly complex component simultaneously. What a mess.
 
 What started with good intentions (control over design) has quickly devolved in
-to a mess for the engineering team, all without any material benefit to the
-designers.
+to a mess for the engineering team, all without any material benefit with
+regards to design consistency and standardization.
 
 ## Enter component composition and inversion of control
 
 Looking from the end result, it's easy to see how a component API like this can
 naturally evolve over time and end in a unenviable place. A rather simple
-component that accepts an icon is now extremely complex and brittle to maintain
-&mdash; if we could hop in a time machine here, how could we handle this better?
+component that accepts an icon is now extremely complex and brittle to maintain.
+If we could hop in a time machine, how could we have handled this better?
 
-Instead of using string props, it's time to use `children` to make the component
+### Children/slots and the compound component
+
+Instead of using string props, it's time to use `children` (in some other
+frameworks this might be content projection or a `slot`) to make the component
 surface area much smaller while keeping everyone happy (especially the design
 system engineering team):
 
@@ -203,9 +208,9 @@ Success! We have accomplished a few things with this approach:
    using JSX to conditionally add and remove icons based on conditions relevant
    to their users
 
-### Empowerment over control
+### Empowerment over top-down control
 
-By empowering application teams to understand the needs of their users, design
+By empowering application teams to better serve the needs of their users, design
 system teams can build components with a much better developer experience all
 while reducing the risk of regression defects in the future. Teams may build
 wild and crazy things using their newfound power of component composition
@@ -213,3 +218,17 @@ wild and crazy things using their newfound power of component composition
 always closer to their users and the needs of the business_ and giving
 application teams the keys to their own destiny is the only way to effectively
 build a design system at scale
+
+## Learn more
+
+Inversion of control, component composition, and compound components are not new
+ideas, yet many design systems still fail to empower their application teams to
+build high quality digital products by inverting (giving up) control.
+
+If you are having trouble taking the component composition high road (or
+convincing others to do the same), read through some helpful articles on the
+subject from industry experts to learn more about the how of the approach:
+
+- [Inversion of Control by Kent C. Dodds](https://kentcdodds.com/blog/inversion-of-control)
+- [Compound Components by Ryan Florence](https://www.youtube.com/watch?v=hEGg-3pIHlE)
+- [Compound Components by Kyle Shevlin](https://kyleshevlin.com/compound-components/)
