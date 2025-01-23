@@ -12,15 +12,19 @@ export default async function handler(req) {
     (
       <div
         style={{
-          fontSize: 40,
-          color: 'black',
-          background: 'white',
           width: '100%',
           height: '100%',
-          padding: '50px 200px',
-          textAlign: 'center',
-          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
+          // Simple blue gradient for the background
+          background: '#0c0fe7',
+          color: '#FFFFFF',
+          padding: '50px',
+          fontSize: 64,
+          fontWeight: 900,
+          textAlign: 'center',
         }}
       >
         {searchParams.get('title')}
