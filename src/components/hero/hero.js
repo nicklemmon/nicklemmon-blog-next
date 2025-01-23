@@ -18,7 +18,7 @@ export default function Hero(props) {
       <MaxWidth size="xl">
         <Container className={styles.Container} size="xxl">
           <Heading as="h1" className={styles.Title}>
-            A <Highlight>front-end</Highlight> engineering leader driven to
+            A <Highlight>frontend</Highlight> engineering leader driven to
             create <Highlight>accessible</Highlight> user interfaces at{' '}
             <Highlight>scale</Highlight>.
           </Heading>
