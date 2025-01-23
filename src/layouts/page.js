@@ -9,7 +9,7 @@ import PageTitle from '../components/page-title'
 import { Default } from './default'
 
 export function Page({ title, titleImage, description, date, children }) {
-  const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}}/api/og?title=${encodeURIComponent(title)}`
+  const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/og?title=${encodeURIComponent(title)}`
 
   return (
     <>
