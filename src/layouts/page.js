@@ -9,6 +9,8 @@ import PageTitle from '../components/page-title'
 import { Default } from './default'
 
 export function Page({ title, titleImage, description, date, children }) {
+  const ogImageUrl = `/api/og?title=${encodeURIComponent(title)}`
+
   return (
     <>
       <Head>
@@ -16,6 +18,7 @@ export function Page({ title, titleImage, description, date, children }) {
         <meta property="og:title" content={title} />
         <meta property="twitter:title" content={title} />
         <meta name="description" content={description} />
+        <meta property="og:image" content={ogImageUrl} />
         <meta property="og:description" content={description} />
         <meta property="twitter:description" content={description} />
         <meta
