@@ -23,6 +23,8 @@ For example, the component may include some opinions about where icons can be
 placed. In our initial draft, we built a button component that accepts an `icon`
 prop:
 
+### A simple problem: a button with an icon
+
 ```tsx
 import { Button } from '@company/ui'
 
@@ -41,7 +43,7 @@ rendering it on the right hand side of the element only. Now we can _require_
 teams within our company to only position icons on the right and make sure we
 keep our buttons visually consistent across applications.
 
-## Fix #1
+### Fix #1
 
 Unfortunately, we immediately get a request to support icons on the left &mdash;
 and the requesting team has a very strong argument for doing so that we never
@@ -67,7 +69,7 @@ sunset truly and confidently victorious. We do have two separate props that are
 tightly coupled, but at least they both start with the name `icon` so that
 shouldn't be too painful...
 
-## Fix #2 (not again)
+### Fix #2 (not again)
 
 Once again we receive a request from a team building an application &mdash; and
 they really need **two icons at once**, one icon on each side _simultaneously_.
@@ -97,7 +99,7 @@ I'm not sure what would happen if an engineer tried to use `iconPosition` and
 `leftIcon` at the same time, but surely no one would do something so foolish,
 right?
 
-## Fix #3 (It won't stop)
+### Fix #3 (It won't stop)
 
 After declaring victory, we ride in to the sunset. At least until another team
 requests our help with the `Button` component. This time they aren't too
