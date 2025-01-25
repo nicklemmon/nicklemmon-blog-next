@@ -23,12 +23,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return REDIRECT_POST_PATHS.map((slug) => toPostRedirect(slug))
   },
+  reactStrictMode: true,
 }
 
 /**
  * Returns a Next.js redirect config according to the passed-in slug. Posts were originally in the root of the site but have since moved.
  */
-function toPostRedirect(slug) {
+function toPostRedirect(slug: string) {
   return {
     source: `/${slug}`,
     destination: `/post/${slug}`,
