@@ -1,3 +1,5 @@
+import type { NextConfig } from 'next'
+
 const REDIRECT_POST_PATHS = [
   'a-typescript-monster-battler',
   'automated-ui-testing-to-build-confidence',
@@ -9,7 +11,7 @@ const REDIRECT_POST_PATHS = [
   'using-tabindex-effectively',
 ]
 
-module.exports = {
+const nextConfig: NextConfig = {
   webpack: (config, { isServer }) => {
     // See: https://stackoverflow.com/questions/64926174/module-not-found-cant-resolve-fs-in-next-js-application
     if (!isServer) {
@@ -33,3 +35,5 @@ function toPostRedirect(slug) {
     permanent: true,
   }
 }
+
+export default nextConfig
