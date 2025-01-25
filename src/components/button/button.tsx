@@ -3,9 +3,23 @@ import classNames from 'classnames'
 import { PageLink } from '../links'
 import styles from './button.module.css'
 
-export default function Button(props) {
-  const { href, children, fullWidth, centered, className, variant } = props
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost'
 
+export default function Button({
+  href,
+  children,
+  fullWidth,
+  centered,
+  className,
+  variant,
+}: {
+  href: string
+  children: React.ReactNode
+  fullWidth?: boolean
+  centered?: boolean
+  className?: string
+  variant: ButtonVariant
+}) {
   return (
     <PageLink
       href={href}

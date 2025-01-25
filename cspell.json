@@ -3,7 +3,13 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": ["Codepen", "Lemmon", "noopener", "noreferrer"],
+  "words": [
+    "Codepen",
+    "Lemmon",
+    "mapbox",
+    "noopener",
+    "noreferrer"
+  ],
   "ignoreWords": [],
   "import": []
 }

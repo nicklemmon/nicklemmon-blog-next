@@ -8,9 +8,19 @@ import Heading from '../heading'
 import { formatDate } from '../../helpers'
 import styles from './article-card.module.css'
 
-export default function ArticleCard(props) {
-  const { className, date, heading, children, href } = props
-
+export default function ArticleCard({
+  className,
+  date,
+  heading,
+  children,
+  href,
+}: {
+  className?: string
+  date: string
+  heading: string
+  children?: React.ReactNode
+  href: string
+}) {
   return (
     <PageLink
       className={classNames(styles.Link, className)}

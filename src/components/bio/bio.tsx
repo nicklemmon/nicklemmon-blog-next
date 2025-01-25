@@ -7,7 +7,7 @@ import LongForm from '../long-form'
 import { ExternalLink } from '../links'
 import styles from './bio.module.css'
 
-export default function Bio({ className }) {
+export default function Bio({ className }: { className?: string }) {
   return (
     <Card className={classNames(styles.Bio, className)}>
       <div className={styles.ImgContainer}>
