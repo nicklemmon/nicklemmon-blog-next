@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Image from 'next/legacy/image'
 import MaxWidth from '../max-width'
 import Heading from '../heading'
@@ -19,7 +19,7 @@ export default function PageTitle({
   image?: string
 }) {
   return (
-    <div className={classNames(styles.PageTitle, className)}>
+    <div className={clsx(styles.PageTitle, className)}>
       <MaxWidth size="lg">
         <Heading className={styles.Heading} as="h1">
           <Highlight>{children}</Highlight>

@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { IoArrowForwardSharp } from 'react-icons/io5'
 import { PageLink } from '../links'
 import Card from '../card'
@@ -23,7 +23,7 @@ export default function ArticleCard({
 }) {
   return (
     <PageLink
-      className={classNames(styles.Link, className)}
+      className={clsx(styles.Link, className)}
       href={href}
       data-id="article-card"
     >

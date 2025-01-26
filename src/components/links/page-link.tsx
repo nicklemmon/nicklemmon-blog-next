@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import styles from './page-link.module.css'
 
@@ -21,7 +21,7 @@ export default function PageLink({
   return (
     <Link href={href} passHref onKeyDown={onKeyDown} legacyBehavior>
       <a
-        className={classNames(styles.PageLink, className)}
+        className={clsx(styles.PageLink, className)}
         data-id={props['data-id']}
         onClick={onClick}
       >

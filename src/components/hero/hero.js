@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Image from 'next/legacy/image'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import Container from '../container'
@@ -14,7 +14,7 @@ export default function Hero(props) {
   const iconSize = 'calc(2.5rem + 1.5vw)'
 
   return (
-    <div className={classNames(styles.Hero, className)}>
+    <div className={clsx(styles.Hero, className)}>
       <MaxWidth size="xl">
         <Container className={styles.Container} size="xxl">
           <Heading as="h1" className={styles.Title}>

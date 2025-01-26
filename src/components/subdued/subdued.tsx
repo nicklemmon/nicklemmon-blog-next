@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import styles from './subdued.module.css'
 
 export default function Subdued({
@@ -9,7 +9,5 @@ export default function Subdued({
   className?: string
   children: React.ReactNode
 }) {
-  return (
-    <span className={classNames(styles.Subdued, className)}>{children}</span>
-  )
+  return <span className={clsx(styles.Subdued, className)}>{children}</span>
 }

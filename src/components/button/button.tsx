@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { PageLink } from '../links'
 import styles from './button.module.css'
 
@@ -23,7 +23,7 @@ export default function Button({
   return (
     <PageLink
       href={href}
-      className={classNames(
+      className={clsx(
         styles.Button,
         variant === 'primary' && styles.PrimaryVariant,
         variant === 'secondary' && styles.SecondaryVariant,

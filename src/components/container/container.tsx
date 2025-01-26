@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import styles from './container.module.css'
 
 type ContainerSize = 'lg' | 'xl' | '2xl'
@@ -31,13 +31,7 @@ export default function Container({
   }
 
   return (
-    <div
-      className={classNames(
-        styles.Container,
-        getSizeClassName(size),
-        className
-      )}
-    >
+    <div className={clsx(styles.Container, getSizeClassName(size), className)}>
       {children}
     </div>
   )

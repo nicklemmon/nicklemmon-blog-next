@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import { PageLink } from '../links'
 import ScreenReaderOnly from '../screen-reader-only'
 import { useKeyPress } from '../../hooks'
@@ -48,7 +48,7 @@ export default function Navigation({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         styles.Navigation,
         theme === 'light' && styles.LightTheme,
         theme === 'dark' && styles.DarkTheme,
@@ -57,22 +57,16 @@ export default function Navigation({
     >
       <FocusLock disabled={!isOpen}>
         <button
-          className={classNames(styles.Button, isOpen ? styles.isOpen : '')}
+          className={clsx(styles.Button, isOpen ? styles.isOpen : '')}
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
           data-cy="navigation-button"
         >
           <ScreenReaderOnly>{isOpen ? 'Close' : 'Open'} Menu</ScreenReaderOnly>
 
-          <div
-            className={classNames(styles.Bar, styles.Bar1)}
-            role="presentation"
-          />
+          <div className={clsx(styles.Bar, styles.Bar1)} role="presentation" />
 
-          <div
-            className={classNames(styles.Bar, styles.Bar2)}
-            role="presentation"
-          />
+          <div className={clsx(styles.Bar, styles.Bar2)} role="presentation" />
         </button>
 
         <AnimatePresence>

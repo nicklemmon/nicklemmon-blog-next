@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/legacy/image'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import Card from '../card'
 import Heading from '../heading'
 import LongForm from '../long-form'
@@ -9,7 +9,7 @@ import styles from './bio.module.css'
 
 export default function Bio({ className }: { className?: string }) {
   return (
-    <Card className={classNames(styles.Bio, className)}>
+    <Card className={clsx(styles.Bio, className)}>
       <div className={styles.ImgContainer}>
         <Image
           className={styles.Img}

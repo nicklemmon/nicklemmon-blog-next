@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import styles from './highlight.module.css'
 
 export default function Highlight({
@@ -9,7 +9,5 @@ export default function Highlight({
   children: React.ReactNode
   className?: string
 }) {
-  return (
-    <span className={classNames(styles.Highlight, className)}>{children}</span>
-  )
+  return <span className={clsx(styles.Highlight, className)}>{children}</span>
 }

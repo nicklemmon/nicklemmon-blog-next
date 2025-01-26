@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 import styles from './main.module.css'
 
 export default function Main({
@@ -9,5 +9,5 @@ export default function Main({
   children?: React.ReactNode
   className?: string
 }) {
-  return <main className={classNames(styles.Main, className)}>{children}</main>
+  return <main className={clsx(styles.Main, className)}>{children}</main>
 }
