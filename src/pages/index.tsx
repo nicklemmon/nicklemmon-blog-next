@@ -11,7 +11,6 @@ import type { Post } from '../types/posts'
 import styles from './index.module.css'
 
 export default function LandingPage({ posts }: { posts: Array<Post> }) {
-  console.log('posts', posts)
   return (
     <Landing>
       <Heading as="h2" className={styles.ArticlesHeading}>
