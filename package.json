@@ -33,7 +33,7 @@
     "@types/react": "18.3.18",
     "cypress": "13.17.0",
     "cypress-real-events": "1.13.0",
-    "del": "7.1.0",
+    "del": "8.0.0",
     "esbuild": "0.24.2",
     "eslint": "9.19.0",
     "eslint-config-prettier": "10.0.1",
