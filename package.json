@@ -25,33 +25,25 @@
     "react-icons": "5.4.0"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0",
     "@mapbox/rehype-prism": "0.9.0",
     "@next/eslint-plugin-next": "13.5.8",
     "@testing-library/cypress": "10.0.2",
+    "@types/mapbox__rehype-prism": "0.8.3",
+    "@types/node": "22.10.10",
+    "@types/react": "18.3.18",
     "cypress": "13.17.0",
     "cypress-real-events": "1.13.0",
     "del": "7.1.0",
     "esbuild": "0.24.2",
-    "eslint": "8.57.1",
+    "eslint": "9.19.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-jest": "27.9.0",
     "eslint-plugin-react": "7.37.4",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "8.0.3",
-    "lint-staged": "15.4.1",
+    "eslint-plugin-react-hooks": "5.1.0",
     "mdx-bundler": "9.2.1",
     "mdx-prism": "0.3.4",
     "prettier": "3.4.2",
     "rehype": "13.0.2",
-    "sharp": "0.33.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "sharp": "0.33.5",
+    "typescript": "5.7.3"
   }
 }
