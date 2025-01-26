@@ -5,9 +5,19 @@ import LongForm from '../long-form'
 import ScreenReaderOnly from '../screen-reader-only'
 import styles from './resume.module.css'
 
-export default function ResumePosition(props) {
-  const { heading, subheading, children, startDate, endDate } = props
-
+export default function ResumePosition({
+  heading,
+  subheading,
+  children,
+  startDate,
+  endDate,
+}: {
+  heading: string
+  subheading: string
+  children?: React.ReactNode
+  startDate: string
+  endDate: string
+}) {
   return (
     <div className={styles.Position}>
       <div className={styles.PositionFirstHalf}>

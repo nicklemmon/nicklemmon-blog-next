@@ -4,7 +4,13 @@ import { PageLink } from '../links'
 import Navigation from '../navigation'
 import styles from './header.module.css'
 
-export default function Header({ className, theme = 'dark' }) {
+export default function Header({
+  className,
+  theme = 'dark',
+}: {
+  className?: string
+  theme: 'light' | 'dark'
+}) {
   return (
     <header className={classNames(styles.Header, className)} data-cy="header">
       <div>

@@ -3,13 +3,13 @@ import path from 'path'
 import matter from 'gray-matter'
 import { POSTS_PATH } from '../constants'
 
-export function sortPostsByDate(posts) {
+export function sortPostsByDate(posts: Array<unknown>) {
   return posts.sort(
     (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
   )
 }
 
-export function formatDate(date) {
+export function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -44,7 +44,7 @@ export function mapPostFrontmatter(post) {
   }
 }
 
-export async function getPost(slug) {
+export async function getPost(slug: string) {
   const file = fs.readFileSync(path.join(POSTS_PATH, `${slug}.mdx`))
   const fileContent = file.toString().trim()
 

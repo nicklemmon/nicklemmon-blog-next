@@ -8,7 +8,19 @@ import MaxWidth from '../components/max-width'
 import PageTitle from '../components/page-title'
 import { Default } from './default'
 
-export function Page({ title, titleImage, description, date, children }) {
+export function Page({
+  title,
+  titleImage,
+  description,
+  date,
+  children,
+}: {
+  title: string
+  titleImage?: string
+  description?: string
+  date?: string
+  children?: React.ReactNode
+}) {
   const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/og?title=${encodeURIComponent(title)}&date=${date}`
 
   return (

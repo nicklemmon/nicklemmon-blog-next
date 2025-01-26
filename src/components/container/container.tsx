@@ -2,9 +2,18 @@ import React from 'react'
 import classNames from 'classnames'
 import styles from './container.module.css'
 
-export default function Container(props) {
-  const { size, children, className } = props
-  const getSizeClassName = (size) => {
+type ContainerSize = 'lg' | 'xl' | '2xl'
+
+export default function Container({
+  size,
+  children,
+  className,
+}: {
+  size: ContainerSize
+  children: React.ReactNode
+  className?: string
+}) {
+  const getSizeClassName = (size: ContainerSize) => {
     switch (size) {
       case 'lg': {
         return styles.Large
@@ -12,7 +21,7 @@ export default function Container(props) {
       case 'xl': {
         return styles.ExtraLarge
       }
-      case 'xxl': {
+      case '2xl': {
         return styles.ExtraExtraLarge
       }
       default: {

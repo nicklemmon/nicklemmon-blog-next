@@ -1,8 +1,9 @@
 import React from 'react'
 import { Page } from '../layouts'
 import { PageLink } from '../components/links'
+import { NextPageContext } from 'next'
 
-function Error({ statusCode }) {
+function Error({ statusCode }: { statusCode: number }) {
   return (
     <Page title={`${statusCode} Error`}>
       <p>
@@ -13,7 +14,7 @@ function Error({ statusCode }) {
   )
 }
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
   return { statusCode }
 }

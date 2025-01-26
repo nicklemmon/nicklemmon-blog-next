@@ -20,22 +20,30 @@ const animationStates = {
   },
 }
 
-export default function Navigation({ className, theme }) {
+export default function Navigation({
+  className,
+  theme,
+}: {
+  className?: string
+  theme?: 'light' | 'dark'
+}) {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     // DOM manipulation! 😭😭😭
     // This could be refactored to use context, or state could be lifted in some other way,
     // however, this addresses preventing background scrolling in the most simple way possible.
+    // UPDATE: We may be able to just swap this out for the <dialog /> element but not sure just yet
+    // See: https://cassidoo.co/post/css-for-dialogs/
     if (isOpen) {
       return document
-        .querySelector('html')
-        .setAttribute('style', 'overflow: hidden;')
+        ?.querySelector('html')
+        ?.setAttribute('style', 'overflow: hidden;')
     }
 
     return document
-      .querySelector('html')
-      .setAttribute('style', 'overflow: initial;')
+      ?.querySelector('html')
+      ?.setAttribute('style', 'overflow: initial;')
   }, [isOpen])
 
   return (
@@ -75,7 +83,7 @@ export default function Navigation({ className, theme }) {
   )
 }
 
-function NavList({ handleClose }) {
+function NavList({ handleClose }: { handleClose: () => void }) {
   const escapeKeyPressed = useKeyPress('Escape')
 
   useEffect(() => {

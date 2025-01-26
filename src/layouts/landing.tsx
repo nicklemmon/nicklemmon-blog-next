@@ -8,7 +8,7 @@ import MaxWidth from '../components/max-width'
 import { Default } from './default'
 import styles from './landing.module.css'
 
-export function Landing({ children }) {
+export function Landing({ children }: { children: React.ReactNode }) {
   return (
     <Default>
       <Header className={styles.Header} theme="dark" />
@@ -21,7 +21,7 @@ export function Landing({ children }) {
         </MaxWidth>
       </Main>
 
-      <Footer className={styles.Footer} />
+      <Footer />
     </Default>
   )
 }

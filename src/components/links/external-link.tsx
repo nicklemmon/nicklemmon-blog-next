@@ -1,6 +1,12 @@
 import React from 'react'
 
-function ExternalLink({ href, children }) {
+function ExternalLink({
+  href,
+  children,
+}: {
+  href: string
+  children?: React.ReactNode
+}) {
   return (
     <a
       rel="noopener noreferrer"
