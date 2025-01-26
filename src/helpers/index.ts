@@ -2,11 +2,17 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { POSTS_PATH } from '../constants'
+import type { Post } from '../types/posts'
 
-export function sortPostsByDate(posts: Array<unknown>) {
-  return posts.sort(
-    (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-  )
+export function sortPostsByDate(posts: Array<Post>) {
+  return posts
+    .filter((post) => typeof post.frontmatter.date === 'string')
+    .sort((a, b) => {
+      const nextPostDate = b.frontmatter.date as string
+      const prevPostDate = a.frontmatter.date as string
+
+      return new Date(nextPostDate).getTime() - new Date(prevPostDate).getTime()
+    })
 }
 
 export function formatDate(date: string) {
@@ -18,7 +24,7 @@ export function formatDate(date: string) {
 }
 
 /** Retrieves all posts from `src/_posts` */
-export async function getPosts() {
+export async function getPosts(): Promise<Array<Post>> {
   const dir = fs.readdirSync(POSTS_PATH)
 
   return Promise.all(
@@ -26,22 +32,15 @@ export async function getPosts() {
       const file = fs.readFileSync(path.join(POSTS_PATH, filename))
       const slug = filename.replace(/\.mdx$/, '')
       const fileContent = file.toString()
+      const { data } = matter(fileContent)
 
       return {
         slug,
         fileContent,
+        frontmatter: data,
       }
     })
   )
-}
-
-export function mapPostFrontmatter(post) {
-  const { data } = matter(post.fileContent)
-
-  return {
-    ...post,
-    frontmatter: data,
-  }
 }
 
 export async function getPost(slug: string) {

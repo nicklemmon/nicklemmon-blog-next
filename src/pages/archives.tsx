@@ -2,9 +2,10 @@ import React from 'react'
 import { Page } from '../layouts'
 import ArticleCards from '../components/article-cards'
 import ArticleCard from '../components/article-card'
-import { getPosts, mapPostFrontmatter, sortPostsByDate } from '../helpers'
+import { getPosts, sortPostsByDate } from '../helpers'
+import { Post } from '../types/posts'
 
-export default function ArchivesPage({ posts }) {
+export default function ArchivesPage({ posts }: { posts: Array<Post> }) {
   return (
     <Page
       title="Archives"
@@ -12,11 +13,14 @@ export default function ArchivesPage({ posts }) {
     >
       <ArticleCards>
         {posts.map((post, index) => {
+          if (!post.frontmatter.title) return null
+
+          if (!post.frontmatter.date) return null
+
           return (
             <ArticleCard
               key={`article-card-${index}`}
               heading={post.frontmatter.title}
-              description={post.frontmatter.description}
               href={`/post/${post.slug}`}
               date={post.frontmatter.date}
             />
@@ -29,8 +33,7 @@ export default function ArchivesPage({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getPosts()
-  const postsWithFrontmatter = posts.map(mapPostFrontmatter)
-  const sortedPosts = sortPostsByDate(postsWithFrontmatter)
+  const sortedPosts = sortPostsByDate(posts)
 
   return {
     props: {

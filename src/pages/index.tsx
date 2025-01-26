@@ -6,10 +6,12 @@ import Highlight from '../components/highlight'
 import Button from '../components/button'
 import ArticleCards from '../components/article-cards'
 import ArticleCard from '../components/article-card'
-import { getPosts, sortPostsByDate, mapPostFrontmatter } from '../helpers'
+import { getPosts, sortPostsByDate } from '../helpers'
+import type { Post } from '../types/posts'
 import styles from './index.module.css'
 
-export default function LandingPage({ posts }) {
+export default function LandingPage({ posts }: { posts: Array<Post> }) {
+  console.log('posts', posts)
   return (
     <Landing>
       <Heading as="h2" className={styles.ArticlesHeading}>
@@ -23,11 +25,14 @@ export default function LandingPage({ posts }) {
 
       <ArticleCards>
         {posts.map((post, index) => {
+          if (!post.frontmatter.title) return null
+
+          if (!post.frontmatter.date) return null
+
           return (
             <ArticleCard
               key={`article-card-${index}`}
               heading={post.frontmatter.title}
-              description={post.frontmatter.description}
               href={`/post/${post.slug}`}
               date={post.frontmatter.date}
             />
@@ -44,8 +49,7 @@ export default function LandingPage({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getPosts()
-  const postsWithFrontmatter = posts.map(mapPostFrontmatter)
-  const sortedPosts = sortPostsByDate(postsWithFrontmatter)
+  const sortedPosts = sortPostsByDate(posts)
   const latestPosts = sortedPosts.filter((post, index) => {
     if (index < 4) return post
   })
