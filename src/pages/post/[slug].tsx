@@ -8,8 +8,20 @@ import PageTitle from '../../components/page-title'
 import { Post } from '../../layouts'
 import { POSTS_PATH } from '../../constants'
 import styles from './[slug].module.css'
+import { GetStaticPropsContext } from 'next'
 
-export default function PostPage({ code, frontmatter }) {
+export default function PostPage({
+  code,
+  frontmatter,
+}: {
+  code: string
+  frontmatter: {
+    title: string
+    image: string
+    date: string
+    description: string
+  }
+}) {
   const { query } = useRouter()
   const MdxContent = useMemo(() => getMDXComponent(code), [code])
 
@@ -26,7 +38,7 @@ export default function PostPage({ code, frontmatter }) {
   }
 
   return (
-    <Post frontMatter={frontmatter}>
+    <Post frontmatter={frontmatter}>
       <MdxContent />
     </Post>
   )
@@ -45,7 +57,9 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+  if (typeof params?.slug !== 'string') return
+
   const source = await getPost(params.slug)
   const { code, frontmatter } = await bundleMDX({
     source,

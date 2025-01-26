@@ -29,6 +29,7 @@
     "@mapbox/rehype-prism": "0.9.0",
     "@next/eslint-plugin-next": "13.5.8",
     "@testing-library/cypress": "10.0.2",
+    "@types/mapbox__rehype-prism": "0.8.3",
     "@types/node": "22.10.10",
     "@types/react": "18.3.18",
     "cypress": "13.17.0",

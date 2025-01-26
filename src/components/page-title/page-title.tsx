@@ -15,7 +15,7 @@ export default function PageTitle({
 }: {
   className?: string
   children: React.ReactNode
-  date: string
+  date?: string
   image?: string
 }) {
   return (
