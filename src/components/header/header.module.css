@@ -1,5 +1,5 @@
 .Header {
-  height: var(--headerHeight);
+  height: var(--header-height);
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -16,12 +16,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--spacingMD);
+  padding: 0 var(--spacing-md);
   height: 100%;
-  font-family: var(--fontFamilySecondary);
+  font-family: var(--font-family-secondary);
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--outerSpace);
+  color: var(--outer-space);
   background-color: var(--white);
   border: 0;
 }

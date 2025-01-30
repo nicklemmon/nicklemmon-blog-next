@@ -15,7 +15,7 @@
 .Title.Title {
   /* specificity waaaars */
   font-weight: 700;
-  margin-bottom: var(--spacingLG);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
 }
 
@@ -30,7 +30,7 @@
 
 .Overlay {
   z-index: 2;
-  background-color: var(--blueRibbon);
+  background-color: var(--blue-ribbon);
   opacity: 0.75;
 }
 
@@ -49,16 +49,17 @@
   z-index: 4;
   top: -25%;
   left: -25%;
-  background-color: var(--blueRibbon);
+  background-color: var(--blue-ribbon);
   width: 150%;
   height: 150%;
   border-radius: 1.5rem;
-  box-shadow: 0 var(--spacingMD) var(--spacingMD) calc(var(--spacingMD) * -1)
+  box-shadow: 0 var(--spacing-md) var(--spacing-md) calc(var(--spacing-md) * -1)
     rgba(0, 0, 0, 0.33);
   transform: scale(0);
   visibility: hidden;
   opacity: 0;
-  transition: transform var(--duration) var(--easing),
+  transition:
+    transform var(--duration) var(--easing),
     visibility var(--duration) var(--easing),
     opacity var(--duration) var(--easing),
     border-radius calc(var(--duration) * 2) var(--easing);

@@ -1,43 +1,43 @@
 :root {
   /* typography */
-  --fontFamilyPrimary: 'Source Sans Pro', serif;
-  --fontFamilySecondary: 'Source Sans Pro', sans-serif;
+  --font-family-primary: 'Source Sans Pro', serif;
+  --font-family-secondary: 'Source Sans Pro', sans-serif;
 
   /* colors */
-  --blueRibbon: #0047fe;
+  --blue-ribbon: #0047fe;
   --blue: #0c0fe7;
-  --outerSpace: #293038;
-  --seaShell: #f1f1f1;
-  --semiTransparentBlack: rgba(0, 0, 0, 0.125);
+  --outer-space: #293038;
+  --sea-shell: #f1f1f1;
+  --semi-transparent-black: rgba(0, 0, 0, 0.125);
   --boulder: #757575;
   --white: #fff;
 
   /* spacing */
-  --spacingXS: 0.25rem;
-  --spacingSM: 0.5rem;
-  --spacingMD: 1rem;
-  --spacingLG: 2rem;
-  --spacingXL: 4rem;
-  --spacingXXL: 8rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-2xl: 8rem;
 
   /* breakpoints */
-  --breakpointSM: 400px;
-  --breakpointMD: 600px;
-  --breakpointLG: 800px;
-  --breakpointXL: 1100px;
+  --breakpoint-sm: 400px;
+  --breakpoint-md: 600px;
+  --breakpoint-lg: 800px;
+  --breakpoint-xl: 1100px;
 
   /* animation */
   --duration: 0.2s;
   --easing: ease-in-out;
 
   /* layering */
-  --layerXS: -10;
-  --layerSM: -5;
-  --layerMD: 0;
-  --layerLG: 5;
-  --layerXL: 10;
+  --layer-xs: -10;
+  --layer-sm: -5;
+  --layer-md: 0;
+  --layer-lg: 5;
+  --layer-xl: 10;
 
   /* misc */
-  --headerHeight: 3rem;
-  --borderRadius: 6px;
+  --header-height: 3rem;
+  --border-radius: 6px;
 }

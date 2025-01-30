@@ -1,25 +1,25 @@
 .Container {
-  padding: var(--spacingMD) var(--spacingMD);
+  padding: var(--spacing-md) var(--spacing-md);
 }
 
 @media (min-width: 600px) {
   .Container {
-    padding-left: var(--spacingLG);
-    padding-right: var(--spacingLG);
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 }
 
 .Large {
-  padding-top: var(--spacingLG);
-  padding-bottom: var(--spacingLG);
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
 }
 
 .ExtraLarge {
-  padding-top: var(--spacingXL);
-  padding-bottom: var(--spacingXL);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
 }
 
 .ExtraExtraLarge {
-  padding-top: var(--spacingXXL);
-  padding-bottom: var(--spacingXXL);
+  padding-top: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
 }

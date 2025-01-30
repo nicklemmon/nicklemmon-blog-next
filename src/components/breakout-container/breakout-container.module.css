@@ -12,13 +12,13 @@
 @media (min-width: 800px) {
   .BreakoutContainer:after {
     position: absolute;
-    bottom: calc(var(--spacingLG) * -1);
+    bottom: calc(var(--spacing-lg) * -1);
     left: 0;
     width: 100%;
-    height: var(--spacingLG);
+    height: var(--spacing-lg);
     background-color: var(--white);
-    z-index: var(--layerMD);
-    box-shadow: 0 var(--spacingSM) var(--spacingMD) rgba(0, 0, 0, 0.033);
+    z-index: var(--layer-md);
+    box-shadow: 0 var(--spacing-sm) var(--spacing-md) rgba(0, 0, 0, 0.033);
   }
 }
 

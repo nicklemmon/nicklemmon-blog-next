@@ -2,9 +2,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacingMD) var(--spacingLG);
-  font-family: var(--fontFamilySecondary);
-  border-radius: var(--borderRadius);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-family: var(--font-family-secondary);
+  border-radius: var(--border-radius);
   border: 2px solid #000; /* black is just a placeholder to be overidden */
   font-weight: 700;
   font-size: 1rem;
@@ -21,9 +21,9 @@
 }
 
 .PrimaryVariant {
-  background-color: var(--blueRibbon);
+  background-color: var(--blue-ribbon);
   color: var(--white);
-  border-color: var(--blueRibbon);
+  border-color: var(--blue-ribbon);
 }
 
 .PrimaryVariant:hover {
@@ -36,19 +36,19 @@
 
 .SecondaryVariant {
   background-color: var(--white);
-  color: var(--blueRibbon);
-  border-color: var(--blueRibbon);
+  color: var(--blue-ribbon);
+  border-color: var(--blue-ribbon);
 }
 
 .TertiaryVariant {
   background-color: var(--white);
-  color: var(--blueRibbon);
+  color: var(--blue-ribbon);
   border-color: transparent;
 }
 
 .SecondaryVariant:hover,
 .TertiaryVariant:hover {
-  background-color: var(--seaShell);
+  background-color: var(--sea-shell);
 }
 
 .GhostVariant {
@@ -58,9 +58,9 @@
 }
 
 .PrefixIcon {
-  margin-right: var(--spacingSM);
+  margin-right: var(--spacing-sm);
 }
 
 .SuffixIcon {
-  margin-left: var(--spacingSM);
+  margin-left: var(--spacing-sm);
 }

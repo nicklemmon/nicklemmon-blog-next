@@ -8,14 +8,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: var(--headerHeight);
-  width: calc(var(--headerHeight) * 0.75);
+  height: var(--header-height);
+  width: calc(var(--header-height) * 0.75);
   padding: 0;
   cursor: pointer;
   background: none;
   border: 0;
   margin-right: var(
-    --spacingMD
+    --spacing-md
   ); /* NOTE: must align correctly with Container component padding */
   transition: transform var(--duration) var(--easing);
 }
@@ -45,7 +45,7 @@
 
 .Bar {
   height: 2px;
-  width: calc(var(--headerHeight) * 0.75);
+  width: calc(var(--header-height) * 0.75);
   margin: 6px 0;
   background-color: var(--white);
   transition: transform var(--duration) var(--easing);
@@ -57,7 +57,7 @@
 
 @media (min-width: 800px) {
   .Navigation.DarkTheme .Bar {
-    background-color: var(--outerSpace);
+    background-color: var(--outer-space);
   }
 }
 
@@ -80,11 +80,11 @@
 }
 
 .Link {
-  font-family: var(--fontFamilySecondary);
+  font-family: var(--font-family-secondary);
   font-size: calc(1.75rem + 0.5vw);
   display: block;
   color: var(--white);
-  padding: var(--spacingXS) var(--spacingSM);
+  padding: var(--spacing-xs) var(--spacing-sm);
   text-align: right;
   transition: transform var(--duration) var(--easing);
 }

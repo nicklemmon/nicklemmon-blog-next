@@ -1,13 +1,13 @@
 .Footer {
-  background-color: var(--seaShell);
-  color: var(--outerSpace);
-  font-family: var(--fontFamilySecondary);
+  background-color: var(--sea-shell);
+  color: var(--outer-space);
+  font-family: var(--font-family-secondary);
   text-align: center;
   flex: 1;
 }
 
 .Footer p {
-  margin: var(--spacingMD) 0;
+  margin: var(--spacing-md) 0;
 }
 
 .Container {

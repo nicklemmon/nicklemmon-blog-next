@@ -2,6 +2,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: var(--spacingSM);
-  margin-bottom: var(--spacingLG);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
 }

@@ -1,16 +1,16 @@
 .LongForm * + * {
-  margin-top: var(--spacingMD);
+  margin-top: var(--spacing-md);
 }
 
 .LongForm * + h2 {
-  margin-top: var(--spacingLG);
+  margin-top: var(--spacing-lg);
 }
 
 .LongForm * + h3,
 .LongForm * + h4,
 .LongForm * + h5,
 .LongForm * + h6 {
-  margin-top: var(--spacingMD);
+  margin-top: var(--spacing-md);
   margin-bottom: 0;
 }
 
@@ -18,16 +18,16 @@
 .LongForm p + h4,
 .LongForm p + h5,
 .LongForm p + h6 {
-  margin-top: var(--spacingLG);
+  margin-top: var(--spacing-lg);
 }
 
 .LongForm * + li {
-  margin-top: var(--spacingSM);
+  margin-top: var(--spacing-sm);
 }
 
 .LongForm h2 {
   position: relative;
-  padding-bottom: var(--spacingSM);
+  padding-bottom: var(--spacing-sm);
 }
 
 .LongForm h2:after {
@@ -35,8 +35,8 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: var(--spacingLG);
-  height: var(--spacingXS);
+  width: var(--spacing-lg);
+  height: var(--spacing-xs);
   background-color: rgba(0, 0, 0, 0.125);
 }
 
@@ -52,7 +52,7 @@
 
 .LongForm p a,
 .LongForm li a {
-  color: var(--blueRibbon);
+  color: var(--blue-ribbon);
   padding-bottom: 1px;
   border-bottom: 2px solid currentColor;
 }
@@ -65,22 +65,22 @@
 
 .LongForm.LongForm pre,
 .LongForm blockquote {
-  margin: var(--spacingLG) -2rem;
+  margin: var(--spacing-lg) -2rem;
 }
 
 @media (max-width: 600px) {
   .LongForm.LongForm pre,
   .LongForm blockquote {
-    margin: var(--spacingMD) 0;
+    margin: var(--spacing-md) 0;
   }
 }
 
 .LongForm.LongForm pre {
   display: block;
-  background-color: var(--outerSpace);
-  background: var(--outerSpace);
-  border-radius: var(--borderRadius);
-  padding: var(--spacingMD);
+  background-color: var(--outer-space);
+  background: var(--outer-space);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
   box-shadow: 0 1rem 1rem -1rem rgba(0, 0, 0, 0.33);
 }
 
@@ -93,10 +93,10 @@
 }
 
 .LongForm blockquote {
-  background-color: var(--seaShell);
-  padding: var(--spacingLG);
-  color: var(--outerSpace);
-  border-left: 0.5vw solid var(--outerSpace);
+  background-color: var(--sea-shell);
+  padding: var(--spacing-lg);
+  color: var(--outer-space);
+  border-left: 0.5vw solid var(--outer-space);
 }
 
 .LongForm blockquote p {
@@ -104,7 +104,7 @@
 }
 
 .LongForm blockquote * {
-  color: var(--outerSpace);
+  color: var(--outer-space);
 }
 
 .LongForm img {

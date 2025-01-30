@@ -1,19 +1,19 @@
 .Card + .Card {
-  margin-top: var(--spacingLG);
+  margin-top: var(--spacing-lg);
 }
 
 @media (min-width: 800px) {
   .Resume-skills {
     columns: 2;
     max-height: 30rem;
-    column-gap: var(--spacingLG);
+    column-gap: var(--spacing-lg);
   }
 }
 
 .Position {
   display: grid;
-  grid-gap: var(--spacingLG);
-  padding: var(--spacingMD) 0 var(--spacingLG);
+  grid-gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0 var(--spacing-lg);
 }
 
 @media (min-width: 600px) {
@@ -40,18 +40,18 @@
 .PositionSuperheading {
   display: inline-flex;
   align-items: center;
-  padding: var(--spacingSM) var(--spacingSM);
-  padding-right: var(--spacingLG);
-  font-family: var(--fontFamilySecondary);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  padding-right: var(--spacing-lg);
+  font-family: var(--font-family-secondary);
   font-size: 1rem;
   font-weight: 400;
-  height: var(--spacingLG);
+  height: var(--spacing-lg);
   min-width: 100%;
   color: var(--white);
-  margin-bottom: var(--spacingMD);
-  background-color: var(--blueRibbon);
+  margin-bottom: var(--spacing-md);
+  background-color: var(--blue-ribbon);
   position: relative; /* enables z-index */
-  z-index: var(--layerMD);
+  z-index: var(--layer-md);
   -webkit-clip-path: polygon(
     0 0,
     0 0,
@@ -67,17 +67,18 @@
 .PositionSuberHeadingShadow {
   position: absolute;
   width: 75%;
-  height: var(--spacingLG);
+  height: var(--spacing-lg);
   display: inline-block;
   top: 0;
   left: 0;
   background-color: transparent;
-  z-index: var(--layerSM);
-  box-shadow: 0 var(--spacingSM) var(--spacingSM) -0.25rem var(--semiTransparentBlack);
+  z-index: var(--layer-sm);
+  box-shadow: 0 var(--spacing-sm) var(--spacing-sm) -0.25rem
+    var(--semi-transparent-black);
 }
 
 .DateRange {
-  margin-top: var(--spacingSM);
+  margin-top: var(--spacing-sm);
   font-weight: 700;
   font-size: 0.85rem;
 }
@@ -89,6 +90,6 @@
 
 @media (min-width: 600px) {
   .PositionSecondHalf {
-    border-left: 1px solid var(--semiTransparentBlack);
+    border-left: 1px solid var(--semi-transparent-black);
   }
 }

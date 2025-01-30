@@ -8,7 +8,7 @@
   bottom: 10%;
   left: 0;
   width: 90%;
-  height: var(--spacingMD);
+  height: var(--spacing-md);
   background-color: currentColor;
   border-radius: 0.125rem;
   opacity: 0.125;

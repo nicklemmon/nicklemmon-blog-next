@@ -21,8 +21,8 @@ body {
 
 html {
   font-size: calc(15px + 0.25vw);
-  font-family: var(--fontFamilyPrimary);
-  color: var(--outerSpace);
+  font-family: var(--font-family-primary);
+  color: var(--outer-space);
 }
 
 a {
@@ -44,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--fontFamilyPrimary);
+  font-family: var(--font-family-primary);
   font-weight: 700;
   line-height: 1.33;
   margin: 0;

@@ -4,17 +4,17 @@
 }
 
 .MaxWidth--sm {
-  max-width: var(--breakpointSM);
+  max-width: var(--breakpoint-sm);
 }
 
 .MaxWidth--md {
-  max-width: var(--breakpointMD);
+  max-width: var(--breakpoint-md);
 }
 
 .MaxWidth--lg {
-  max-width: var(--breakpointLG);
+  max-width: var(--breakpoint-lg);
 }
 
 .MaxWidth--xl {
-  max-width: var(--breakpointXL);
+  max-width: var(--breakpoint-xl);
 }

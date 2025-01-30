@@ -1,10 +1,10 @@
 .PageTitle {
-  background-color: var(--blueRibbon);
+  background-color: var(--blue-ribbon);
   color: var(--white);
   position: relative; /* enables use of z-index */
   z-index: 1;
   margin-top: -3rem;
-  padding: var(--spacingXL);
+  padding: var(--spacing-xl);
 }
 
 .Heading {
@@ -30,7 +30,7 @@
 
 .Overlay {
   z-index: 2;
-  background-color: var(--blueRibbon);
+  background-color: var(--blue-ribbon);
   opacity: 0.85;
 }
 
@@ -47,7 +47,7 @@
   font-size: 1.125rem;
   font-weight: 700;
   text-align: left;
-  margin-top: var(--spacingMD);
+  margin-top: var(--spacing-md);
   text-align: center;
 }
 
