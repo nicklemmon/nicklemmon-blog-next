@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "yarn run prep:images && next dev",
-    "build": "yarn run prep:images && next build",
-    "lint": "yarn eslint .",
+    "dev": "npm run prep:images && next dev",
+    "build": "npm run prep:images && next build",
+    "lint": "npm eslint .",
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
