@@ -1,0 +1,271 @@
+---
+title: Use string unions, not enums in TypeScript
+description: Prefer string unions over enums in TypeScript projects!
+date: '2025-02-08'
+image: janosch-diggelmann-ZxlAVtQjcpI-unsplash.webp
+---
+
+[Enums](https://www.typescriptlang.org/docs/handbook/enums.html) in TypeScript
+are a language feature that should be avoided at all costs. Though seemingly
+offering parity with other typed languages, this feature worsens developer
+experience and can be replaced by string unions in most cases.
+
+Often used for things like prop types, an enum looks something like this in a
+React context:
+
+```tsx
+enum Variant {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Destructive = 'destructive',
+}
+
+function MyButton({ variant }: { variant: Variant }) {
+  let className
+
+  if (variant === Variant.Primary) {
+    className = 'primary-btn'
+  }
+
+  if (variant === Variant.Secondary) {
+    className = 'secondary-btn'
+  }
+
+  if (variant === Variant.Destructive) {
+    className = 'destructive-btn'
+  }
+
+  return <button className={className}></button>
+}
+```
+
+In this (fairly contrived) example, the enum is used to determine which CSS
+class should be applied to the button. This solution works for defining several
+valid variants (and excluding all others), but it offers worse developer
+ergonomics over time than alternative approaches.
+
+## Reasons to avoid enums
+
+### 1. Enums do not exist in JavaScript at runtime
+
+By the time TypeScript compiles, JavaScript no longer has a reference to the
+enum in any 1 to 1 sense. As a result, an "enum" becomes an object at runtime.
+This isn't necessarily a _problem_ but it can be confusing, particularly to
+developers who may not be aware that all constructs in TypeScript to not map 1
+to 1 with a JavaScript equivalent.
+
+### 2. Enums add to bundle size
+
+Because an `enum` is used as a value, it must be available at runtime, adding to
+overall bundle size once compiled.
+
+```ts
+// This creates `VariantEnum` at runtime
+enum Variant {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Destructive = 'destructive',
+}
+```
+
+```ts
+// This is not available at runtime at all
+type Variant = 'primary' | 'secondary' | 'destructive'
+```
+
+only use case is within the `template`.
+
+### 3. More boilerplate when passing enums to functions/components
+
+When we use an enum to strictly type a function (or component props), developers
+have to import that enum in order to use it when invoking the function (or
+component), adding additional overhead that isn't required when using string
+unions.
+
+To take the previous example, let's use our `MyButton` component and pass a
+variant:
+
+```tsx
+import { Variant, MyButton } from './my-button.tsx'
+
+function MyPage() {
+  return <MyButton variant={Variant.Primary} />
+}
+```
+
+This is relatively painless in a React application, but when used in an Angular
+component, things get a little unusual
+
+#### Angular component props and enums
+
+In this example, we define our `enum` (just like in the React `MyButton`
+component) but there is a _lot_ more boilerplate required to implement the end
+result.
+
+```ts
+import { Component, Input } from '@angular/core'
+import { NgClass } from '@angular/common'
+
+enum Variant {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Destructive = 'destructive',
+}
+
+@Component({
+  selector: 'my-button',
+  imports: [NgClass],
+  template: `
+    <button
+      [ngClass]="{
+        primary: this.variant === this.Variant.Primary,
+        secondary: this.variant === this.Variant.Secondary,
+        destructive: this.variant === this.Variant.Destructive,
+      }"
+    >
+      Click me
+    </button>
+  `,
+})
+export class MyButton {
+  public Variant = Variant
+
+  @Input()
+  variant?: Variant
+}
+```
+
+This works fairly cleanly when defining the component, though we do have to
+expose the `Variant` enum has a public member of the `MyButton` class in order
+to use it. Not only that, but we have to import and expose the `Variant` in each
+component class that uses the button `variant` prop! That is a _lot_ of code to
+pass a string.
+
+```ts
+import { Component } from '@angular/core'
+import { MyButton, Variant } from './my-button'
+
+@Component({
+  selector: 'my-page',
+  imports: [MyButton],
+  template: `<my-button [variant]="this.Variant.Primary"></my-button>`,
+})
+export class MyPage {
+  // 😥 exposing this to access it in the template
+  public Variant = Variant
+}
+```
+
+Not to mention, now the `App` class exposes a public `Variant` that can be
+accessed programmatically &mdash; and without a significant benefit since our
+
+## String unions as an alternative
+
+For most enum use cases, use string unions instead. This simplifies both our
+prior React and Angular button examples substantially.
+
+### React example
+
+First, the button component.
+
+```tsx
+type Variant = 'primary' | 'secondary' | 'destructive'
+
+// We can do a nice little look up here with each object key
+// strictly typed to be a valid `Variant`
+const VARIANT_CLASS_MAP: Record<Variant, string> = {
+  primary: 'primary-btn',
+  secondary: 'secondary-btn',
+  destructive: 'destructive-btn',
+}
+
+function Button({ variant }: { variant: Variant }) {
+  return <button className={VARIANT_CLASS_MAP[variant]}>Click me</button>
+}
+```
+
+And now its usage.
+
+```tsx
+import { Button } from './my-button'
+
+function MyPage() {
+  // No need to import `Variant` at all!
+  // *And* TypeScript will still throw an error at build time with an invalid value
+  return <Button variant="primary" />
+}
+```
+
+### Angular example
+
+First, the button component.
+
+```ts
+import { Component, Input } from '@angular/core'
+import { NgClass } from '@angular/common'
+
+type Variant = 'primary' | 'secondary' | 'destructive'
+
+@Component({
+  selector: 'my-button',
+  imports: [NgClass],
+  template: `
+    <button
+      [ngClass]="{
+        primary: this.variant === "primary",
+        secondary: this.variant === "secondary",
+        destructive: this.variant === "destructive",
+      }"
+    >
+      Click me
+    </button>
+  `,
+})
+export class MyButton {
+  @Input()
+  variant?: Variant
+}
+```
+
+And now its usage:
+
+```ts
+import { Component } from '@angular/core'
+import { MyButton } from './my-button'
+
+@Component({
+  selector: 'my-page',
+  imports: [MyButton],
+  template: `<my-button [variant]="primary"></my-button>`,
+})
+export class MyPage {}
+```
+
+### String unions at runtime
+
+At times, string union values need to be made available at runtime. To achieve
+this (and avoid repetition), define the string union values in a constant array
+and derive the time from said array.
+
+```ts
+const VARIANTS = ['primary', 'secondary', 'destructive'] as const
+
+type Variant = (typeof VARIANTS)[number]
+```
+
+It then becomes trivial to write a type guard function if needed using the same
+constant array.
+
+```ts
+function isVariant(arg: any): arg is Variant {
+  return VARIANTS.includes(arg)
+}
+```
+
+## Conclusion
+
+String unions are capable alternatives to TypeScript enums in most scenarios,
+and enable improved developer ergonomics and simplified implementation
+particularly when defining function parameters or component props (especially
+Angular component props!). While enums still _can_ be used, string unions should
+be used in their place in most circumstances.
