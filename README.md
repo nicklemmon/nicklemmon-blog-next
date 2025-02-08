@@ -2,6 +2,8 @@
 
 ![Build and test](https://github.com/nicklemmon/nicklemmon-blog-next/actions/workflows/build-and-test.yml/badge.svg?branch=main)
 
+Markdown-driven personal site/blog using Next.js.
+
 ## Development
 
 ```
