@@ -6,12 +6,13 @@ image: janosch-diggelmann-ZxlAVtQjcpI-unsplash.webp
 ---
 
 [Enums](https://www.typescriptlang.org/docs/handbook/enums.html) in TypeScript
-are a language feature that should be avoided at all costs. Though seemingly
-offering parity with other typed languages, this feature worsens developer
-experience and can be replaced by string unions in most cases.
+are a language feature that should generally be avoided &mdash; instead, use
+string unions for most use cases. Ultimately, string unions are simpler to both
+use and implement, allowing for end-to-end type safety without sacrificing
+developer experience.
 
-Often used for things like prop types, an enum looks something like this in a
-React context:
+Often used for things like prop types or function parameters, an enum can be
+used to define a union of possible acceptable values.
 
 ```tsx
 enum Variant {
@@ -35,7 +36,7 @@ function MyButton({ variant }: { variant: Variant }) {
     className = 'destructive-btn'
   }
 
-  return <button className={className}></button>
+  return <button className={className}>Click me</button>
 }
 ```
 
@@ -44,20 +45,25 @@ class should be applied to the button. This solution works for defining several
 valid variants (and excluding all others), but it offers worse developer
 ergonomics over time than alternative approaches.
 
-## Reasons to avoid enums
+## Enum problems
 
 ### 1. Enums do not exist in JavaScript at runtime
 
-By the time TypeScript compiles, JavaScript no longer has a reference to the
-enum in any 1 to 1 sense. As a result, an "enum" becomes an object at runtime.
+By the time TypeScript compiles, the JavaScript engine running your program no
+longer has a reference to the enum in a true 1 to 1 sense. As a result,
+[an enum becomes an object at runtime](https://www.typescriptlang.org/docs/handbook/enums.html#enums-at-runtime).
 This isn't necessarily a _problem_ but it can be confusing, particularly to
-developers who may not be aware that all constructs in TypeScript to not map 1
-to 1 with a JavaScript equivalent.
+developers who may not be aware that all constructs in TypeScript do not map
+one-to-one to JavaScript constructs.
+
+Enums
+[can have surprising differences](https://www.totaltypescript.com/why-i-dont-like-typescript-enums)
+once compiled to JavaScript!
 
 ### 2. Enums add to bundle size
 
-Because an `enum` is used as a value, it must be available at runtime, adding to
-overall bundle size once compiled.
+Because an `enum` must be imported and used as a value, it must be available at
+runtime, adding to overall bundle size once compiled.
 
 ```ts
 // This creates `VariantEnum` at runtime
@@ -72,8 +78,6 @@ enum Variant {
 // This is not available at runtime at all
 type Variant = 'primary' | 'secondary' | 'destructive'
 ```
-
-only use case is within the `template`.
 
 ### 3. More boilerplate when passing enums to functions/components
 
@@ -156,8 +160,9 @@ export class MyPage {
 }
 ```
 
-Not to mention, now the `App` class exposes a public `Variant` that can be
+Not to mention, now the `MyPage` class exposes a public `Variant` that can be
 accessed programmatically &mdash; and without a significant benefit since our
+intention was only to leverage the value in the component template.
 
 ## String unions as an alternative
 
@@ -212,9 +217,9 @@ type Variant = 'primary' | 'secondary' | 'destructive'
   template: `
     <button
       [ngClass]="{
-        primary: this.variant === "primary",
-        secondary: this.variant === "secondary",
-        destructive: this.variant === "destructive",
+        primary: this.variant === 'primary',
+        secondary: this.variant === 'secondary',
+        destructive: this.variant === 'destructive',
       }"
     >
       Click me
@@ -236,7 +241,7 @@ import { MyButton } from './my-button'
 @Component({
   selector: 'my-page',
   imports: [MyButton],
-  template: `<my-button [variant]="primary"></my-button>`,
+  template: `<my-button variant="primary"></my-button>`,
 })
 export class MyPage {}
 ```
@@ -245,7 +250,7 @@ export class MyPage {}
 
 At times, string union values need to be made available at runtime. To achieve
 this (and avoid repetition), define the string union values in a constant array
-and derive the time from said array.
+and derive the `type` from said array.
 
 ```ts
 const VARIANTS = ['primary', 'secondary', 'destructive'] as const
@@ -261,6 +266,15 @@ function isVariant(arg: any): arg is Variant {
   return VARIANTS.includes(arg)
 }
 ```
+
+### When you just can't quite enumerating
+
+If you still insist on using enums (or need to refactor an existing codebase
+that uses enums heavily), consider defining the enum `as const` which can help
+avoid some of the aforementioned problems outlined in this article.
+
+See more
+[from Matt Pocock via Total TypeScript essentials](https://www.totaltypescript.com/books/total-typescript-essentials/deriving-types#using-as-const-for-javascript-style-enums).
 
 ## Conclusion
 
