@@ -2,9 +2,15 @@ import React from 'react'
 import ScreenReaderOnly from '../screen-reader-only'
 import styles from './hero.module.css'
 
-export default function HeroIconLink(props) {
-  const { href, screenReaderContent, children } = props
-
+export default function HeroIconLink({
+  href,
+  screenReaderContent,
+  children,
+}: {
+  href: string
+  screenReaderContent: string
+  children: React.ReactNode
+}) {
   return (
     <a
       className={styles.IconLink}

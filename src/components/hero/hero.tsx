@@ -9,14 +9,13 @@ import Highlight from '../highlight'
 import HeroIconLink from './hero-icon-link'
 import styles from './hero.module.css'
 
-export default function Hero(props) {
-  const { className } = props
+export default function Hero({ className }: { className?: string }) {
   const iconSize = 'calc(2.5rem + 1.5vw)'
 
   return (
     <div className={clsx(styles.Hero, className)}>
       <MaxWidth size="xl">
-        <Container className={styles.Container} size="xxl">
+        <Container className={styles.Container} size="2xl">
           <Heading as="h1" className={styles.Title}>
             A <Highlight>frontend</Highlight> engineering leader driven to
             create <Highlight>accessible</Highlight> user interfaces at{' '}
