@@ -30,7 +30,7 @@
     "@testing-library/cypress": "10.0.3",
     "@types/mapbox__rehype-prism": "0.8.3",
     "@types/node": "22.13.4",
-    "@types/react": "19.0.9",
+    "@types/react": "19.0.10",
     "cypress": "14.0.2",
     "cypress-real-events": "1.14.0",
     "del": "8.0.0",
