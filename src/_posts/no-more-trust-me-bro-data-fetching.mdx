@@ -1,6 +1,6 @@
 ---
 title: No more “Trust me, bro” data fetching in TypeScript applications
-description: Validate fetched data at runtime and buildtime
+description: Validate fetched data at runtime and build time
 image: marek-piwnicki-HxPkohFqDGY-unsplash.webp
 date: '2025-03-01'
 ---
@@ -12,9 +12,9 @@ protection &mdash; rather, application teams need to invest in adequate type
 safety, particularly when fetching data.
 
 > This is the first article in a series about predictable, type-safe data
-> fetching in TypeScript applications. This article is part one, describing
-> common failures to address type safety when fetching data, then I'll continue
-> with testing strategies that work well with TypeScript
+> fetching in TypeScript applications. This article is part one, covering common
+> failures in type safety when fetching data. In the next part, I'll explore
+> testing strategies that work well with TypeScript.
 
 ## “Trust me, bro” data fetching
 
@@ -32,10 +32,9 @@ async function listAccounts() {
 ```
 
 In typical applications, this problem is solved by casting the resolved response
-using `as` &mdash; when `as` as used, this is a "trust me, bro" moment. Don't
-worry your pretty little head about the type of the response, "Trust me, bro"
-&mdash; the type of the response is _definitely_ what I say it is no matter
-what.
+using `as` &mdash; when `as` is used, this is a "trust me, bro" moment. Don't
+worry about the response type—'Trust me, bro,' it's _exactly_ what I say it is.
+No need to check.
 
 ```ts
 type Account = {
@@ -61,7 +60,7 @@ still handle data typing via the "trust me, bro" strategy out of the box:
 ```ts
 // This isn't using `as`, but a generic - the end result is the same - the shape of the data is not validated at runtime but is assumed!
 // "Trust me, bro! The account list is *always* in the right shape!"
-http.get<<Array<Account>>('https://api.nicklemmon.com/accounts/list')
+http.get<Array<Account>>('https://api.nicklemmon.com/accounts/list')
 ```
 
 Unfortunately, this leaves a lot to be desired. If the shape of the API response
@@ -84,7 +83,7 @@ import { z } from 'zod'
 const AccountSchema = z.object({
   id: z.string(),
   name: z.string(),
-  holdings: z.number;
+  holdings: z.number(),
 })
 
 async function listAccounts() {
@@ -98,7 +97,7 @@ async function listAccounts() {
     // we could flag type runtime errors more cleanly for fixing by API teams.
     const json = AccountSchema.parse(await res.json())
 
-    return json; // The inferred return type will match the shape of the `AccountSchema`
+    return json // The inferred return type will match the shape of the `AccountSchema`
   } catch (err) {
     throw Error(String(err))
   }
@@ -206,7 +205,7 @@ function RouteComponent() {
 
 ## Conclusion
 
-`zod` (and other similar tools, like [valibot](https://valibot.dev)) provide an
+`zod` (and other similar tools, like [valibot](https://valibot.dev)) provide a
 protective layer against unexpected data shapes in TypeScript applications,
 improving the predictability and reliability of your application code, all while
 avoiding the "trust me, bro" mistakes that are common when handling data
@@ -215,6 +214,6 @@ fetching.
 ### Up next
 
 This is the first in a series of articles about building predictable, type-safe
-data fetching in TypeScript applications. Next, I'll cover pairing our runtime
-schema validation with data mocking to author automated integration tests
-without flakiness typical of other approaches.
+data fetching in TypeScript applications. Next, I'll cover how to pair our
+runtime schema validation with data mocking to write automated integration
+tests—without the flakiness typical of other approaches..
