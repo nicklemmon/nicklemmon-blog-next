@@ -5,16 +5,17 @@ image: marek-piwnicki-HxPkohFqDGY-unsplash.webp
 date: '2025-03-01'
 ---
 
-TypeScript (and other static analysis tools) can help prevent a whole category
-of defects, ensuring data flows smoothly and predictably throughout an
-application. When used insufficiently, however, TypeScript does not offer this
-protection &mdash; rather, application teams need to invest in adequate type
-safety, particularly when fetching data.
+TypeScript can help prevent a whole category of defects, ensuring data flows
+smoothly and predictably throughout an application &mdash; I have no idea how I
+built applications without it in the past. When used insufficiently, however,
+TypeScript does not offer this protection &mdash; rather, application teams need
+to invest in adequate type safety, particularly when fetching data &mdash; all
+while avoiding the temptation to tell the TypeScript compiler, "trust me, bro."
 
 > This is the first article in a series about predictable, type-safe data
-> fetching in TypeScript applications. This article is part one, covering common
-> failures in type safety when fetching data. In the next part, I'll explore
-> testing strategies that work well with TypeScript.
+> fetching in TypeScript applications. In part one, I will be covering common
+> type checking failures when fetching data. In part two, I'll explore automated
+> integration testing strategies that work well with type-safe data fetching.
 
 ## “Trust me, bro” data fetching
 
@@ -27,14 +28,15 @@ async function listAccounts() {
 
   if (!res.ok) throw Error('Account fetching failed!')
 
-  return await res.json() // The inferred return type is `Promise<any>`
+  return await res.json() // 👈 The inferred return type is `Promise<any>`
 }
 ```
 
-In typical applications, this problem is solved by casting the resolved response
-using `as` &mdash; when `as` is used, this is a "trust me, bro" moment. Don't
-worry about the response type—'Trust me, bro,' it's _exactly_ what I say it is.
-No need to check.
+In typical applications, this problem is addressed via a type assertion using
+`as`. When using `as` in this scenario, this is a "trust me, bro" moment. The
+developer is telling the TypeScript compiler to not worry about the shape of the
+response &mdash; "Trust me, bro," the shape is _always exactly what I say it
+is_. No need to check yourself, TypeScript!
 
 ```ts
 type Account = {
@@ -48,6 +50,8 @@ async function listAccounts() {
 
   if (!res.ok) throw Error('Account fetching failed!')
 
+  // Here is the type assertion 👇
+  // "Trust me, bro! The response is definitely an array of accounts."
   return (await res.json()) as Array<Account>
 }
 ```
@@ -64,22 +68,25 @@ http.get<Array<Account>>('https://api.nicklemmon.com/accounts/list')
 ```
 
 Unfortunately, this leaves a lot to be desired. If the shape of the API response
-ever changes _or_ if the type definition of `Account` is inaccurate, any
-application logic that assumes the return type of `listAccounts()` is
-`Array<Account>` can _never_ be trusted. Even though TypeScript is used in the
-data fetching function, runtime errors can still occur unpredictably over time.
+ever changes unexpectedly _or_ if the type definition of `Account` is
+inaccurate, any application logic that assumes the return type of
+`listAccounts()` is `Array<Account>` can _never_ be completely trusted. Even
+though TypeScript is used in the data fetching function, runtime errors can and
+will occur unpredictably over time.
 
 ## Actually type safe (and predictable) data fetching
 
 Instead of blindly assuming that your data is shaped in a certain way, it is
-best to first validate that data, typically using a schema validation library
-like [zod](https://zod.dev/) or [valibot](https://valibot.dev/).
+best to first validate that data at runtime, typically using a schema validation
+library like [zod](https://zod.dev/) or [valibot](https://valibot.dev/).
 
-Let's re-write our `listAccounts` function using a Zod schema:
+Let's re-write our `listAccounts` function to validate the shape of the response
+using `zod`:
 
 ```ts
 import { z } from 'zod'
 
+// This feels similar to TypeScript, but available at runtime
 const AccountSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -122,14 +129,14 @@ const AccountSchema = z.object({
 type Account = z.infer<typeof AccountSchema>
 ```
 
-Now we have type safe data fetching with type definitions and runtime type
+Now we can have type safe data fetching with type definitions _and_ runtime type
 validation &mdash; all of which are tightly coupled to produce predictable
 results.
 
 ## Schema and type usage in the UI layer
 
 Now that we have a defined type, our UI can fetch data, and then render the
-result predictably. This example uses
+result predictably. The following example uses
 [TanStack Router](https://tanstack.com/router/latest) and React to help
 orchestrate fetching and rendering.
 
@@ -157,8 +164,8 @@ function RouteComponent() {
 }
 ```
 
-We can define an `<AccountListTable />` component, which anticipates an account
-list as a prop:
+We can define an `<AccountListTable />` component, which expects an
+`accountList` as a prop:
 
 ```tsx
 import type { Account } from '../api'
@@ -170,7 +177,7 @@ function AccountListTable({ accountList }: { accountList: Array<Account> }) {
 }
 ```
 
-When can then render the `<AccountListTable />` in our accounts list route,
+We can then render the `<AccountListTable />` in our accounts list route,
 achieving end-to-end type safety, without relying to "trust me, bro" TypeScript
 techniques:
 
@@ -207,13 +214,10 @@ function RouteComponent() {
 
 `zod` (and other similar tools, like [valibot](https://valibot.dev)) provide a
 protective layer against unexpected data shapes in TypeScript applications,
-improving the predictability and reliability of your application code, all while
+improving the predictability and reliability of application code, all while
 avoiding the "trust me, bro" mistakes that are common when handling data
 fetching.
 
-### Up next
-
-This is the first in a series of articles about building predictable, type-safe
-data fetching in TypeScript applications. Next, I'll cover how to pair our
-runtime schema validation with data mocking to write automated integration
-tests—without the flakiness typical of other approaches..
+> This is the first article in a series about predictable, type-safe data
+> fetching in TypeScript applications. In part two, I'll explore automated
+> integration testing strategies that work well with type-safe data fetching.
