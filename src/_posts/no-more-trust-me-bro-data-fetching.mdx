@@ -5,12 +5,13 @@ image: marek-piwnicki-HxPkohFqDGY-unsplash.webp
 date: '2025-03-02'
 ---
 
-TypeScript can help prevent a whole category of defects, ensuring data flows
-smoothly and predictably throughout an application &mdash; I have no idea how I
-built applications without it in the past. When used insufficiently, however,
-TypeScript does not offer this protection &mdash; rather, application teams need
-to invest in adequate type safety, particularly when fetching data &mdash; all
-while avoiding the temptation to tell the TypeScript compiler, "trust me, bro."
+TypeScript can help prevent a whole category of software defects, ensuring data
+flows smoothly and predictably throughout an application &mdash; I have no idea
+how I built applications without it in the past. When used insufficiently,
+however, TypeScript does not offer this protection &mdash; rather, application
+teams need to invest in adequate type safety, particularly when fetching data
+&mdash; all while avoiding the temptation to tell the TypeScript compiler,
+"trust me, bro."
 
 > This is the first article in a series about predictable, type-safe data
 > fetching in TypeScript applications. In part one, I will be covering common
@@ -55,6 +56,11 @@ async function listAccounts() {
   return (await res.json()) as Array<Account>
 }
 ```
+
+At this point, the data you receive could come in _any_ shape, and by using
+`as`, we have simply turned off any adequate protection that TypeScript might
+provide when it comes to the shape of the data flowing throughout our
+application.
 
 Even fully fledged, popular frontend frameworks (like Angular), who expose a
 service for data fetching (see the
