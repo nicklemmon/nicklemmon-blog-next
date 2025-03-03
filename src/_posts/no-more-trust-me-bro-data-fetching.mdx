@@ -144,9 +144,9 @@ results.
 ## Schema and type usage in the UI layer
 
 Now that we have a defined type, our UI can fetch data, and then render the
-result predictably. The following example uses
-[TanStack Router](https://tanstack.com/router/latest) and React to help
-orchestrate fetching and rendering.
+result predictably, all while passing the data down the component tree safely.
+The following example uses [TanStack Router](https://tanstack.com/router/latest)
+and React to help orchestrate fetching and rendering.
 
 First, we define our route. We can import our `listAccounts` function and use it
 in the route definition:
@@ -172,8 +172,8 @@ function RouteComponent() {
 }
 ```
 
-We can define an `<AccountListTable />` component, which expects an
-`accountList` as a prop:
+Additionally, we can define an `<AccountListTable />` component, which expects
+an `accountList` as a prop:
 
 ```tsx
 import type { Account } from '../api'
@@ -186,8 +186,10 @@ function AccountListTable({ accountList }: { accountList: Array<Account> }) {
 ```
 
 We can then render the `<AccountListTable />` in our accounts list route,
-achieving end-to-end type safety, without relying to "trust me, bro" TypeScript
-techniques:
+achieving end-to-end type safety, without relying on "trust me, bro" TypeScript
+techniques. The shape of our API response may change unexpectedly, but error
+handling will more catch errors at their source, making them dramatically easier
+to debug.
 
 ```tsx
 import { createFileRoute } from '@tanstack/react-router'
