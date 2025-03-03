@@ -38,7 +38,7 @@ export default function LandingPage({ posts }: { posts: Array<Post> }) {
           )
         })}
 
-        <Button variant="primary" href="/archives" fullWidth>
+        <Button variant="primary" rounding="full" href="/archives" fullWidth>
           Archives
         </Button>
       </ArticleCards>

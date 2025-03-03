@@ -5,12 +5,15 @@ import styles from './button.module.css'
 
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost'
 
+type ButtonRounding = 'md' | 'full'
+
 export default function Button({
   href,
   children,
   fullWidth,
   centered,
   className,
+  rounding = 'md',
   variant,
 }: {
   href: string
@@ -18,6 +21,7 @@ export default function Button({
   fullWidth?: boolean
   centered?: boolean
   className?: string
+  rounding?: ButtonRounding
   variant: ButtonVariant
 }) {
   return (
@@ -29,6 +33,8 @@ export default function Button({
         variant === 'secondary' && styles.SecondaryVariant,
         variant === 'tertiary' && styles.TertiaryVariant,
         variant === 'ghost' && styles.GhostVariant,
+        rounding === 'full' && styles.RoundingFull,
+        rounding === 'md' && styles.RoundingMd,
         fullWidth && styles.FullWidth,
         centered && styles.Centered,
         className

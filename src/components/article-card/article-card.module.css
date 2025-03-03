@@ -21,7 +21,7 @@
 }
 
 .Link .ArticleCard:hover,
-.Link .ArticleCard:focus {
+.Link .ArticleCard:focus-visible {
   transform: scale(1.005) translateY(-2px);
 }
 

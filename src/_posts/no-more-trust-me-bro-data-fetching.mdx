@@ -1,0 +1,223 @@
+---
+title: No more “Trust me, bro” data fetching in TypeScript applications
+description: Validate fetched data at runtime and build time
+image: marek-piwnicki-HxPkohFqDGY-unsplash.webp
+date: '2025-03-02'
+---
+
+TypeScript can help prevent a whole category of defects, ensuring data flows
+smoothly and predictably throughout an application &mdash; I have no idea how I
+built applications without it in the past. When used insufficiently, however,
+TypeScript does not offer this protection &mdash; rather, application teams need
+to invest in adequate type safety, particularly when fetching data &mdash; all
+while avoiding the temptation to tell the TypeScript compiler, "trust me, bro."
+
+> This is the first article in a series about predictable, type-safe data
+> fetching in TypeScript applications. In part one, I will be covering common
+> type checking failures when fetching data. In part two, I'll explore automated
+> integration testing strategies that work well with type-safe data fetching.
+
+## “Trust me, bro” data fetching
+
+When fetching data, the JSON response is never typed by default, as the inferred
+type of a typical fetching function is `Promise<any>`:
+
+```ts
+async function listAccounts() {
+  const res = await fetch('https://api.nicklemmon.com/accounts/list')
+
+  if (!res.ok) throw Error('Account fetching failed!')
+
+  return await res.json() // 👈 The inferred return type is `Promise<any>`
+}
+```
+
+In typical applications, this problem is addressed via a type assertion using
+`as`. When using `as` in this scenario, this is a "trust me, bro" moment. The
+developer is telling the TypeScript compiler to not worry about the shape of the
+response &mdash; "Trust me, bro," the shape is _always exactly what I say it
+is_. No need to check yourself, TypeScript!
+
+```ts
+type Account = {
+  id: string
+  name: string
+  holdings: number
+}
+
+async function listAccounts() {
+  const res = await fetch('https://api.nicklemmon.com/accounts/list')
+
+  if (!res.ok) throw Error('Account fetching failed!')
+
+  // Here is the type assertion 👇
+  // "Trust me, bro! The response is definitely an array of accounts."
+  return (await res.json()) as Array<Account>
+}
+```
+
+Even fully fledged, popular frontend frameworks (like Angular), who expose a
+service for data fetching (see the
+[HttpClient documentation for more](https://angular.dev/guide/http/making-requests#fetching-json-data)),
+still handle data typing via the "trust me, bro" strategy out of the box:
+
+```ts
+// This isn't using `as`, but a generic - the end result is the same - the shape of the data is not validated at runtime but is assumed!
+// "Trust me, bro! The account list is *always* in the right shape!"
+http.get<Array<Account>>('https://api.nicklemmon.com/accounts/list')
+```
+
+Unfortunately, this leaves a lot to be desired. If the shape of the API response
+ever changes unexpectedly _or_ if the type definition of `Account` is
+inaccurate, any application logic that assumes the return type of
+`listAccounts()` is `Array<Account>` can _never_ be completely trusted. Even
+though TypeScript is used in the data fetching function, runtime errors can and
+will occur unpredictably over time.
+
+## Actually type safe (and predictable) data fetching
+
+Instead of blindly assuming that your data is shaped in a certain way, it is
+best to first validate that data at runtime, typically using a schema validation
+library like [zod](https://zod.dev/) or [valibot](https://valibot.dev/).
+
+Let's re-write our `listAccounts` function to validate the shape of the response
+using `zod`:
+
+```ts
+import { z } from 'zod'
+
+// This feels similar to TypeScript, but available at runtime
+const AccountSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  holdings: z.number(),
+})
+
+async function listAccounts() {
+  const res = await fetch('https://api.nicklemmon.com/accounts/list')
+
+  try {
+    if (!res.ok) throw Error('Account fetching failed!')
+
+    // We `.parse` the awaited JSON response to ensure its in the right shape,
+    // and catch any errors that might result. With a monitoring service in place,
+    // we could flag type runtime errors more cleanly for fixing by API teams.
+    const json = AccountSchema.parse(await res.json())
+
+    return json // The inferred return type will match the shape of the `AccountSchema`
+  } catch (err) {
+    throw Error(String(err))
+  }
+}
+```
+
+The `AccountSchema` looks awfully similar to TypeScript, but with a few extra
+lines we can have both a schema definition which can handle validation at
+runtime _and_ a type definition at build time which are inherently linked:
+
+```ts
+import { z } from 'zod'
+
+// Runtime schema
+const AccountSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  holdings: z.number(),
+})
+
+// Build time type definition
+type Account = z.infer<typeof AccountSchema>
+```
+
+Now we can have type safe data fetching with type definitions _and_ runtime type
+validation &mdash; all of which are tightly coupled to produce predictable
+results.
+
+## Schema and type usage in the UI layer
+
+Now that we have a defined type, our UI can fetch data, and then render the
+result predictably. The following example uses
+[TanStack Router](https://tanstack.com/router/latest) and React to help
+orchestrate fetching and rendering.
+
+First, we define our route. We can import our `listAccounts` function and use it
+in the route definition:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+import { listAccounts } from '../api'
+
+export const Route = createFileRoute('/accounts/$list')({
+  component: RouteComponent,
+  loader: async () => {
+    // Remember, this function validates the shape of the data
+    // or throws an error if the data is in an unexpected shape
+    return await listAccounts()
+  },
+})
+
+function RouteComponent() {
+  // The account list is made available through the baked-in `useLoaderData` hook
+  const accountList = Route.useLoaderData()
+
+  return <h1>List of accounts</h1>
+}
+```
+
+We can define an `<AccountListTable />` component, which expects an
+`accountList` as a prop:
+
+```tsx
+import type { Account } from '../api'
+
+function AccountListTable({ accountList }: { accountList: Array<Account> }) {
+  return (
+    <table>{/* Logic for rendering the account list table goes here */}</table>
+  )
+}
+```
+
+We can then render the `<AccountListTable />` in our accounts list route,
+achieving end-to-end type safety, without relying to "trust me, bro" TypeScript
+techniques:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+import { listAccounts } from '../api.ts'
+import { AccountListTable } from '../account-list-table.tsx'
+
+export const Route = createFileRoute('/accounts/$list')({
+  component: RouteComponent,
+  loader: async () => {
+    // Remember, this function validates the shape of the data
+    // or throws an error if the data is in an unexpected shape
+    return await listAccounts()
+  },
+})
+
+function RouteComponent() {
+  // The account list is made available through the baked-in `useLoaderData` hook
+  const accountList = Route.useLoaderData()
+
+  return (
+    <div>
+      <h1>List of accounts</h1>
+
+      {/* Ta-dah! The inferred type from the `listAccounts` function matches the expected type defined explicitly in the <AccountListTable /> */}
+      <AccountListTable accountList={accountList} />
+    </div>
+  )
+}
+```
+
+## Conclusion
+
+`zod` (and other similar tools, like [valibot](https://valibot.dev)) provide a
+protective layer against unexpected data shapes in TypeScript applications,
+improving the predictability and reliability of application code, all while
+avoiding the "trust me, bro" mistakes that are common when handling data
+fetching.
+
+> This is the first article in a series about predictable, type-safe data
+> fetching in TypeScript applications. In part two, I'll explore automated
+> integration testing strategies that work well with type-safe data fetching.
