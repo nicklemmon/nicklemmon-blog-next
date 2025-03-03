@@ -65,7 +65,9 @@ application.
 Even fully fledged, popular frontend frameworks (like Angular), who expose a
 service for data fetching (see the
 [HttpClient documentation for more](https://angular.dev/guide/http/making-requests#fetching-json-data)),
-still handle data typing via the "trust me, bro" strategy out of the box:
+still handle data typing via the "trust me, bro" strategy out of the box. In
+this case, a generic is used instead of a type assertion, but the end result is
+the same.
 
 ```ts
 // This isn't using `as`, but a generic - the end result is the same - the shape of the data is not validated at runtime but is assumed!
