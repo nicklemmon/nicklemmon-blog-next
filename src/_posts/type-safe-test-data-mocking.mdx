@@ -1,0 +1,224 @@
+---
+title: Type safe, auto-generating test data for API mocking
+description:
+  How to efficiently generate valid, type safe, realistic data for use in
+  automated testing
+image: benjamin-voros-phIFdC6lA4E-unsplash.webp
+date: '2025-04-05'
+---
+
+> This article is part 2 in a series. Part 1
+> ([No more trust me bro data fetching](/post/no-more-trust-me-bro-data-fetching))
+> covers how to use Zod (or similar validation libraries) to tightly couple both
+> runtime and build time data validation. Part 2 continues with using these data
+> schemas to help mock APIs when authoring automated tests.
+
+## Avoid flake, mock the backend
+
+When automating application testing, managing the state of the backend in a
+manner that is consistent and avoids flakiness is exceptionally difficult. To
+address this problem, decoupled frontend user interfaces are often tested with a
+mocked backend, intercepting HTTP requests in the browser and replacing their
+responses with mock data.
+
+- See [fixtures using Cypress.io](https://docs.cypress.io/api/commands/fixture)
+- See [API mocking using Playwright](https://playwright.dev/docs/mock)
+
+For the sake of simplicity, the rest of the examples in this post will use
+[Playwright](https://playwright.dev/). This is the end result we will be
+building towards &mdash; a rendered UI that fetches data from a mocked API
+response:
+
+```ts
+import { test, expect, chromium } from '@playwright/test'
+import { generateMock } from '@anatine/zod-mock'
+import { z } from 'zod'
+import { AccountSchema } from '../src/api'
+
+const mockAccountList = generateMock(z.array(AccountSchema), { seed: 123 })
+
+test('it shows accounts', async () => {
+  const browser = await chromium.launch({ headless: false, slowMo: 200 })
+  const context = await browser.newContext()
+  const page = await context.newPage()
+
+  // Mock the accounts API
+  await page.route(
+    'https://api.nicklemmon.com/accounts/list',
+    async (route) => await route.fulfill({ json: mockAccountList })
+  )
+
+  // Visit the accounts page
+  await page.goto('http://localhost:5173')
+
+  // Validate the rendered result
+  await expect(page.getByRole('heading', { name: 'Accounts' })).toBeVisible()
+  await expect(page.getByText('Jane Turcotte / 471649368545782')).toBeVisible()
+})
+```
+
+## Validating the backend
+
+First, let's author some Zod schemas to validate the JSON response that will be
+received from the backend. This example is directly from the prior article in
+the series,
+[“No more &lsquo;Trust me, bro&rsquo; data fetching in TypeScript applications”](/post/no-more-trust-me-bro-data-fetching).
+
+Let's say that our `/accounts/list` endpoint returns a list of accounts. We can
+validate that data at runtime using a library like `zod` to double check its
+shape, and handle errors if an unexpected response is returned:
+
+```ts
+import { z } from 'zod'
+
+// 👇 this is our schema defined with Zod (available at runtime)
+const AccountSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  holdings: z.number(),
+})
+
+// 👇 this is our type definition inferred from the Zod schema (available at build time)
+type Account = z.infer<typeof AccountSchema>
+
+export async function listAccounts() {
+  const res = await fetch('https://api.nicklemmon.com/accounts/list')
+
+  try {
+    if (!res.ok) throw Error('Account fetching failed!')
+
+    const json = z.array(AccountSchema).parse(await res.json())
+
+    return json
+  } catch (err) {
+    throw Error(String(err))
+  }
+}
+```
+
+With our Zod schema defined, we can avoid a large category of type errors at
+runtime, or at the very least, be well equipped to monitor our application for
+data consistency errors.
+
+## Building a UI
+
+In this example, we will use our `listAccounts` function to fetch data in a
+frontend single page application. Let's take a look at how this would work in a
+React application (and use some of their newer features while we're at it). In
+this example,
+[@tanstack/react-query](https://tanstack.com/query/latest/docs/framework/react/quick-start).
+
+```tsx
+import {
+  useQuery,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+// 👇 Here, we import our `listAccounts` function with baked-in zod validation
+import { listAccounts, type Account } from './api'
+
+const queryClient = new QueryClient()
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* Normally a router would be used here, but for the sake of simplicity we are using a component */}
+      <AccountsPage />
+    </QueryClientProvider>
+  )
+}
+
+function AccountsPage() {
+  // 👇 Our query fetches (and caches) the data as soon as the component mounts
+  // Note that generics are used here to help with type inference. Since the `Account`
+  // type definition is directly derived from our Zod schema, this is considered safe
+  const { data, isLoading } = useQuery<Array<Account>>({
+    queryKey: ['accounts'],
+    queryFn: listAccounts,
+  })
+
+  return (
+    <div>
+      <h1>My accounts</h1>
+
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {data?.map((account) => {
+            return (
+              <li key={account.id}>
+                {account.name} / {account.holdings}
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
+  )
+}
+```
+
+## Mocking the backend
+
+Our UI is built, our data is fetching, now we want to mock the data. Since we
+have already used zod to validate our API response, we can _automatically create
+mock test data using our zod schema_!
+
+First, let's install
+[@anatine/zod-mock](https://www.npmjs.com/package/@anatine/zod-mock) to create
+fake test data generated directly from our Zod schemas:
+
+```bash
+npm i @anatine/zod-mock -D -E
+```
+
+We can then derive mock data from our schema in our test case without having to
+manually author mocks. This allows mocks and source code to always stay in sync
+&mdash; when our schemas change, our mocks update seamlessly.
+
+```ts
+import { test, expect, chromium } from '@playwright/test'
+import { generateMock } from '@anatine/zod-mock'
+import { z } from 'zod'
+import { AccountSchema } from '../src/api'
+
+// Generate mock account list from our zod schema
+// Note we are using a seed here to force the account list to remain consistent for every test run and make sure it is deterministic,
+// otherwise the test case will fail as the mock data will change each time the test runs
+const mockAccountList = generateMock(z.array(AccountSchema), { seed: 123 })
+
+test('it shows accounts', async () => {
+  const browser = await chromium.launch({ headless: false, slowMo: 200 })
+  const context = await browser.newContext()
+  const page = await context.newPage()
+
+  // Mock the accounts API
+  await page.route(
+    'https://api.nicklemmon.com/accounts/list',
+    async (route) => await route.fulfill({ json: mockAccountList })
+  )
+
+  // Visit the accounts page
+  await page.goto('http://localhost:5173')
+
+  // Validate the rendered result
+  await expect(page.getByRole('heading', { name: 'Accounts' })).toBeVisible()
+  await expect(page.getByText('Jane Turcotte / 471649368545782')).toBeVisible()
+})
+```
+
+## Putting it all together
+
+Take a look at the
+[GitHub repo showing this example](https://github.com/nicklemmon/blog-type-safe-data-mocking),
+install the dependencies, and run the tests. The test cases launch and mock the
+accounts API, showing generated data in its place.
+
+```bash
+git clone https://github.com/nicklemmon/blog-type-safe-data-mocking.git
+cd blog-type-safe-data-mocking
+npm i
+npm run test
+```
