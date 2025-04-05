@@ -219,6 +219,7 @@ accounts API, showing generated data in its place.
 ```bash
 git clone https://github.com/nicklemmon/blog-type-safe-data-mocking.git
 cd blog-type-safe-data-mocking
-npm i
+npm run dev &
+npx wait-on http://localhost:5173
 npm run test
 ```
