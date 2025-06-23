@@ -41,7 +41,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "mdx-bundler": "10.1.1",
     "mdx-prism": "0.3.4",
-    "prettier": "3.5.3",
+    "prettier": "3.6.0",
     "rehype": "13.0.2",
     "sharp": "0.34.2",
     "typescript": "5.8.3"
