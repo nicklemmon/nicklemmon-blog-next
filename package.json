@@ -29,7 +29,7 @@
     "@next/eslint-plugin-next": "15.4.6",
     "@testing-library/cypress": "10.0.3",
     "@types/mapbox__rehype-prism": "0.8.3",
-    "@types/node": "22.16.5",
+    "@types/node": "22.17.0",
     "@types/react": "19.1.9",
     "cypress": "14.5.4",
     "cypress-real-events": "1.14.0",
