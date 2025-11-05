@@ -1,0 +1,226 @@
+---
+title: Avoid stateful components in design systems
+descriptions:
+  Design systems should very rarely leverage internal state when building
+  re-usable UI components
+date: '2025-11-05'
+image: 'dmytro-yarish-KgtOr1cCECw-unsplash.webp'
+---
+
+Design system components should be thought of as akin to Lego bricks &mdash;
+composable pieces of a user interface that empower engineers working on
+applications to build consistent and branded user experiences. At times, design
+systems drift towards larger, stateful components to help with code sharing and
+re-usability. In theory, this makes sense! In practice, however, design systems
+needs rarely have the business context required to successfully engineer
+components that can be a wide enough variety of use cases.
+
+How can a design systems team identify when a component is veering in to this
+territory, and becoming less like a Lego brick and more like a glued-together
+Lego kit? It all starts with **internal component state**.
+
+## Stateless components
+
+Design system components tend to expose customization options via component
+props and event handlers. Consider a simple button component:
+
+```tsx
+function Button({
+  variant,
+  children,
+}: {
+  variant: 'primary' | 'secondary' | 'destructive'
+  children: React.ReactNode
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+}) {
+  return <button onClick={onClick}>{children}</button>
+}
+```
+
+The button accepts two key props, the `variant` and any `children` that can be
+slotted inside. The button has _no opinions about what happens when it is
+clicked_ but allows application engineers to handle those decisions in their
+application code.
+
+## Stateful components
+
+The `Button` we defined as part of our design system, **maintains no internal
+state** and is updated entirely from the outside.
+
+Next, our team wants to tackle a `SortButton` component that can be used in
+sorting scenarios for other UI elements like data tables. According to the
+provided UX specs, when clicked, the sorting state for the button should toggle
+between `"none"`, `"ascending"` and `"descending"`.
+
+```tsx
+import { type ComponentProps, useState } from 'react'
+import { Button } from '@com/ui'
+
+function SortButton({ children, onClick, ...props }: ComponentProps<typeof Button>) {
+  // `useState` here allows for reactive updates from inside the component as opposed to externally
+  const [sort, setSort] = useState<'ascending' | 'descending' | 'none'>('none')
+
+  /** Click handler to manage sorting state */
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const getNextSort = () => {
+      if (sort === "none") return "ascending"
+
+      if (sort === "ascending") return "descending"
+
+      if (sort === "descending") return "none"
+
+      return "none"
+    }
+
+    setSort(getNextSort())
+
+    /** Any passed-in onClick handler fires last */
+    onClick(e)
+  }
+
+  return (
+    <Button {...props} onClick={handleClick}>
+      {children}
+
+      {sort === "none" ? ↕️ : null}
+
+      {sort === "ascending" ? ⬆️ : null}
+
+      {sort === "descending" ? ⬇️ : null}
+    </Button>
+  )
+}
+```
+
+Now our `SortButton` updates the UI based on the next possible sort state.
+
+## ...Three weeks later
+
+Our design system is a raging success, and application engineers are using our
+stateless `Button` and stateful `SortButton` components. The `SortButton` works
+great for sorting tables and other organized data UI. What could possibly go
+wrong?
+
+### URL state
+
+For many sortable/filterable user interfaces, the ability to determine state
+from the URL is a common pattern using
+[query string parameters](https://developer.mozilla.org/en-US/docs/Web/API/URL/search).
+Our application wants to update a `SortButton` instance according to a query
+string in their application URL with three different possible states:
+
+```txt
+https://app.mycom.com
+https://app.mycom.com?sort=ascending
+https://app.mycom.com?sort=descending
+```
+
+Unfortunately, our current `SortButton` is completely unable to handle this
+feature request! The design system team never considered that something _other
+than a user click_ could cause the state of the button to update. Because the
+state of our component is controlled by an internal `useState` hook, our options
+for updating this component (particularly in a non-breaking fashion) are limited
+or at the very least, highly complex.
+
+### Making the best of a bad situation
+
+We can "fix" this problem by allowing external state to update the default state
+of the `SortButton` component. This _definitely will not work in all scenarios_
+as its possible the URL state could update after the component is initially
+mounted, but this solution is better than not providing external state support:
+
+```tsx
+import { type ComponentProps, useState } from 'react'
+import { Button } from '@com/ui'
+
+type SortDir = 'ascending' | 'descending' | 'none'
+
+function SortButton({ children, onClick, sort = 'none', ...props }: ComponentProps<typeof Button> & { sort: SortDir }) {
+  // `useState` here allows for reactive updates from inside the component as opposed to externally
+  const [sort, setSort] = useState<SortDir>(sort)
+
+  /** Click handler to manage sorting state */
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    /** Determine the next sort state according to the previous sort state */
+    const getNextSort = () => {
+      if (sort === "none") return "ascending"
+
+      if (sort === "ascending") return "descending"
+
+      if (sort === "descending") return "none"
+
+      return "none"
+    }
+
+    // Internal state handling
+    setSort(getNextSort())
+
+    // Any passed-in onClick handler fires last
+    onClick(e)
+  }
+
+  return (
+    <Button {...props} onClick={handleClick}>
+      {children}
+
+      {sort === "none" ? ↕️ : null}
+
+      {sort === "ascending" ? ⬆️ : null}
+
+      {sort === "descending" ? ⬇️ : null}
+    </Button>
+  )
+}
+```
+
+Now, the component can at least initially be updated externally with the URL
+state like so:
+
+```tsx
+const url = new URL(window.location.href) // "https://app.mycom.com?sort=ascending"
+const sort = url.searchParams.get('sort') // "ascending"
+
+function MyApp() {
+  return <SortButton sort={sort}>Sort items</SortButton>
+}
+```
+
+## Stateless from the beginning
+
+The `SortButton` component could have been implemented successfully, taking in
+the URL search updating _as well as any other source of state in the future_ by
+building **stateless** components instead of **stateful** components. In fact,
+by limiting design system components to only expose props and event handlers,
+application engineers can handle state management while the complexity of design
+system source code drops tremendously.
+
+```tsx
+import { type ComponentProps, useState } from 'react'
+import { Button } from '@com/ui'
+
+type SortDir = 'ascending' | 'descending' | 'none'
+
+function SortButton({ children, onClick, sort = 'none', ...props }: ComponentProps<typeof Button> & { sort: SortDir }) {
+  return (
+    <Button {...props}>
+      {children}
+
+      {sort === "none" ? ↕️ : null}
+
+      {sort === "ascending" ? ⬆️ : null}
+
+      {sort === "descending" ? ⬇️ : null}
+    </Button>
+  )
+}
+```
+
+The component definition itself is nearly half as long, and can account for any
+future external state that an application engineer might use to handle sorting.
+
+## Conclusion
+
+Design system components are Lego bricks from which to build larger user
+interfaces &mdash; they should not provide glued together Lego kits! In general,
+**avoid building a design system component that manages its own internal
+state**. Keep components simple and stateless!
