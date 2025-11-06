@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import Container from '../container'
 import MaxWidth from '../max-width'

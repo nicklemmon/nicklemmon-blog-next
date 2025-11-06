@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { clsx } from 'clsx'
 import Card from '../card'
 import Heading from '../heading'
