@@ -1,6 +1,6 @@
 import React from 'react'
 import { clsx } from 'clsx'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import MaxWidth from '../max-width'
 import Heading from '../heading'
 import Highlight from '../highlight'
