@@ -1,6 +1,6 @@
 ---
 title: Avoid stateful components in design systems
-descriptions:
+description:
   Design systems should very rarely leverage internal state when building
   re-usable UI components
 date: '2025-11-05'
@@ -11,11 +11,11 @@ Design system components should be thought of as akin to Lego bricks &mdash;
 composable pieces of a user interface that empower engineers working on
 applications to build consistent and branded user experiences. At times, design
 systems drift towards larger, stateful components to help with code sharing and
-re-usability. In theory, this makes sense! In practice, however, design systems
-needs rarely have the business context required to successfully engineer
-components that can be a wide enough variety of use cases.
+re-usability. In theory, this makes sense! In practice, however, design system
+teams rarely have the business context required to successfully engineer
+components that can handle a wide enough variety of use cases.
 
-How can a design systems team identify when a component is veering in to this
+How can a design systems team identify when a component is veering into this
 territory, and becoming less like a Lego brick and more like a glued-together
 Lego kit? It all starts with **internal component state**.
 
@@ -28,19 +28,19 @@ props and event handlers. Consider a simple button component:
 function Button({
   variant,
   children,
+  onClick,
 }: {
   variant: 'primary' | 'secondary' | 'destructive'
   children: React.ReactNode
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }) {
   return <button onClick={onClick}>{children}</button>
 }
 ```
 
-The button accepts two key props, the `variant` and any `children` that can be
-slotted inside. The button has _no opinions about what happens when it is
-clicked_ but allows application engineers to handle those decisions in their
-application code.
+The button accepts three props (`variant`, `children`, and `onClick`). The
+button has _no opinions about what happens when it is clicked_ but allows
+application engineers to handle those decisions in their application code.
 
 ## Stateful components
 
@@ -61,7 +61,7 @@ function SortButton({ children, onClick, ...props }: ComponentProps<typeof Butto
   const [sort, setSort] = useState<'ascending' | 'descending' | 'none'>('none')
 
   /** Click handler to manage sorting state */
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const getNextSort = () => {
       if (sort === "none") return "ascending"
 
@@ -124,10 +124,8 @@ or at the very least, highly complex.
 
 ### Making the best of a bad situation
 
-We can "fix" this problem by allowing external state to update the default state
-of the `SortButton` component. This _definitely will not work in all scenarios_
-as its possible the URL state could update after the component is initially
-mounted, but this solution is better than not providing external state support:
+We can "fix" this problem by allowing external state to initialize the
+`SortButton` component state:
 
 ```tsx
 import { type ComponentProps, useState } from 'react'
@@ -137,23 +135,23 @@ type SortDir = 'ascending' | 'descending' | 'none'
 
 function SortButton({ children, onClick, sort = 'none', ...props }: ComponentProps<typeof Button> & { sort: SortDir }) {
   // `useState` here allows for reactive updates from inside the component as opposed to externally
-  const [sort, setSort] = useState<SortDir>(sort)
+  const [sortState, setSortState] = useState<SortDir>(sort)
 
   /** Click handler to manage sorting state */
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     /** Determine the next sort state according to the previous sort state */
     const getNextSort = () => {
-      if (sort === "none") return "ascending"
+      if (sortState === "none") return "ascending"
 
-      if (sort === "ascending") return "descending"
+      if (sortState === "ascending") return "descending"
 
-      if (sort === "descending") return "none"
+      if (sortState === "descending") return "none"
 
       return "none"
     }
 
     // Internal state handling
-    setSort(getNextSort())
+    setSortState(getNextSort())
 
     // Any passed-in onClick handler fires last
     onClick(e)
@@ -163,11 +161,11 @@ function SortButton({ children, onClick, sort = 'none', ...props }: ComponentPro
     <Button {...props} onClick={handleClick}>
       {children}
 
-      {sort === "none" ? ↕️ : null}
+      {sortState === "none" ? ↕️ : null}
 
-      {sort === "ascending" ? ⬆️ : null}
+      {sortState === "ascending" ? ⬆️ : null}
 
-      {sort === "descending" ? ⬇️ : null}
+      {sortState === "descending" ? ⬇️ : null}
     </Button>
   )
 }
@@ -185,6 +183,12 @@ function MyApp() {
 }
 ```
 
+Note that this "fix" **only works when the sort value is set before the
+component first renders**. If the URL changes after the component is already
+mounted (for example, when navigating with client-side routing or when users
+manually edit the URL), the component's internal state won't update to reflect
+the latest URL.
+
 ## Stateless from the beginning
 
 The `SortButton` component could have been implemented successfully, taking in
@@ -195,12 +199,12 @@ application engineers can handle state management while the complexity of design
 system source code drops tremendously.
 
 ```tsx
-import { type ComponentProps, useState } from 'react'
+import { type ComponentProps } from 'react'
 import { Button } from '@com/ui'
 
 type SortDir = 'ascending' | 'descending' | 'none'
 
-function SortButton({ children, onClick, sort = 'none', ...props }: ComponentProps<typeof Button> & { sort: SortDir }) {
+function SortButton({ children, sort = 'none', ...props }: ComponentProps<typeof Button> & { sort: SortDir }) {
   return (
     <Button {...props}>
       {children}
@@ -218,9 +222,43 @@ function SortButton({ children, onClick, sort = 'none', ...props }: ComponentPro
 The component definition itself is nearly half as long, and can account for any
 future external state that an application engineer might use to handle sorting.
 
+Then, an application engineer can control the state of the button, keeping it in
+sync with any required business logic or source of UI state. In this example,
+the `MyDataTable` reads from and updates the application URL in response to user
+clicks of the `SortButton`:
+
+```tsx
+function MyDataTable() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const sort = (searchParams.get('sort') as SortDir) || 'none'
+
+  const handleSortClick = () => {
+    /** Determine the next sort state according to the previous sort state */
+    const getNextSort = () => {
+      if (sort === 'none') return 'ascending'
+
+      if (sort === 'ascending') return 'descending'
+
+      if (sort === 'descending') return 'none'
+
+      return 'none'
+    }
+
+    setSearchParams({ sort: getNextSort() })
+  }
+
+  return (
+    <SortButton sort={sort} onClick={handleSortClick}>
+      Sort items
+    </SortButton>
+  )
+}
+```
+
 ## Conclusion
 
 Design system components are Lego bricks from which to build larger user
-interfaces &mdash; they should not provide glued together Lego kits! In general,
-**avoid building a design system component that manages its own internal
-state**. Keep components simple and stateless!
+interfaces &mdash; they should not ship glued together Lego kits with their own
+internal state! In general, **avoid building a design system component that
+manages its own internal state**. Keep components simple and stateless, by only
+providing props and event handlers.
