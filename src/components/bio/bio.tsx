@@ -1,5 +1,4 @@
-import React from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { clsx } from 'clsx'
 import Card from '../card'
 import Heading from '../heading'
