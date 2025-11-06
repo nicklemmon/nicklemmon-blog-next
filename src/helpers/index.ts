@@ -42,7 +42,7 @@ export async function getPosts(): Promise<Array<Post>> {
         frontmatter: data,
       }
     })
-  )
+  );
 }
 
 export async function getPost(slug: string) {

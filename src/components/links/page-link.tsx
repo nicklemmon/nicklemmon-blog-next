@@ -19,14 +19,15 @@ export default function PageLink({
   'data-id'?: string
 }) {
   return (
-    <Link href={href} passHref onKeyDown={onKeyDown} legacyBehavior>
-      <a
-        className={clsx(styles.PageLink, className)}
-        data-id={props['data-id']}
-        onClick={onClick}
-      >
-        {children}
-      </a>
+    <Link
+      href={href}
+      onKeyDown={onKeyDown}
+      className={clsx(styles.PageLink, className)}
+      data-id={props['data-id']}
+      onClick={onClick}>
+
+      {children}
+
     </Link>
-  )
+  );
 }
