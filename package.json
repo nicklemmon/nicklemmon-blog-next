@@ -43,7 +43,7 @@
     "mdx-prism": "0.3.4",
     "prettier": "3.6.2",
     "rehype": "13.0.2",
-    "sharp": "0.34.4",
+    "sharp": "0.34.5",
     "typescript": "5.9.3"
   }
 }
