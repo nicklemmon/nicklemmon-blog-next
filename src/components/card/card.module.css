@@ -1,8 +1,8 @@
 .Card {
   background-color: var(--white);
   padding: var(--spacing-md);
-  border-radius: 6px;
+  border-radius: 18px;
   border: 1px solid var(--semi-transparent-black);
-  box-shadow: 0 var(--spacing-lg) var(--spacing-lg) calc(-1 * var(--spacing-lg))
+  box-shadow: 0 var(--spacing-sm) var(--spacing-md) calc(-1 * var(--spacing-sm))
     rgba(0, 0, 0, 0.125);
 }
