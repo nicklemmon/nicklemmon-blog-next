@@ -31,7 +31,7 @@
     "@types/mapbox__rehype-prism": "0.8.3",
     "@types/node": "24.10.1",
     "@types/react": "19.2.7",
-    "cypress": "15.7.0",
+    "cypress": "15.7.1",
     "cypress-real-events": "1.15.0",
     "del": "8.0.1",
     "esbuild": "0.27.0",
