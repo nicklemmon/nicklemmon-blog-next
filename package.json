@@ -19,8 +19,8 @@
     "gray-matter": "4.0.3",
     "next": "16.0.7",
     "prism-theme-night-owl": "1.4.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-focus-lock": "2.13.7",
     "react-icons": "5.5.0"
   },
