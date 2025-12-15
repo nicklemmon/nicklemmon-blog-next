@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "1.6.1",
-    "@vercel/og": "0.8.5",
+    "@vercel/og": "0.8.6",
     "clsx": "2.1.1",
     "framer-motion": "12.23.26",
     "gray-matter": "4.0.3",
