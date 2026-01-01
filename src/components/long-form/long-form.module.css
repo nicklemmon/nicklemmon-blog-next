@@ -67,7 +67,7 @@
 
 .LongForm.LongForm pre,
 .LongForm blockquote {
-  margin: var(--spacing-lg) -2rem;
+  margin: var(--spacing-md) -1rem;
 }
 
 @media (max-width: 600px) {
@@ -88,7 +88,7 @@
 .LongForm.LongForm pre code {
   background: transparent !important;
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.825rem;
   line-height: 1.75;
   padding: 0;
 }
