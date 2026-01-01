@@ -1,0 +1,43 @@
+---
+title: Building (and shipping) an effective icon web component
+description:
+  Building a re-usable, publish-able icon web component using SVG sprite sheets
+date: '2026-01-01'
+image: 'rene-bohmer-YeUVDKZWSZ4-unsplash.webp'
+---
+
+## The problem
+
+Design systems and packaged icon components often ship pre-built and branded
+icon sets. These icon sets ideally ship with the design system code library,
+without requiring significant setup on the part of application engineers.
+
+Techniques for implementing icon systems are limited when it comes to NPM
+packages, thanks to distinct requirements:
+
+1. The icon set **must work across all devices and screen densities**
+1. The icon set **must be cache-able**
+1. Application engineers should be able to **add to the existing icon set**
+   using icons specific to their application
+1. The icon set **must respond to design system tokens** (i.e., colors) and
+   properly handle light and dark mode
+1. Application engineers should be able to **apply ARIA attributes** for icons
+   that convey meaning and icons that are purely decorative
+1. **Offer a simple API for developers**
+
+## Running the requirements gauntlet
+
+Let's dive right in to each requirement, and come up with a coherent, pragmatic
+solution:
+
+### 1. Work across all devices and screen densities
+
+### 2. Efficient, cache-able icon sets
+
+### 3. Allowing for customization
+
+### 4. Responding to design tokens
+
+### 5. Support for ARIA attributes
+
+### 6. Simple API
