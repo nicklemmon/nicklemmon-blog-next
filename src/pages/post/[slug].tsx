@@ -2,7 +2,8 @@ import React, { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { bundleMDX } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
-import mdxPrism from '@mapbox/rehype-prism'
+import rehypeShiki from '@shikijs/rehype'
+import { transformerNotationHighlight } from '@shikijs/transformers'
 import { getPosts, getPost } from '../../helpers'
 import PageTitle from '../../components/page-title'
 import { Post } from '../../layouts'
@@ -65,7 +66,26 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     source,
     cwd: POSTS_PATH,
     mdxOptions(options) {
-      options.rehypePlugins = [...(options.rehypePlugins ?? []), mdxPrism]
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        [
+          rehypeShiki,
+          {
+            theme: 'night-owl',
+            langs: [
+              'typescript',
+              'tsx',
+              'javascript',
+              'jsx',
+              'bash',
+              'json',
+              'css',
+              'html',
+            ],
+            transformers: [transformerNotationHighlight()],
+          }
+        ]
+      ]
 
       return options
     },
