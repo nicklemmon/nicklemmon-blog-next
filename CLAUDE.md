@@ -100,6 +100,18 @@ Uses Shiki (migrated from Prism) with night-owl theme. Configured in `src/pages/
 - Test files: `404-page.cy.js`, `about-page.cy.js`, `index-page.cy.js`, `navigation.cy.js`
 - Uses `@testing-library/cypress` and `cypress-real-events`
 
+## Code Quality
+
+**IMPORTANT: Always run linting after implementing changes**
+
+After making any code changes (adding features, fixing bugs, refactoring), you MUST run:
+
+```bash
+npm run lint
+```
+
+If linting errors are found, fix them before considering the task complete. This ensures code quality and consistency across the codebase.
+
 ## Key Constraints
 
 - Must use `--webpack` flag with Next.js commands (required for mdx-bundler)
