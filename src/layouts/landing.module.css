@@ -1,4 +1,4 @@
-.Hero {
+.hero {
   margin-top: calc(var(--header-height) * -1);
   padding-top: var(--header-height);
 
@@ -8,12 +8,12 @@
 }
 
 @media (min-width: 800px) {
-  .Main {
+  .main {
     display: grid;
     grid-template-columns: 3fr 2fr;
   }
 
-  .Sidebar.Sidebar {
+  .sidebar.sidebar {
     margin-top: calc(var(--header-height) * -1);
   }
 }

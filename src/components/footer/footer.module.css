@@ -1,4 +1,4 @@
-.Footer {
+.footer {
   background-color: var(--sea-shell);
   color: var(--outer-space);
   font-family: var(--font-family-secondary);
@@ -6,29 +6,29 @@
   flex: 1;
 }
 
-.Footer p {
+.footer p {
   margin: var(--spacing-md) 0;
 }
 
-.Container {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.SocialLinks {
+.social-links {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
 
-.SocialIcon {
+.social-icon {
   width: calc(1.25rem + 1vw);
   height: calc(1.25rem + 1vw);
 }
 
-.SocialLink,
-.FooterLink {
+.social-link,
+.footer-link {
   color: currentColor;
 }

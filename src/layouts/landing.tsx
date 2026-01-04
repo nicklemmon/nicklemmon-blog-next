@@ -11,12 +11,12 @@ import styles from './landing.module.css'
 export function Landing({ children }: { children: React.ReactNode }) {
   return (
     <Default>
-      <Header className={styles.Header} theme="dark" />
+      <Header className={styles["header"]} theme="dark" />
 
-      <Main className={styles.Main}>
-        <Hero className={styles.Hero} />
+      <Main className={styles["main"]}>
+        <Hero className={styles["hero"]} />
 
-        <MaxWidth className={styles.Sidebar} size="xl">
+        <MaxWidth className={styles["sidebar"]} size="xl">
           <BreakoutContainer>{children}</BreakoutContainer>
         </MaxWidth>
       </Main>

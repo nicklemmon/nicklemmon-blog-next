@@ -1,16 +1,16 @@
-.BreakoutContainer {
+.breakout-container {
   position: relative;
   background-color: var(--white);
   margin: 0 auto;
   background-color: var(--white);
 }
 
-.BreakoutContainer:after {
+.breakout-container:after {
   content: '';
 }
 
 @media (min-width: 800px) {
-  .BreakoutContainer:after {
+  .breakout-container:after {
     position: absolute;
     bottom: calc(var(--spacing-lg) * -1);
     left: 0;
@@ -22,6 +22,6 @@
   }
 }
 
-.Container {
+.container {
   padding-bottom: 0;
 }

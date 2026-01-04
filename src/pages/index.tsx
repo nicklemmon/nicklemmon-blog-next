@@ -13,11 +13,11 @@ import styles from './index.module.css'
 export default function LandingPage({ posts }: { posts: Array<Post> }) {
   return (
     <Landing>
-      <Heading as="h2" className={styles.ArticlesHeading}>
+      <Heading as="h2" className={styles["articles-heading"]}>
         <Highlight>The latest</Highlight>
 
         <IoArrowForwardSharp
-          className={styles.ArticlesHeadingIcon}
+          className={styles["articles-heading-icon"]}
           size="2rem"
         />
       </Heading>

@@ -9,17 +9,17 @@ export default function Footer() {
   const iconDimensions = 'calc(1.25rem + 1vw)'
 
   return (
-    <footer className={styles.Footer} data-cy="footer">
-      <Container size="lg" className={styles.Container}>
-        <div className={styles.SocialLinks}>
+    <footer className={styles["footer"]} data-cy="footer">
+      <Container size="lg" className={styles["container"]}>
+        <div className={styles["social-links"]}>
           <a
             href="https://codepen.io/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.SocialLink}
+            className={styles["social-link"]}
           >
             <IoLogoCodepen
-              className={styles.SocialIcon}
+              className={styles["social-icon"]}
               size={iconDimensions}
             />
 
@@ -32,9 +32,9 @@ export default function Footer() {
             href="https://github.com/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.SocialLink}
+            className={styles["social-link"]}
           >
-            <IoLogoGithub className={styles.SocialIcon} size={iconDimensions} />
+            <IoLogoGithub className={styles["social-icon"]} size={iconDimensions} />
 
             <ScreenReaderOnly>
               Nick Lemmon on GitHub (Opens in a new tab)
@@ -45,10 +45,10 @@ export default function Footer() {
             href="https://linkedin.com/in/nicklemmon"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.SocialLink}
+            className={styles["social-link"]}
           >
             <IoLogoLinkedin
-              className={styles.SocialIcon}
+              className={styles["social-icon"]}
               size={iconDimensions}
             />
 
@@ -61,7 +61,7 @@ export default function Footer() {
         <div>
           <p>
             All rights reserved,&nbsp;
-            <PageLink className={styles.FooterLink} href="/">
+            <PageLink className={styles["footer-link"]} href="/">
               <strong>Nick Lemmon</strong>
             </PageLink>
             &nbsp;{new Date().getFullYear()}

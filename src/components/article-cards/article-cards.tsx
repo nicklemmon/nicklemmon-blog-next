@@ -6,5 +6,5 @@ export default function ArticleCards({
 }: {
   children: React.ReactNode
 }) {
-  return <div className={styles.ArticleCards}>{children}</div>
+  return <div className={styles["article-cards"]}>{children}</div>
 }

@@ -8,10 +8,10 @@ import styles from './bio.module.css'
 
 export default function Bio({ className }: { className?: string }) {
   return (
-    <Card className={clsx(styles.Bio, className)}>
-      <div className={styles.ImgContainer}>
+    <Card className={clsx(styles["bio"], className)}>
+      <div className={styles["img-container"]}>
         <Image
-          className={styles.Img}
+          className={styles["img"]}
           src="/me.webp"
           alt="Nick Lemmon"
           layout="intrinsic"
@@ -20,7 +20,7 @@ export default function Bio({ className }: { className?: string }) {
         />
       </div>
 
-      <LongForm className={styles.Content}>
+      <LongForm className={styles["content"]}>
         <Heading as="h4">About Me</Heading>
 
         <p>

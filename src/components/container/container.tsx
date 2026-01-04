@@ -16,13 +16,13 @@ export default function Container({
   const getSizeClassName = (size: ContainerSize) => {
     switch (size) {
       case 'lg': {
-        return styles.Large
+        return styles["large"]
       }
       case 'xl': {
-        return styles.ExtraLarge
+        return styles["extra-large"]
       }
       case '2xl': {
-        return styles.ExtraExtraLarge
+        return styles["extra-extra-large"]
       }
       default: {
         return undefined
@@ -31,7 +31,7 @@ export default function Container({
   }
 
   return (
-    <div className={clsx(styles.Container, getSizeClassName(size), className)}>
+    <div className={clsx(styles["container"], getSizeClassName(size), className)}>
       {children}
     </div>
   )

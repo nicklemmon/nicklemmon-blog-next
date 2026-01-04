@@ -49,24 +49,24 @@ export default function Navigation({
   return (
     <div
       className={clsx(
-        styles.Navigation,
-        theme === 'light' && styles.LightTheme,
-        theme === 'dark' && styles.DarkTheme,
+        styles["navigation"],
+        theme === 'light' && styles["light-theme"],
+        theme === 'dark' && styles["dark-theme"],
         className
       )}
     >
       <FocusLock disabled={!isOpen}>
         <button
-          className={clsx(styles.Button, isOpen ? styles.isOpen : '')}
+          className={clsx(styles["button"], isOpen ? styles["is-open"] : '')}
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
           data-cy="navigation-button"
         >
           <ScreenReaderOnly>{isOpen ? 'Close' : 'Open'} Menu</ScreenReaderOnly>
 
-          <div className={clsx(styles.Bar, styles.Bar1)} role="presentation" />
+          <div className={clsx(styles["bar"], styles["bar-1"])} role="presentation" />
 
-          <div className={clsx(styles.Bar, styles.Bar2)} role="presentation" />
+          <div className={clsx(styles["bar"], styles["bar-2"])} role="presentation" />
         </button>
 
         <AnimatePresence>
@@ -89,20 +89,20 @@ function NavList({ handleClose }: { handleClose: () => void }) {
   return (
     <motion.nav
       transition={{ type: 'spring' }}
-      className={styles.Nav}
+      className={styles["nav"]}
       initial={animationStates.closed}
       animate={animationStates.open}
       exit={animationStates.closed}
     >
-      <PageLink className={styles.Link} href="/" onClick={handleClose}>
+      <PageLink className={styles["link"]} href="/" onClick={handleClose}>
         Home
       </PageLink>
 
-      <PageLink className={styles.Link} href="/archives" onClick={handleClose}>
+      <PageLink className={styles["link"]} href="/archives" onClick={handleClose}>
         Archives
       </PageLink>
 
-      <PageLink className={styles.Link} href="/about" onClick={handleClose}>
+      <PageLink className={styles["link"]} href="/about" onClick={handleClose}>
         About
       </PageLink>
     </motion.nav>

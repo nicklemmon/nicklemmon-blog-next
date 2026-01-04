@@ -28,15 +28,15 @@ export default function Button({
     <PageLink
       href={href}
       className={clsx(
-        styles.Button,
-        variant === 'primary' && styles.PrimaryVariant,
-        variant === 'secondary' && styles.SecondaryVariant,
-        variant === 'tertiary' && styles.TertiaryVariant,
-        variant === 'ghost' && styles.GhostVariant,
-        rounding === 'full' && styles.RoundingFull,
-        rounding === 'md' && styles.RoundingMd,
-        fullWidth && styles.FullWidth,
-        centered && styles.Centered,
+        styles["button"],
+        variant === 'primary' && styles["primary-variant"],
+        variant === 'secondary' && styles["secondary-variant"],
+        variant === 'tertiary' && styles["tertiary-variant"],
+        variant === 'ghost' && styles["ghost-variant"],
+        rounding === 'full' && styles["rounding-full"],
+        rounding === 'md' && styles["rounding-md"],
+        fullWidth && styles["full-width"],
+        centered && styles["centered"],
         className
       )}
     >

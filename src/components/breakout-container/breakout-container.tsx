@@ -8,8 +8,8 @@ export default function BreakoutContainer({
   children: React.ReactNode
 }) {
   return (
-    <div className={styles.BreakoutContainer}>
-      <Container size="lg" className={styles.Container}>
+    <div className={styles["breakout-container"]}>
+      <Container size="lg" className={styles["container"]}>
         {children}
       </Container>
     </div>

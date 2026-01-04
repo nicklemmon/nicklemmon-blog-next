@@ -23,23 +23,23 @@ export default function ArticleCard({
 }) {
   return (
     <PageLink
-      className={clsx(styles.Link, className)}
+      className={clsx(styles["link"], className)}
       href={href}
       data-id="article-card"
     >
-      <Card className={styles.ArticleCard}>
-        <div className={styles.Header}>
-          <Heading as="h3" className={styles.Heading}>
+      <Card className={styles["article-card"]}>
+        <div className={styles["header"]}>
+          <Heading as="h3" className={styles["heading"]}>
             {heading}
           </Heading>
 
-          <Subdued className={styles.Date}>{formatDate(date)}</Subdued>
+          <Subdued className={styles["date"]}>{formatDate(date)}</Subdued>
         </div>
 
         {children}
 
-        <span className={styles.ReadMore}>
-          <IoArrowForwardSharp className={styles.Icon} />
+        <span className={styles["read-more"]}>
+          <IoArrowForwardSharp className={styles["icon"]} />
         </span>
       </Card>
     </PageLink>

@@ -15,7 +15,7 @@ export default function MaxWidth({
 }) {
   return (
     <div
-      className={clsx(styles.MaxWidth, styles[`MaxWidth--${size}`], className)}
+      className={clsx(styles["max-width"], styles[`max-width--${size}`], className)}
     >
       {children}
     </div>

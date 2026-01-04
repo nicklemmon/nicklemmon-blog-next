@@ -9,5 +9,5 @@ export default function Highlight({
   children: React.ReactNode
   className?: string
 }) {
-  return <span className={clsx(styles.Highlight, className)}>{children}</span>
+  return <span className={clsx(styles["highlight"], className)}>{children}</span>
 }

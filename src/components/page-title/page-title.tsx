@@ -19,19 +19,19 @@ export default function PageTitle({
   image?: string
 }) {
   return (
-    <div className={clsx(styles.PageTitle, className)}>
+    <div className={clsx(styles["page-title"], className)}>
       <MaxWidth size="lg">
-        <Heading className={styles.Heading} as="h1">
+        <Heading className={styles["heading"]} as="h1">
           <Highlight>{children}</Highlight>
         </Heading>
 
-        {date && <div className={styles.Meta}>{formatDate(date)}</div>}
+        {date && <div className={styles["meta"]}>{formatDate(date)}</div>}
       </MaxWidth>
 
-      <div className={styles.Overlay} role="presentation" />
+      <div className={styles["overlay"]} role="presentation" />
 
       <Image
-        className={styles.Image}
+        className={styles["image"]}
         src={`/images/posts/${image}`}
         role="presentation"
         alt=""

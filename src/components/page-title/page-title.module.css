@@ -1,4 +1,4 @@
-.PageTitle {
+.page-title {
   background-color: var(--blue-ribbon);
   color: var(--white);
   position: relative; /* enables use of z-index */
@@ -7,20 +7,20 @@
   padding: var(--spacing-xl);
 }
 
-.Heading {
+.heading {
   position: relative;
   z-index: 3;
   text-align: center;
 }
 
 @media (min-width: 600px) {
-  .Heading {
+  .heading {
     text-align: left;
   }
 }
 
-.Overlay,
-.Image {
+.overlay,
+.image {
   position: absolute;
   top: 0;
   left: 0;
@@ -28,18 +28,18 @@
   height: 100%;
 }
 
-.Overlay {
+.overlay {
   z-index: 2;
   background-color: var(--blue-ribbon);
   opacity: 0.85;
 }
 
-.Image {
+.image {
   z-index: 1;
   object-fit: cover;
 }
 
-.Meta {
+.meta {
   position: relative;
   z-index: 3;
   width: 100%;
@@ -52,7 +52,7 @@
 }
 
 @media (min-width: 600px) {
-  .Meta {
+  .meta {
     text-align: left;
   }
 }

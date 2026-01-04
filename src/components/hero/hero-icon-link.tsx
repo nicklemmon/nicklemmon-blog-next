@@ -13,7 +13,7 @@ export default function HeroIconLink({
 }) {
   return (
     <a
-      className={styles.IconLink}
+      className={styles["icon-link"]}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -24,7 +24,7 @@ export default function HeroIconLink({
         {screenReaderContent} (Opens in a new tab)
       </ScreenReaderOnly>
 
-      <span className={styles.IconUnderlay} role="presentation" />
+      <span className={styles["icon-underlay"]} role="presentation" />
     </a>
   )
 }

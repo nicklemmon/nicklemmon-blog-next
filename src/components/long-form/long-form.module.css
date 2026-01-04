@@ -1,36 +1,36 @@
-.LongForm * + * {
+.long-form * + * {
   margin-top: var(--spacing-md);
 }
 
-.LongForm * + h2 {
+.long-form * + h2 {
   margin-top: var(--spacing-lg);
 }
 
-.LongForm * + h3,
-.LongForm * + h4,
-.LongForm * + h5,
-.LongForm * + h6 {
+.long-form * + h3,
+.long-form * + h4,
+.long-form * + h5,
+.long-form * + h6 {
   margin-top: var(--spacing-md);
   margin-bottom: 0;
 }
 
-.LongForm p + h3,
-.LongForm p + h4,
-.LongForm p + h5,
-.LongForm p + h6 {
+.long-form p + h3,
+.long-form p + h4,
+.long-form p + h5,
+.long-form p + h6 {
   margin-top: var(--spacing-lg);
 }
 
-.LongForm * + li {
+.long-form * + li {
   margin-top: var(--spacing-sm);
 }
 
-.LongForm h2 {
+.long-form h2 {
   position: relative;
   padding-bottom: var(--spacing-sm);
 }
 
-.LongForm h2:after {
+.long-form h2:after {
   content: '';
   position: absolute;
   left: 0;
@@ -40,24 +40,24 @@
   background-color: rgba(0, 0, 0, 0.125);
 }
 
-.LongForm p {
+.long-form p {
   margin-bottom: 0;
 }
 
-.LongForm p,
-.LongForm li {
+.long-form p,
+.long-form li {
   line-height: 1.75;
   color: var(--boulder);
 }
 
-.LongForm p a,
-.LongForm li a {
+.long-form p a,
+.long-form li a {
   color: var(--blue-ribbon);
   padding-bottom: 1px;
   border-bottom: 2px solid currentColor;
 }
 
-.LongForm :not(pre) > code {
+.long-form :not(pre) > code {
   color: black;
   background-color: rgba(0, 0, 0, 0.05);
   padding: 0.125rem 0.25rem;
@@ -65,19 +65,19 @@
   font-size: 0.85rem;
 }
 
-.LongForm.LongForm pre,
-.LongForm blockquote {
+.long-form.long-form pre,
+.long-form blockquote {
   margin: var(--spacing-md) -1rem;
 }
 
 @media (max-width: 600px) {
-  .LongForm.LongForm pre,
-  .LongForm blockquote {
+  .long-form.long-form pre,
+  .long-form blockquote {
     margin: var(--spacing-md) 0;
   }
 }
 
-.LongForm.LongForm pre {
+.long-form.long-form pre {
   display: block;
   border-radius: var(--border-radius);
   padding: var(--spacing-md);
@@ -85,7 +85,7 @@
   overflow-x: auto;
 }
 
-.LongForm.LongForm pre code {
+.long-form.long-form pre code {
   background: transparent !important;
   display: block;
   font-size: 0.825rem;
@@ -94,28 +94,28 @@
 }
 
 /* Highlighted lines (when using {2-4} syntax) */
-.LongForm.LongForm pre .highlighted {
+.long-form.long-form pre .highlighted {
   background-color: rgba(255, 255, 255, 0.1);
   display: block;
   margin: 0 calc(-1 * var(--spacing-md));
   padding: 0 var(--spacing-md);
 }
 
-.LongForm blockquote {
+.long-form blockquote {
   background-color: var(--sea-shell);
   padding: var(--spacing-lg);
   color: var(--outer-space);
   border-left: 0.5vw solid var(--outer-space);
 }
 
-.LongForm blockquote p {
+.long-form blockquote p {
   margin: 0;
 }
 
-.LongForm blockquote * {
+.long-form blockquote * {
   color: var(--outer-space);
 }
 
-.LongForm img {
+.long-form img {
   width: 100%;
 }

@@ -9,5 +9,5 @@ export default function Card({
   className?: string
   children?: React.ReactNode
 }) {
-  return <div className={clsx(styles.Card, className)}>{children}</div>
+  return <div className={clsx(styles["card"], className)}>{children}</div>
 }
