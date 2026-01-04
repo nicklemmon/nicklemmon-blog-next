@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "npm run prep:images && next dev --webpack",
     "build": "npm run prep:images && next build --webpack",
-    "lint": "npm eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "start": "next start",
     "test:e2e": "cypress open",
     "test:ci": "cypress run",
@@ -25,6 +26,8 @@
     "react-icons": "5.5.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
     "@next/eslint-plugin-next": "16.1.1",
     "@testing-library/cypress": "10.1.0",
     "@types/node": "24.10.4",
@@ -34,13 +37,16 @@
     "del": "8.0.1",
     "esbuild": "0.27.2",
     "eslint": "9.39.2",
+    "eslint-config-next": "^16.1.1",
     "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-cypress": "^4.2.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "mdx-bundler": "10.1.1",
     "prettier": "3.7.4",
     "rehype": "13.0.2",
     "sharp": "0.34.5",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.51.0"
   }
 }
