@@ -26,7 +26,7 @@ export function Page({
   return (
     <>
       <Head>
-        <title>{`${title} | Nick Lemmon, Front End Web Developer`}</title>
+        <title>{`${title} | Nick Lemmon, frontend engineering leader`}</title>
 
         {/* Open Graph */}
         <meta property="og:type" content="article" />
