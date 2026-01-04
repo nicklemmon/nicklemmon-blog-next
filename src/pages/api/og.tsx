@@ -8,7 +8,7 @@ export const config = {
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
-    const title = searchParams.get('title') || 'Nick Lemmon, Front End Web Developer'
+    const title = searchParams.get('title') || 'Nick Lemmon, frontend engineering leader'
     const date = searchParams.get('date')
 
     return new ImageResponse(
@@ -100,7 +100,7 @@ export default async function handler(req: NextRequest) {
                   fontWeight: 400,
                 }}
               >
-                Nick Lemmon
+                Nick Lemmon, frontend engineering leader
               </div>
             </div>
           </div>
