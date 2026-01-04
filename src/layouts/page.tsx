@@ -27,12 +27,23 @@ export function Page({
     <>
       <Head>
         <title>{`${title} | Nick Lemmon, Front End Web Developer`}</title>
+
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
-        <meta property="twitter:title" content={title} />
-        <meta name="description" content={description} />
-        <meta property="og:image" content={ogImageUrl} />
         <meta property="og:description" content={description} />
-        <meta property="twitter:description" content={description} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageUrl} />
+
+        {/* Standard meta */}
+        <meta name="description" content={description} />
         <meta
           name="keywords"
           content="javascript,testing,react,accessibility,css"
