@@ -9,5 +9,5 @@ export default function Main({
   children?: React.ReactNode
   className?: string
 }) {
-  return <main className={clsx(styles.Main, className)}>{children}</main>
+  return <main className={clsx(styles["main"], className)}>{children}</main>
 }

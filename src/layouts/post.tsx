@@ -25,7 +25,7 @@ export function Post({
     >
       <LongForm>{children}</LongForm>
 
-      <Bio className={styles.Bio} />
+      <Bio className={styles["bio"]} />
     </Page>
   )
 }

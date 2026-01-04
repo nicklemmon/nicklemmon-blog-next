@@ -1,4 +1,4 @@
-.Bio {
+.bio {
   position: relative; /* enables z-index */
   z-index: 1;
   padding: 0;
@@ -9,28 +9,28 @@
 }
 
 @media (max-width: 600px) {
-  .Bio {
+  .bio {
     margin: var(--spacing-md) 0 0 0; /* extra width that aligns with the `pre` and `blockquote` blocks within the LongForm component */
   }
 }
 
-.ImgContainer {
+.img-container {
   padding: var(--spacing-lg);
   padding-right: 0;
   width: 6rem;
 }
 
 @media (min-width: 600px) {
-  .ImgContainer {
+  .img-container {
     width: 8rem;
   }
 }
 
-.Content {
+.content {
   padding: var(--spacing-lg);
   padding-left: 0;
 }
 
-.Img {
+.img {
   border-radius: 50%;
 }

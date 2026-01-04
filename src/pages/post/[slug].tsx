@@ -29,7 +29,7 @@ export default function PostPage({
   if (query?.view === 'social-preview') {
     return (
       <PageTitle
-        className={styles.SocialPreview}
+        className={styles["social-preview"]}
         date={frontmatter.date}
         image={frontmatter.image}
       >

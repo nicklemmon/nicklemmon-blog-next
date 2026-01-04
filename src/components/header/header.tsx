@@ -12,9 +12,9 @@ export default function Header({
   theme: 'light' | 'dark'
 }) {
   return (
-    <header className={clsx(styles.Header, className)} data-cy="header">
+    <header className={clsx(styles["header"], className)} data-cy="header">
       <div>
-        <PageLink href="/" className={styles.BrandLink}>
+        <PageLink href="/" className={styles["brand-link"]}>
           Nick Lemmon
         </PageLink>
       </div>

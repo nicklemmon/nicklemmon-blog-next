@@ -19,37 +19,37 @@ export default function ResumePosition({
   endDate: string
 }) {
   return (
-    <div className={styles.Position}>
-      <div className={styles.PositionFirstHalf}>
-        <div className={styles.PositionHeadingWrapper}>
-          <div className={styles.PositionSuperheadingWrapper}>
-            <Heading as="h4" className={styles.PositionSuperheading}>
+    <div className={styles["position"]}>
+      <div className={styles["position-first-half"]}>
+        <div className={styles["position-heading-wrapper"]}>
+          <div className={styles["position-superheading-wrapper"]}>
+            <Heading as="h4" className={styles["position-superheading"]}>
               {subheading}
             </Heading>
 
             <span
               role="presentation"
-              className={styles.PositionSuberHeadingShadow}
+              className={styles["position-suber-heading-shadow"]}
             ></span>
           </div>
 
-          <Heading as="h5" className={styles.PositionHeading}>
+          <Heading as="h5" className={styles["position-heading"]}>
             {heading}
           </Heading>
         </div>
 
-        <Subdued className={styles.DateRange}>
-          <span className={styles.Date}>{startDate}&nbsp;</span>
+        <Subdued className={styles["date-range"]}>
+          <span className={styles["date"]}>{startDate}&nbsp;</span>
 
           <span>&mdash;</span>
 
           <ScreenReaderOnly>through</ScreenReaderOnly>
 
-          <span className={styles.Date}>&nbsp;{endDate}</span>
+          <span className={styles["date"]}>&nbsp;{endDate}</span>
         </Subdued>
       </div>
 
-      <div className={styles.PositionSecondHalf}>
+      <div className={styles["position-second-half"]}>
         <LongForm>{children}</LongForm>
       </div>
     </div>

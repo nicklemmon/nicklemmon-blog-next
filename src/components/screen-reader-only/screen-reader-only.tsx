@@ -6,5 +6,5 @@ export default function ScreenReaderOnly({
 }: {
   children: React.ReactNode
 }) {
-  return <span className={styles.ScreenReaderOnly}>{children}</span>
+  return <span className={styles["screen-reader-only"]}>{children}</span>
 }

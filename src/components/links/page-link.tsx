@@ -22,7 +22,7 @@ export default function PageLink({
     <Link
       href={href}
       onKeyDown={onKeyDown}
-      className={clsx(styles.PageLink, className)}
+      className={clsx(styles["page-link"], className)}
       data-id={props['data-id']}
       onClick={onClick}>
 

@@ -1,4 +1,4 @@
-.Button {
+.button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -12,63 +12,63 @@
   transition: background-color var(--duration) var(--easing);
 }
 
-.FullWidth {
+.full-width {
   width: 100%;
 }
 
-.Centered {
+.centered {
   margin: 0 auto;
 }
 
-.PrimaryVariant {
+.primary-variant {
   background-color: var(--blue-ribbon);
   color: var(--white);
   border-color: var(--blue-ribbon);
 }
 
-.PrimaryVariant:hover {
+.primary-variant:hover {
   background-color: var(--blue);
 }
 
-.PrimaryVariant:focus-visible {
+.primary-variant:focus-visible {
   outline-color: var(--blue);
 }
 
-.SecondaryVariant {
+.secondary-variant {
   background-color: var(--white);
   color: var(--blue-ribbon);
   border-color: var(--blue-ribbon);
 }
 
-.TertiaryVariant {
+.tertiary-variant {
   background-color: var(--white);
   color: var(--blue-ribbon);
   border-color: transparent;
 }
 
-.SecondaryVariant:hover,
-.TertiaryVariant:hover {
+.secondary-variant:hover,
+.tertiary-variant:hover {
   background-color: var(--sea-shell);
 }
 
-.GhostVariant {
+.ghost-variant {
   background-color: transparent;
   color: var(--white);
   border-color: var(--white);
 }
 
-.PrefixIcon {
+.prefix-icon {
   margin-right: var(--spacing-sm);
 }
 
-.SuffixIcon {
+.suffix-icon {
   margin-left: var(--spacing-sm);
 }
 
-.RoundingFull {
+.rounding-full {
   border-radius: calc(6 * var(--border-radius));
 }
 
-.RoundingMd {
+.rounding-md {
   border-radius: var(--border-radius);
 }

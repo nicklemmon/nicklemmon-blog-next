@@ -1,20 +1,20 @@
-.MaxWidth {
+.max-width {
   width: 100%;
   margin: 0 auto;
 }
 
-.MaxWidth--sm {
+.max-width--sm {
   max-width: var(--breakpoint-sm);
 }
 
-.MaxWidth--md {
+.max-width--md {
   max-width: var(--breakpoint-md);
 }
 
-.MaxWidth--lg {
+.max-width--lg {
   max-width: var(--breakpoint-lg);
 }
 
-.MaxWidth--xl {
+.max-width--xl {
   max-width: var(--breakpoint-xl);
 }

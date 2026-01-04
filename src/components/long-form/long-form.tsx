@@ -9,5 +9,5 @@ export default function LongForm({
   className?: string
   children: React.ReactNode
 }) {
-  return <div className={clsx(styles.LongForm, className)}>{children}</div>
+  return <div className={clsx(styles["long-form"], className)}>{children}</div>
 }

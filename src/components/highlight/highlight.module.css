@@ -1,8 +1,8 @@
-.Highlight {
+.highlight {
   position: relative; /* allows absolute positioning within */
 }
 
-.Highlight:after {
+.highlight:after {
   content: '';
   position: absolute;
   bottom: 10%;

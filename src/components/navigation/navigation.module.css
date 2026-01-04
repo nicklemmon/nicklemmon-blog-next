@@ -1,8 +1,8 @@
-.Navigation {
+.navigation {
   position: relative; /* allows absolute positioning within */
 }
 
-.Button {
+.button {
   position: relative; /* allows use of z-index */
   z-index: 15;
   display: flex;
@@ -20,30 +20,30 @@
   transition: transform var(--duration) var(--easing);
 }
 
-.Button:hover,
-.Button:focus {
+.button:hover,
+.button:focus {
   transform: scale(0.9);
 }
 
-.Button.isOpen:focus {
+.button.is-open:focus {
   outline-color: var(--white);
 }
 
 /* Some specificity wars here */
-.Button.isOpen .Bar.Bar {
+.button.is-open .bar.bar {
   margin: 0;
   background-color: var(--white);
 }
 
-.Button.isOpen .Bar1 {
+.button.is-open .bar-1 {
   transform: translateY(1px) rotate(45deg);
 }
 
-.Button.isOpen .Bar2 {
+.button.is-open .bar-2 {
   transform: translateY(-1px) rotate(-45deg);
 }
 
-.Bar {
+.bar {
   height: 2px;
   width: calc(var(--header-height) * 0.75);
   margin: 6px 0;
@@ -51,21 +51,21 @@
   transition: transform var(--duration) var(--easing);
 }
 
-.Navigation.DarkTheme .Bar {
+.navigation.dark-theme .bar {
   background-color: var(--white);
 }
 
 @media (min-width: 800px) {
-  .Navigation.DarkTheme .Bar {
+  .navigation.dark-theme .bar {
     background-color: var(--outer-space);
   }
 }
 
-.Navigation.LightTheme .Bar {
+.navigation.light-theme .bar {
   background-color: var(--white);
 }
 
-.Nav {
+.nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -79,7 +79,7 @@
   background-color: rgba(0, 71, 254, 0.95);
 }
 
-.Link {
+.link {
   font-family: var(--font-family-secondary);
   font-size: calc(1.75rem + 0.5vw);
   display: block;
@@ -89,6 +89,6 @@
   transition: transform var(--duration) var(--easing);
 }
 
-.Link:hover {
+.link:hover {
   transform: translateY(-0.125rem);
 }

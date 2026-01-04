@@ -1,26 +1,26 @@
-.Hero,
-.Container {
+.hero,
+.container {
   position: relative;
 }
 
-.Hero {
+.hero {
   color: var(--white);
   z-index: 1;
 }
 
-.Container {
+.container {
   z-index: 3;
 }
 
-.Title.Title {
+.title.title {
   /* specificity waaaars */
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
   text-align: center;
 }
 
-.Overlay,
-.Image {
+.overlay,
+.image {
   position: absolute;
   top: 0;
   left: 0;
@@ -28,23 +28,23 @@
   height: 100%;
 }
 
-.Overlay {
+.overlay {
   z-index: 2;
   background-color: var(--blue-ribbon);
   opacity: 0.75;
 }
 
-.Image {
+.image {
   z-index: 1;
   object-fit: cover;
 }
 
-.Links {
+.links {
   display: flex;
   justify-content: space-around;
 }
 
-.IconUnderlay {
+.icon-underlay {
   position: absolute;
   z-index: 4;
   top: -25%;
@@ -65,22 +65,22 @@
     border-radius calc(var(--duration) * 2) var(--easing);
 }
 
-.IconLink {
+.icon-link {
   position: relative; /* allows absolute positioning within */
   color: currentColor;
   line-height: 0;
   outline-offset: 1.5rem;
 }
 
-.IconLink:focus .IconUnderlay,
-.IconLink:hover .IconUnderlay {
+.icon-link:focus .icon-underlay,
+.icon-link:hover .icon-underlay {
   transform: scale(1);
   border-radius: 50%;
   opacity: 1;
   visibility: visible;
 }
 
-.Icon {
+.icon {
   position: relative; /* allows use of z-index */
   z-index: 5;
   width: calc(2.5rem + 1.5vw);
@@ -88,7 +88,7 @@
 }
 
 @media (min-width: 800px) {
-  .Hero {
+  .hero {
     display: flex;
     align-items: center;
     justify-content: center;

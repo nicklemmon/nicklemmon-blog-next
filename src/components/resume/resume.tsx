@@ -7,8 +7,8 @@ import styles from './resume.module.css'
 
 export default function Resume() {
   return (
-    <div className="Resume">
-      <Card className={styles.Card}>
+    <div className="resume">
+      <Card className={styles['card']}>
         <LongForm>
           <Heading as="h3">Goals</Heading>
 
@@ -24,11 +24,11 @@ export default function Resume() {
         </LongForm>
       </Card>
 
-      <Card className={styles.Card}>
+      <Card className={styles['card']}>
         <LongForm>
           <Heading as="h3">Skills</Heading>
 
-          <ul className="Resume-skills">
+          <ul className="resume-skills">
             <li>Extensive experience authoring WCAG AA compliant HTML</li>
 
             <li>
@@ -81,7 +81,7 @@ export default function Resume() {
         </LongForm>
       </Card>
 
-      <Card className={styles.Card}>
+      <Card className={styles['card']}>
         <Heading as="h3">Experience</Heading>
 
         <ResumePosition
@@ -183,7 +183,7 @@ export default function Resume() {
         </ResumePosition>
       </Card>
 
-      <Card className={styles.Card}>
+      <Card className={styles['card']}>
         <LongForm>
           <Heading as="h3">Awards, Achievements, and Certifications</Heading>
 
@@ -210,7 +210,7 @@ export default function Resume() {
         </LongForm>
       </Card>
 
-      <Card className={styles.Card}>
+      <Card className={styles['card']}>
         <LongForm>
           <Heading as="h3">Additional Experience</Heading>
 

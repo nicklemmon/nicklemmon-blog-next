@@ -9,5 +9,5 @@ export default function Subdued({
   className?: string
   children: React.ReactNode
 }) {
-  return <span className={clsx(styles.Subdued, className)}>{children}</span>
+  return <span className={clsx(styles["subdued"], className)}>{children}</span>
 }
