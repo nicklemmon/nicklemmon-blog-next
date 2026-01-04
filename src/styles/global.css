@@ -84,7 +84,7 @@ h6 {
 
 pre,
 code {
-  color: #fff;
+  color: var(--white);
 }
 
 iframe {
