@@ -32,7 +32,236 @@ solution:
 
 ### 1. Work across all devices and screen densities
 
+SVGs are the ideal solution to scale infinitely and work across all densities.
+Technically icon fonts offer similar resolution benefits, however, come with
+their own baggage when managing web font files, handling color, and relevant
+ARIA attributes. Inline SVGs or SVG sprite sheets would work just fine for this
+scenario.
+
+Using inline SVGs, a [Lit](https://lit.dev) web component could be structured
+like so:
+
+```ts
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
+/**
+ * A simple icon component that renders inline SVGs based on the icon name.
+ */
+@customElement('my-icon')
+export class MyIcon extends LitElement {
+  /** The name of the icon to display */
+  @property()
+  icon?: 'home' | 'search';
+
+  /** The size of the icon in CSS width/height units */
+  @property()
+  size = '1rem';
+
+  static styles = css`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  `;
+
+  /** Renders the appropriate SVG based on the icon property */
+  private renderIcon() {
+    switch (this.icon) {
+      case 'home':
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        `;
+
+      case 'search':
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        `;
+
+      default:
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        `;
+    }
+  }
+
+  render() {
+    return html`
+      <div style="width: ${this.size}; height: ${this.size};">
+        ${this.renderIcon()}
+      </div>
+    `;
+  }
+}
+```
+
+This can then be used in HTML like so, each icon scaling to match any size or
+screen density:
+
+```html
+<my-icon icon="home"></my-icon>
+<my-icon icon="search"></my-icon>
+<my-icon icon="search" size="100px"></my-icon>
+```
+
+<iframe src="https://stackblitz.com/edit/vitejs-vite-gxeacepx?ctl=1&embed=1&file=index.html&view=preview"></iframe>
+
 ### 2. Efficient, cache-able icon sets
+
+Inline SVGs have ticked the first box, however, immediately stumble when it
+comes to efficiency and caching. Each element rendered in the DOM comes with
+some negative performance impact (see Google Lighthouse audit,
+[Optimize DOM size](https://developer.chrome.com/docs/performance/insights/dom-size#how_to_pass_this_insight)),
+and ideally we would want each icon to only be in the DOM one time rather than
+repeated.
+
+As a result, reaching or SVG sprite sheets seems like the most logical
+conclusion. This way, we can get the benefits of infinite scaling across all
+device/screen types while also allowing for caching.
+
+```ts
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
+/**
+ * A simple icon component that renders inline SVGs based on the icon name.
+ */
+@customElement('my-icon')
+export class MyIcon extends LitElement {
+  /** The name of the icon to display */
+  @property()
+  icon?: 'home' | 'search';
+
+  /** The size of the icon in CSS width/height units */
+  @property()
+  size = '1rem';
+
+  static styles = css`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  `;
+
+  /** Renders the appropriate SVG based on the icon property */
+  private renderIcon() {
+    switch (this.icon) {
+      case 'home':
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        `;
+
+      case 'search':
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        `;
+
+      default:
+        return html`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        `;
+    }
+  }
+
+  render() {
+    return html`
+      <div style="width: ${this.size}; height: ${this.size};">
+        ${this.renderIcon()}
+      </div>
+    `;
+  }
+}
+```
+
+The sprite sheet will render in the DOM, and then each time an icon is
+referenced, it points back to the original sprite sheet. Unfortunately the
+sprite sheet is duplicated in every instance of `my-icon` throughout the
+document! Let's try to have an external sprite sheet file like so:
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-home" viewBox="0 0 24 24">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+  </symbol>
+
+  <symbol id="icon-search" viewBox="0 0 24 24">
+    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+  </symbol>
+</svg>
+```
+
+And then we have a path within our component to reference the sprite sheet:
+
+```ts
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
+/**
+ * A simple icon component that renders SVG icons from an external sprite sheet.
+ * The sprite sheet path can be configured via the static spritePath property.
+ */
+@customElement('my-icon')
+export class MyIcon extends LitElement {
+  /** Path to the SVG sprite sheet file */
+  static spritePath = '/assets/icons-sprite.svg';
+
+  /** The name of the icon to display */
+  @property()
+  icon = '';
+
+  /** The size of the icon in CSS width/height units */
+  @property()
+  size = "1rem";
+
+  static styles = css`
+    :host {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  `;
+
+  render() {
+    return html`
+      <svg width="${this.size}" height="${this.size}">
+        <use href="${MyIcon.spritePath}#icon-${this.icon}"></use>
+      </svg>
+    `;
+  }
+}
+```
 
 ### 3. Allowing for customization
 
