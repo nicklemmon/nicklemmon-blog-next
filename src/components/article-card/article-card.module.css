@@ -1,7 +1,7 @@
 .article-card {
   height: 100%;
   position: relative; /* allows absolute positioning within */
-  color: var(--outer-space);
+  color: var(--text);
   transition:
     transform var(--duration) var(--easing),
     box-shadow var(--duration) var(--easing);
@@ -16,7 +16,7 @@
 
 .link {
   display: block; /* fixes focus styling issues */
-  outline-color: var(--blue-ribbon);
+  outline-color: var(--link);
   border: 0;
 }
 
@@ -31,7 +31,7 @@
   margin-top: var(--spacing-sm);
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--boulder);
+  color: var(--text-subdued);
 }
 
 .header {
@@ -41,18 +41,18 @@
 .heading.heading {
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--outer-space);
+  color: var(--text);
 }
 
 .read-more {
-  color: var(--blue-ribbon);
+  color: var(--interactive);
   position: absolute;
   bottom: var(--spacing-md);
   right: var(--spacing-md);
 }
 
 .icon {
-  fill: var(--blue-ribbon);
+  fill: var(--interactive);
   width: 1rem;
   height: 1rem;
 }

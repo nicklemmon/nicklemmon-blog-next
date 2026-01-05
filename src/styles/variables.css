@@ -1,17 +1,9 @@
+@import './color-tokens.css';
+
 :root {
   /* typography */
   --font-family-primary: 'Source Sans Pro', serif;
   --font-family-secondary: 'Source Sans Pro', sans-serif;
-
-  /* colors */
-  --blue-ribbon: #0047fe;
-  --blue: #0c0fe7;
-  --outer-space: #293038;
-  --sea-shell: #f1f1f1;
-  --semi-transparent-black: rgba(0, 0, 0, 0.125);
-  --shadow-color: rgba(0, 0, 0, 0.33);
-  --boulder: #575757;
-  --white: #fff;
 
   /* spacing */
   --spacing-xs: 0.25rem;
@@ -41,16 +33,4 @@
   /* misc */
   --header-height: 3rem;
   --border-radius: 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Remap colors for dark mode */
-    --outer-space: #e8e8e8;
-    --sea-shell: #1a1a1a;
-    --white: #0d0d0d;
-    --boulder: #a8a8a8;
-    --semi-transparent-black: rgba(255, 255, 255, 0.125);
-    --shadow-color: rgba(0, 0, 0, 0.66);
-  }
 }

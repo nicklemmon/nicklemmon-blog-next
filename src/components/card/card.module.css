@@ -1,8 +1,11 @@
 .card {
-  background-color: var(--white);
+  --card-border: color-mix(in srgb, var(--text) 20%, transparent);
+  --card-shadow: color-mix(in srgb, var(--text) 15%, transparent);
+
+  background-color: var(--surface);
   padding: var(--spacing-md);
   border-radius: 18px;
-  border: 1px solid var(--semi-transparent-black);
+  border: 1px solid var(--card-border);
   box-shadow: 0 var(--spacing-sm) var(--spacing-md) calc(-1 * var(--spacing-sm))
-    rgba(0, 0, 0, 0.125);
+    var(--card-shadow);
 }
