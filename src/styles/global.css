@@ -22,7 +22,7 @@ body {
 html {
   font-size: calc(15px + 0.25vw);
   font-family: var(--font-family-primary);
-  color: var(--outer-space);
+  color: var(--text);
 }
 
 a {
@@ -84,7 +84,7 @@ h6 {
 
 pre,
 code {
-  color: var(--white);
+  color: var(--on-interactive);
 }
 
 iframe {

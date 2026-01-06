@@ -43,7 +43,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  color: var(--white);
+  color: var(--on-interactive);
   font-size: 1.125rem;
   font-weight: 700;
   text-align: left;

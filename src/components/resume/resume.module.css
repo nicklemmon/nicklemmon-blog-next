@@ -47,9 +47,9 @@
   font-weight: 400;
   height: var(--spacing-lg);
   min-width: 100%;
-  color: var(--white);
+  color: var(--on-interactive);
   margin-bottom: var(--spacing-md);
-  background-color: var(--blue-ribbon);
+  background-color: var(--interactive);
   position: relative; /* enables z-index */
   z-index: var(--layer-md);
   -webkit-clip-path: polygon(
@@ -73,8 +73,7 @@
   left: 0;
   background-color: transparent;
   z-index: var(--layer-sm);
-  box-shadow: 0 var(--spacing-sm) var(--spacing-sm) -0.25rem
-    var(--semi-transparent-black);
+  box-shadow: 0 var(--spacing-sm) var(--spacing-sm) -0.25rem var(--border);
 }
 
 .date-range {
@@ -90,6 +89,6 @@
 
 @media (min-width: 600px) {
   .position-second-half {
-    border-left: 1px solid var(--semi-transparent-black);
+    border-left: 1px solid var(--border);
   }
 }

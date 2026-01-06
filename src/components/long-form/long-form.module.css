@@ -41,7 +41,7 @@
   bottom: 0;
   width: var(--spacing-lg);
   height: var(--spacing-xs);
-  background-color: var(--semi-transparent-black);
+  background-color: var(--border);
 }
 
 .long-form p {
@@ -51,7 +51,7 @@
 .long-form p,
 .long-form li {
   line-height: 1.75;
-  color: var(--boulder);
+  color: var(--text-subdued);
 }
 
 .long-form p a,
@@ -62,7 +62,7 @@
 }
 
 .long-form :not(pre) > code {
-  color: var(--outer-space);
+  color: var(--text);
   border: 1px solid var(--border);
   background-color: var(--surface-subdued);
   padding: 0.125rem 0.25rem;
