@@ -32,7 +32,7 @@
 /* Some specificity wars here */
 .button.is-open .bar.bar {
   margin: 0;
-  background-color: var(--white);
+  background-color: var(--text);
 }
 
 .button.is-open .bar-1 {
@@ -47,22 +47,23 @@
   height: 2px;
   width: calc(var(--header-height) * 0.75);
   margin: 6px 0;
-  background-color: var(--white);
+  background-color: var(--text);
+  transform-origin: center;
   transition: transform var(--duration) var(--easing);
 }
 
 .navigation.dark-theme .bar {
-  background-color: var(--white);
+  background-color: var(--text);
 }
 
 @media (min-width: 800px) {
   .navigation.dark-theme .bar {
-    background-color: var(--outer-space);
+    background-color: var(--text);
   }
 }
 
 .navigation.light-theme .bar {
-  background-color: var(--white);
+  background-color: var(--text);
 }
 
 .nav {
@@ -76,16 +77,17 @@
   z-index: 10;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 71, 254, 0.95);
+  background-color: color-mix(in srgb, var(--interactive) 90%, transparent);
 }
 
 .link {
   font-family: var(--font-family-secondary);
   font-size: calc(1.75rem + 0.5vw);
   display: block;
-  color: var(--white);
+  color: var(--on-interactive);
   padding: var(--spacing-xs) var(--spacing-sm);
   text-align: right;
+  transform-origin: center;
   transition: transform var(--duration) var(--easing);
 }
 

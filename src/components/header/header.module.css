@@ -21,7 +21,7 @@
   font-family: var(--font-family-secondary);
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--outer-space);
-  background-color: var(--white);
+  color: var(--text);
+  background-color: var(--surface);
   border: 0;
 }

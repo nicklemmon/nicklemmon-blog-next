@@ -9,7 +9,9 @@
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color var(--duration) var(--easing);
+  transition:
+    background-color var(--duration) var(--easing),
+    border-color var(--duration) var(--easing);
 }
 
 .full-width {
@@ -28,6 +30,7 @@
 
 .primary-variant:hover {
   background-color: var(--interactive-hover);
+  border-color: var(--interactive-hover);
 }
 
 .primary-variant:focus-visible {

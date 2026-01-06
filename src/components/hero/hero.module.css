@@ -4,7 +4,7 @@
 }
 
 .hero {
-  color: var(--white);
+  color: var(--on-interactive);
   z-index: 1;
 }
 
@@ -30,7 +30,7 @@
 
 .overlay {
   z-index: 2;
-  background-color: var(--blue-ribbon);
+  background-color: var(--interactive-hover);
   opacity: 0.75;
 }
 
@@ -49,7 +49,7 @@
   z-index: 4;
   top: -25%;
   left: -25%;
-  background-color: var(--blue-ribbon);
+  background-color: var(--interactive);
   width: 150%;
   height: 150%;
   border-radius: 1.5rem;

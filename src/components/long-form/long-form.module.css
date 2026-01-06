@@ -1,3 +1,7 @@
+.long-form {
+  color: var(--text);
+}
+
 .long-form * + * {
   margin-top: var(--spacing-md);
 }
@@ -52,14 +56,15 @@
 
 .long-form p a,
 .long-form li a {
-  color: var(--blue-ribbon);
+  color: var(--interactive);
   padding-bottom: 1px;
   border-bottom: 2px solid currentColor;
 }
 
 .long-form :not(pre) > code {
   color: var(--outer-space);
-  background-color: var(--sea-shell);
+  border: 1px solid var(--border);
+  background-color: var(--surface-subdued);
   padding: 0.125rem 0.25rem;
   border-radius: 3px;
   font-size: 0.85rem;
@@ -79,8 +84,9 @@
 
 .long-form.long-form pre {
   display: block;
-  border-radius: var(--border-radius);
+  border-radius: calc(var(--border-radius) * 2);
   padding: var(--spacing-md);
+  border: 1px solid var(--border);
   box-shadow: 0 1rem 1rem -1rem var(--shadow-color);
   overflow-x: auto;
 }
@@ -102,10 +108,10 @@
 }
 
 .long-form blockquote {
-  background-color: var(--sea-shell);
+  background-color: var(--surface-subdued);
   padding: var(--spacing-lg);
-  color: var(--outer-space);
-  border-left: 0.5vw solid var(--outer-space);
+  color: var(--text);
+  border-left: 0.5vw solid var(--border);
 }
 
 .long-form blockquote p {
@@ -113,7 +119,7 @@
 }
 
 .long-form blockquote * {
-  color: var(--outer-space);
+  color: var(--text);
 }
 
 .long-form img {

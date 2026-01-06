@@ -22,7 +22,8 @@
 
 :root {
   --color-blue-ribbon: #0047fe;
-  --color-blue: #0c0fe7;
+  --color-cornflower: #2663fd;
+  --color-blue: #0307e8;
   --color-outer-space: #293038;
   --color-sea-shell: #f1f1f1;
   --color-semi-transparent-white: rgba(255, 255, 255, 0.125);
@@ -30,6 +31,7 @@
   --color-shadow-color: rgba(0, 0, 0, 0.33);
   --color-boulder: #575757;
   --color-white: #fff;
+  --color-black: #000;
 }
 
 /* ==========================================================================
@@ -40,6 +42,8 @@
   color-scheme: light;
 
   --surface: var(--color-white);
+  --surface-subdued: var(--color-sea-shell);
+
   --text: var(--color-outer-space);
   --text-subdued: var(--color-boulder);
   --border: var(--color-semi-transparent-black);
@@ -65,11 +69,13 @@
     color-scheme: dark;
 
     --surface: var(--color-outer-space);
+    --surface-subdued: var(--color-black);
+
     --text: var(--color-white);
     --text-subdued: var(--color-white);
     --border: var(--color-semi-transparent-white);
 
-    --interactive: var(--color-blue-ribbon);
+    --interactive: var(--color-cornflower);
     --interactive-hover: var(--color-blue-ribbon);
     --on-interactive: var(--color-white);
 
@@ -86,11 +92,13 @@
 
 [data-island='emphasis'] {
   --surface: var(--color-outer-space);
+  --surface-subdued: var(--color-black);
+
   --text: var(--color-white);
   --text-subdued: var(--color-white);
   --border: var(--color-semi-transparent-white);
 
-  --interactive: var(--color-blue-ribbon);
+  --interactive: var(--color-cornflower);
   --interactive-hover: var(--color-blue-ribbon);
   --on-interactive: var(--color-white);
 
@@ -107,11 +115,13 @@
 @media (prefers-color-scheme: dark) {
   [data-island='emphasis'] {
     --surface: var(--color-outer-space);
+    --surface-subdued: var(--color-black);
+
     --text: var(--color-white);
     --text-subdued: var(--color-white);
     --border: var(--color-semi-transparent-white);
 
-    --interactive: var(--color-blue-ribbon);
+    --interactive: var(--color-cornflower);
     --interactive-hover: var(--color-blue-ribbon);
     --on-interactive: var(--color-white);
 
