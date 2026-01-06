@@ -1,8 +1,7 @@
 .breakout-container {
   position: relative;
-  background-color: var(--white);
+  background-color: var(--surface);
   margin: 0 auto;
-  background-color: var(--white);
 }
 
 .breakout-container:after {
@@ -16,12 +15,12 @@
     left: 0;
     width: 100%;
     height: var(--spacing-lg);
-    background-color: var(--white);
+    background-color: var(--surface);
     z-index: var(--layer-md);
     box-shadow: 0 var(--spacing-sm) var(--spacing-md) rgba(0, 0, 0, 0.033);
   }
-}
 
-.container {
-  padding-bottom: 0;
+  .container {
+    padding-bottom: 0;
+  }
 }

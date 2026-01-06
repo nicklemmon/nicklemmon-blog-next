@@ -5,11 +5,13 @@
   padding: var(--spacing-md) var(--spacing-lg);
   font-family: var(--font-family-secondary);
 
-  border: 2px solid #000; /* black is just a placeholder to be overidden */
+  border: 2px solid currentColor;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color var(--duration) var(--easing);
+  transition:
+    background-color var(--duration) var(--easing),
+    border-color var(--duration) var(--easing);
 }
 
 .full-width {
@@ -21,40 +23,41 @@
 }
 
 .primary-variant {
-  background-color: var(--blue-ribbon);
-  color: var(--white);
-  border-color: var(--blue-ribbon);
+  background-color: var(--interactive);
+  color: var(--on-interactive);
+  border-color: var(--interactive);
 }
 
 .primary-variant:hover {
-  background-color: var(--blue);
+  background-color: var(--interactive-hover);
+  border-color: var(--interactive-hover);
 }
 
 .primary-variant:focus-visible {
-  outline-color: var(--blue);
+  outline-color: var(--interactive-hover);
 }
 
 .secondary-variant {
-  background-color: var(--white);
-  color: var(--blue-ribbon);
-  border-color: var(--blue-ribbon);
+  background-color: var(--on-interactive);
+  color: var(--interactive);
+  border-color: var(--interactive);
 }
 
 .tertiary-variant {
-  background-color: var(--white);
-  color: var(--blue-ribbon);
+  background-color: var(--on-interactive);
+  color: var(--interactive);
   border-color: transparent;
 }
 
 .secondary-variant:hover,
 .tertiary-variant:hover {
-  background-color: var(--sea-shell);
+  background-color: var(--on-interactive);
 }
 
 .ghost-variant {
   background-color: transparent;
-  color: var(--white);
-  border-color: var(--white);
+  color: var(--surface);
+  border-color: var(--surface);
 }
 
 .prefix-icon {

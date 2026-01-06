@@ -1,6 +1,6 @@
 .page-title {
-  background-color: var(--blue-ribbon);
-  color: var(--white);
+  background-color: var(--interactive);
+  color: var(--on-interactive);
   position: relative; /* enables use of z-index */
   z-index: 1;
   margin-top: -3rem;
@@ -30,7 +30,7 @@
 
 .overlay {
   z-index: 2;
-  background-color: var(--blue-ribbon);
+  background-color: var(--interactive);
   opacity: 0.85;
 }
 
@@ -43,7 +43,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  color: var(--white);
+  color: var(--on-interactive);
   font-size: 1.125rem;
   font-weight: 700;
   text-align: left;

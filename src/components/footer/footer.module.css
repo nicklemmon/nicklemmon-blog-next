@@ -1,6 +1,6 @@
 .footer {
-  background-color: var(--sea-shell);
-  color: var(--outer-space);
+  background-color: var(--surface-subdued);
+  color: var(--text);
   font-family: var(--font-family-secondary);
   text-align: center;
   flex: 1;
