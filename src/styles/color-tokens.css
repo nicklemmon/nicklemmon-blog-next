@@ -1,19 +1,12 @@
 /* ==========================================================================
    Design Tokens
    ==========================================================================
-   
+
    Architecture:
    1. Primitives - Raw color values
    2. Mode layer - Light/dark via prefers-color-scheme media query
-   3. Island layer - Contextual overrides (default, emphasis)
-   4. Components consume semantic tokens, agnostic to mode/island
-   
-   Usage:
-   <body>
-     <section>Default island content</section>
-     <section data-island="emphasis">Emphasis island content</section>
-   </body>
-   
+   3. Components consume semantic tokens, agnostic to mode
+
    ========================================================================== */
 
 /* ==========================================================================
@@ -28,9 +21,11 @@
   --color-sea-shell: #f1f1f1;
   --color-semi-transparent-white: rgba(255, 255, 255, 0.125);
   --color-semi-transparent-black: rgba(0, 0, 0, 0.125);
-  --color-shadow-color: rgba(0, 0, 0, 0.33);
+  --color-shadow-light: rgba(0, 0, 0, 0.33);
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
   --color-boulder: #575757;
   --color-white: #fff;
+  --color-white-subdued: rgba(255, 255, 255, 0.7);
   --color-black: #131313;
 }
 
@@ -55,9 +50,7 @@
   --link: var(--color-blue-ribbon);
   --link-hover: var(--color-blue);
 
-  --focus-ring: var(--color-blue-ribbon);
-
-  /** TODO: Add a shadow token **/
+  --shadow: var(--color-shadow-light);
 }
 
 /* ==========================================================================
@@ -72,7 +65,7 @@
     --surface-subdued: var(--color-outer-space);
 
     --text: var(--color-white);
-    --text-subdued: var(--color-white);
+    --text-subdued: var(--color-white-subdued);
     --border: var(--color-semi-transparent-white);
 
     --interactive: var(--color-cornflower);
@@ -82,52 +75,6 @@
     --link: var(--color-blue-ribbon);
     --link-hover: var(--color-blue);
 
-    --focus-ring: var(--color-blue-ribbon);
-  }
-}
-
-/* ==========================================================================
-   Emphasis Island - Light Mode
-   ========================================================================== */
-
-[data-island='emphasis'] {
-  --surface: var(--color-outer-space);
-  --surface-subdued: var(--color-black);
-
-  --text: var(--color-white);
-  --text-subdued: var(--color-white);
-  --border: var(--color-semi-transparent-white);
-
-  --interactive: var(--color-cornflower);
-  --interactive-hover: var(--color-blue-ribbon);
-  --on-interactive: var(--color-white);
-
-  --link: var(--color-blue-ribbon);
-  --link-hover: var(--color-blue);
-
-  --focus-ring: var(--color-blue-ribbon);
-}
-
-/* ==========================================================================
-   Emphasis Island - Dark Mode
-   ========================================================================== */
-
-@media (prefers-color-scheme: dark) {
-  [data-island='emphasis'] {
-    --surface: var(--color-outer-space);
-    --surface-subdued: var(--color-black);
-
-    --text: var(--color-white);
-    --text-subdued: var(--color-white);
-    --border: var(--color-semi-transparent-white);
-
-    --interactive: var(--color-cornflower);
-    --interactive-hover: var(--color-blue-ribbon);
-    --on-interactive: var(--color-white);
-
-    --link: var(--color-blue-ribbon);
-    --link-hover: var(--color-blue);
-
-    --focus-ring: var(--color-blue-ribbon);
+    --shadow: var(--color-shadow-dark);
   }
 }

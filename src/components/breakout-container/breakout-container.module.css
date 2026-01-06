@@ -19,4 +19,8 @@
     z-index: var(--layer-md);
     box-shadow: 0 var(--spacing-sm) var(--spacing-md) rgba(0, 0, 0, 0.033);
   }
+
+  .container {
+    padding-bottom: 0;
+  }
 }

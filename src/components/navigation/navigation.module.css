@@ -32,7 +32,7 @@
 /* Some specificity wars here */
 .button.is-open .bar.bar {
   margin: 0;
-  background-color: var(--text);
+  background-color: var(--on-interactive);
 }
 
 .button.is-open .bar-1 {

@@ -87,7 +87,7 @@
   border-radius: calc(var(--border-radius) * 2);
   padding: var(--spacing-md);
   border: 1px solid var(--border);
-  box-shadow: 0 1rem 1rem -1rem var(--shadow-color);
+  box-shadow: 0 1rem 1rem -1rem var(--shadow);
   overflow-x: auto;
 }
 

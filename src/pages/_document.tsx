@@ -27,6 +27,8 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="shortcut icon" href="/favicon.png" />
+          <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+          <meta name="theme-color" content="#131313" media="(prefers-color-scheme: dark)" />
         </Head>
 
         {/* Global site tag (gtag.js) - Google Analytics */}
