@@ -31,7 +31,7 @@
   --color-shadow-color: rgba(0, 0, 0, 0.33);
   --color-boulder: #575757;
   --color-white: #fff;
-  --color-black: #000;
+  --color-black: #131313;
 }
 
 /* ==========================================================================
@@ -68,8 +68,8 @@
   :root {
     color-scheme: dark;
 
-    --surface: var(--color-outer-space);
-    --surface-subdued: var(--color-black);
+    --surface: var(--color-black);
+    --surface-subdued: var(--color-outer-space);
 
     --text: var(--color-white);
     --text-subdued: var(--color-white);
