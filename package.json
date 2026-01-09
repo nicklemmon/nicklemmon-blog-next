@@ -17,7 +17,7 @@
     "@shikijs/transformers": "^3.20.0",
     "@vercel/analytics": "1.6.1",
     "clsx": "2.1.1",
-    "framer-motion": "12.24.12",
+    "framer-motion": "12.25.0",
     "gray-matter": "4.0.3",
     "next": "16.1.1",
     "react": "19.2.3",
