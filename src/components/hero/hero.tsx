@@ -18,7 +18,7 @@ export default function Hero({ className }: { className?: string }) {
           <Heading as="h1" className={styles["title"]}>
             A <Highlight>frontend</Highlight> engineering leader driven to
             create <Highlight>accessible</Highlight> user interfaces at{' '}
-            <Highlight>scale</Highlight>.
+            <Highlight>scale.</Highlight>
           </Heading>
 
           <MaxWidth size="sm" className={styles["links"]}>

@@ -28,7 +28,7 @@ export default function Bio({ className }: { className?: string }) {
           <ExternalLink href="https://truist.com">
             Truist Financial
           </ExternalLink>{' '}
-          currently based in in Cary, North Carolina.
+          currently based in Cary, North Carolina.
         </p>
 
         <p>
