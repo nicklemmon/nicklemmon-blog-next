@@ -31,7 +31,7 @@
     "@next/eslint-plugin-next": "16.1.1",
     "@testing-library/cypress": "10.1.0",
     "@types/node": "24.10.6",
-    "@types/react": "19.2.7",
+    "@types/react": "19.2.8",
     "cypress": "15.8.2",
     "cypress-real-events": "1.15.0",
     "del": "8.0.1",
