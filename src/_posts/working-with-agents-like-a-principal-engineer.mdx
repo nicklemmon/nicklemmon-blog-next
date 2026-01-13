@@ -1,0 +1,83 @@
+---
+title: Staff-level engineering with AI agents
+description: Using AI agents to effect product change - not just lines of code.
+date: '2026-01-11'
+image: 'jakub-zerdzicki-UaylYFMAhWk-unsplash.webp'
+---
+
+AI agents are rapidly changing the landscape of software engineering as a craft,
+increasing developer productivity, and empowering smaller teams to ship at a
+higher velocity. When less skilled and experienced engineers leverage agents,
+results can be mixed, resulting in a much higher volume of code output without
+positively impacting the end product.
+
+Fortunately, many of the standard continuous integration and delivery techniques
+leveraged by senior and staff-level engineers can be applied to dramatically
+increase the success of agentic workflows. What follows are key strategies and
+techniques that software engineers can lean on to get more out of their AI
+partners.
+
+### Strategies
+
+#### 1. Write prompts in a markdown format
+
+Prompts with structured content can help convey additional meaning that words
+alone miss.
+[AI works well with markdown](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-using-markdown-as-a-programming-language-when-building-with-ai/),
+and as a result, prompts should leverage markdown syntax to help structure and
+organize directions.
+
+Complex instructions, for example, can be contained entirely within a markdown
+file (something like `INSTRUCTIONS.md`)
+
+#### 2. Keep scope constrained
+
+When prompting an AI agent, much like a human, keeping the scope of a task
+constrained has several key benefits. With clearly scoped, small tasks, AI
+agents are more likely to be successful much in the way human engineers are more
+likely to be successful. For example:
+
+```txt
+Implement three new automated QA checks to the project, installing necessary
+dependencies and adding them to the CI/CD pipeline.
+```
+
+This prompt is _very_ broad. Which QA checks it the prompt-er interested in
+adding? Are all QA checks of equal value? _How_ should these be integrated in to
+the CI/CD pipeline for the project? Do these run on every push of every branch
+or in some other scenario?
+
+> A human providing a poorly scoped prompt is likely to be disappointed with the
+> agent's results
+
+A human providing a poorly scoped prompt is likely to be disappointed with the
+agent's results due to the overly broad scope of the requirements. Instead, be
+specific and tackle one task at a time:
+
+```txt
+Configure ESLint for this project and be sure to handle the TypeScript plugin
+according to the current `tsconfig.json` for the project. Integrate this script
+in to the CI/CD pipeline to run on every new pull request and on the `main`
+branch.
+```
+
+The second prompt **keeps the scope constrained** to a single tool **with
+specific instructions** for implementation.
+
+#### 3. Provide clear requirements
+
+In addition to narrowing scope, tasks should ideally have
+
+#### 4. Prioritize shell executable tooling
+
+#### 5. Implement robust static analysis
+
+#### 6. Implement robust automated testing
+
+#### 7. Ensure static analysis and tests can be run locally, efficiently
+
+#### 8. Prioritize test quality over coverage
+
+#### 9. Require PR open-ers to prove their change works
+
+#### 10. Review code thoroughly
