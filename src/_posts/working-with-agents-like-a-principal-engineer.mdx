@@ -1,0 +1,217 @@
+---
+title: Staff-level engineering with AI agents
+description: Using AI agents to effect product change - not just lines of code.
+date: '2026-01-11'
+image: 'jakub-zerdzicki-UaylYFMAhWk-unsplash.webp'
+---
+
+AI agents are rapidly changing the landscape of software engineering as a craft,
+increasing developer productivity, and empowering smaller teams to ship at a
+higher velocity. When less skilled and experienced engineers leverage agents,
+results can be mixed, resulting in a much higher volume of code output without
+positively impacting the end product.
+
+Fortunately, many of the standard continuous integration and delivery techniques
+leveraged by senior and staff-level engineers can be applied to dramatically
+increase the success of agentic workflows. Fortunately, there are key strategies
+and techniques that software engineers can lean on to get more out of their AI
+partners.
+
+### Strategies
+
+#### 1. Write prompts in a markdown format
+
+Prompts with structured content convey additional meaning that words alone miss.
+[AI works well with markdown](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-using-markdown-as-a-programming-language-when-building-with-ai/),
+so leverage markdown syntax to structure and organize directions.
+
+Complex instructions, for example, can be contained entirely within a markdown
+file (something like `INSTRUCTIONS.md`)
+
+#### 2. Keep scope constrained
+
+When prompting an AI agent, much like a human, keep the scope of a task
+constrained. Clearly scoped, small tasks increase the likelihood of success for
+both AI agents and human engineers. For example:
+
+```txt
+Implement three new automated QA checks to the project, installing necessary
+dependencies and adding them to the CI/CD pipeline.
+```
+
+This prompt is _very_ broad. Which QA checks is the prompter interested in
+adding? Are all QA checks of equal value? _How_ should these be integrated into
+the CI/CD pipeline for the project? Do these run on every push of every branch
+or in some other scenario?
+
+> A human providing a poorly scoped prompt is likely to be disappointed with the
+> agent's results
+
+A human providing a poorly scoped prompt is likely to be disappointed with the
+agent's results due to the overly broad scope of the requirements. Instead, be
+specific and tackle one task at a time:
+
+```txt
+Configure ESLint for this project and be sure to handle the TypeScript plugin
+according to the current `tsconfig.json` for the project. Integrate this script
+into the CI/CD pipeline to run on every new pull request and on the `main`
+branch.
+```
+
+The second prompt **keeps the scope constrained** to a single tool **with
+specific instructions** for implementation.
+
+#### 3. Provide clear requirements
+
+In addition to narrowing scope, provide clear acceptance criteria. Include
+explicit requirements about what success looks like when prompting an agent.
+Consider the difference between these two prompts:
+
+```txt
+Add error handling to the API
+```
+
+versus
+
+```txt
+Add error handling to the user authentication API endpoints. Ensure that:
+- 401 errors return a JSON response with an error message
+- Network errors are logged to the console
+- The UI displays a user-friendly error message
+- All error scenarios include appropriate HTTP status codes
+```
+
+The second prompt provides measurable criteria that both the AI agent _and_ the
+reviewer can use to validate the implementation.
+
+#### 4. Prioritize shell executable tooling
+
+When building projects that will be worked on by AI agents, invest in tooling
+that can be executed from the command line. Tools like ESLint, Prettier,
+TypeScript, and test runners that expose CLI interfaces allow agents to validate
+their work programmatically. This creates a tight feedback loop where the agent
+can:
+
+1. Make a change
+2. Run validation tools
+3. Adjust accordingly
+
+Shell-executable tooling also enables CI/CD integration, ensuring that both
+human and AI contributions are held to the same standard in quality.
+
+#### 5. Implement robust static analysis
+
+Static analysis tools catch issues before code can be tested. For projects
+leveraging AI agents, this becomes even more critical. Tools like:
+
+- **TypeScript** for type safety
+- **ESLint** for code quality and pattern enforcement
+- **Stylelint** for CSS/styling consistency
+- **Prettier** for formatting
+
+Prompt your agent to use these tools frequently:
+
+```txt
+Before completing a task, run static analysis scripts (`npm run lint`, `npm run format`, `npm run type-check`)
+```
+
+These tools act as guardrails, preventing common mistakes and enforcing
+consistent patterns. When an AI agent makes a change that violates a linting
+rule or introduces a type error, the tooling provides immediate, actionable
+feedback.
+
+> Static analysis tools catch issues before code can be tested
+
+#### 6. Implement robust automated testing
+
+Automated tests provide a safety net that's invaluable when working with AI
+agents. A comprehensive test suite allows AI agents (and humans) to make changes
+with confidence, knowing that regressions will be caught quickly. Tests should
+cover:
+
+- **Unit tests** for individual functions and modules
+- **Integration tests** for feature workflows
+- **End-to-end tests** for critical user paths
+
+> A comprehensive test suite allows AI agents (and humans) to make changes with
+> confidence
+
+#### 7. Ensure static analysis and tests can be run locally, efficiently
+
+Tooling that requires complex setup, long build times, or cloud resources
+creates friction in the development process. For AI agents to iterate
+effectively, static analysis and tests should:
+
+- Run quickly
+- Execute reliably
+- Provide clear, actionable error messages
+- Require minimal configuration or setup
+
+Slow or unreliable tooling slows down the feedback loop.
+
+#### 8. Prioritize test quality over coverage
+
+While high test coverage might seem desirable, the _quality_ of tests matters
+more than quantity. A few well-written tests that validate critical user
+workflows provide more value than hundreds of shallow tests that check
+implementation details.
+
+Focus on tests that:
+
+- Validate behavior from the user's perspective
+- Cover critical business logic and edge cases
+- Remain stable when implementation details change
+- Fail clearly when something breaks
+
+When prompting AI agents to write tests, explicitly request tests that validate
+_behavior_ rather than implementation details. This ensures the resulting tests
+remain valuable over time.
+
+**Avoid** tests that purely increase code coverage metrics.
+
+When in doubt, use the
+[testing trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
+as a guide.
+
+#### 9. Require PR/MR openers to prove their change works
+
+Whether human or AI, the engineer opening a pull request (or merge request)
+should demonstrate that their change works as intended. This might include:
+
+- Screenshots or screen recordings for UI changes
+- Test output showing passing tests
+- Before/after examples
+- Steps to reproduce and verify the fix
+
+When prompting an AI agent to implement a change, explicitly request evidence
+that the change worked. For example:
+
+```txt
+After implementing the dark mode toggle, provide a screenshot showing the
+toggle in both light and dark states, along with the test output demonstrating
+all tests pass.
+```
+
+#### 10. Review code thoroughly
+
+AI-generated code should receive the same level of scrutiny as human-generated
+code! In fact, AI code and human code should be indistinguishable. During code
+review, look for:
+
+- **Security vulnerabilities** (XSS, SQL injection, command injection)
+- **Edge cases** that might not be handled
+- **Performance implications** of the implementation
+- **Maintainability concerns** like overly complex logic
+- **Consistency** with existing codebase patterns
+
+Don't assume AI-generated or human-authored code is correct. Thoughtful review
+remains one of the most valuable quality controls in the software development
+process, particularly in the agentic era.
+
+## Conclusion
+
+AI agents are powerful tools that can dramatically increase development
+velocity, but their effectiveness depends on engineering best-practices. By
+applying staff-level engineering techniques such as clear communication,
+constrained scope, robust tooling, comprehensive testing, and thorough review,
+teams can leverage AI agents to ship high-quality code at scale.
