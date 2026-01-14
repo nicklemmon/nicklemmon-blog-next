@@ -109,6 +109,12 @@ leveraging AI agents, this becomes even more critical. Tools like:
 - **Stylelint** for CSS/styling consistency
 - **Prettier** for formatting
 
+Prompt your agent to use these tools frequently:
+
+```txt
+Before completing a task, run static analysis scripts (`npm run lint`, `npm run format`, `npm run type-check`)
+```
+
 These tools act as guardrails, preventing common mistakes and enforcing
 consistent patterns. When an AI agent makes a change that violates a linting
 rule or introduces a type error, the tooling provides immediate, actionable
