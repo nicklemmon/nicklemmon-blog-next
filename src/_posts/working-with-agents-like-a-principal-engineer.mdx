@@ -94,16 +94,15 @@ can:
 
 1. Make a change
 2. Run validation tools
-3. Interpret the results
-4. Adjust accordingly
+3. Adjust accordingly
 
 Shell-executable tooling also enables CI/CD integration, ensuring that both
-human and AI contributions are held to the same quality standards.
+human and AI contributions are held to the same standard in quality.
 
 #### 5. Implement robust static analysis
 
-Static analysis tools catch issues before code runs. For projects leveraging AI
-agents, this becomes even more critical. Tools like:
+Static analysis tools catch issues before code can be tested. For projects
+leveraging AI agents, this becomes even more critical. Tools like:
 
 - **TypeScript** for type safety
 - **ESLint** for code quality and pattern enforcement
@@ -115,23 +114,21 @@ consistent patterns. When an AI agent makes a change that violates a linting
 rule or introduces a type error, the tooling provides immediate, actionable
 feedback.
 
-> Static analysis tools act as guardrails for AI-generated code
+> Static analysis tools catch issues before code can be tested
 
 #### 6. Implement robust automated testing
 
 Automated tests provide a safety net that's invaluable when working with AI
-agents. A comprehensive test suite allows agents to make changes with
-confidence, knowing that regressions will be caught quickly. Tests should cover:
+agents. A comprehensive test suite allows AI agents (and humans) to make changes
+with confidence, knowing that regressions will be caught quickly. Tests should
+cover:
 
 - **Unit tests** for individual functions and modules
 - **Integration tests** for feature workflows
 - **End-to-end tests** for critical user paths
 
-> A comprehensive test suite allows agents to make changes with confidence
-
-When an agent breaks a test, the failure message provides context about what
-went wrong and guides the agent toward a fix. This dramatically reduces the risk
-of AI-generated changes introducing subtle bugs.
+> A comprehensive test suite allows AI agents (and humans) to make changes with
+> confidence
 
 #### 7. Ensure static analysis and tests can be run locally, efficiently
 
@@ -144,15 +141,14 @@ effectively, static analysis and tests should:
 - Provide clear, actionable error messages
 - Require minimal configuration or setup
 
-Slow or unreliable tooling slows down the feedback loop and reduces the number
-of iterations an agent can perform within a reasonable timeframe.
+Slow or unreliable tooling slows down the feedback loop.
 
 #### 8. Prioritize test quality over coverage
 
 While high test coverage might seem desirable, the _quality_ of tests matters
-more than quantity. A few well-written tests that validate critical
-functionality and user workflows provide more value than hundreds of shallow
-tests that check implementation details.
+more than quantity. A few well-written tests that validate critical user
+workflows provide more value than hundreds of shallow tests that check
+implementation details.
 
 Focus on tests that:
 
@@ -166,6 +162,10 @@ _behavior_ rather than implementation details. This ensures the resulting tests
 remain valuable over time.
 
 **Avoid** tests that purely increase code coverage metrics.
+
+When in doubt, use the
+[testing trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
+as a guide.
 
 #### 9. Require PR/MR openers to prove their change works
 
