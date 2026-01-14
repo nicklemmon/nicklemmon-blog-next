@@ -32,7 +32,7 @@
     "@testing-library/cypress": "10.1.0",
     "@types/node": "24.10.8",
     "@types/react": "19.2.8",
-    "cypress": "15.8.2",
+    "cypress": "15.9.0",
     "cypress-real-events": "1.15.0",
     "del": "8.0.1",
     "esbuild": "0.27.2",
