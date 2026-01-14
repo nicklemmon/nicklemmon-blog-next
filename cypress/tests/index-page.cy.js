@@ -5,7 +5,7 @@ describe('The index page', () => {
     cy.findByRole('heading', {
       name: /A frontend engineering leader driven to create accessible user interfaces at scale/g,
     }).should('be.visible')
-    cy.title().should('eq', 'Nick Lemmon, Front End Developer')
+    cy.title().should('eq', 'Nick Lemmon, Front End Engineering Leader')
   })
 
   it('renders the correct links', () => {
