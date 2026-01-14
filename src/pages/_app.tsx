@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const defaultTitle = 'Nick Lemmon, Front End Engineering Leader'
+  const defaultTitle = 'Nick Lemmon, frontend engineering leader'
   const defaultDescription =
     'A frontend engineering leader driven to create accessible user interfaces at scale.'
   const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/og?title=${encodeURIComponent(defaultTitle)}`
