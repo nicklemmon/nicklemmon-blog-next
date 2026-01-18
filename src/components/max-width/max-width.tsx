@@ -2,7 +2,7 @@ import React from 'react'
 import { clsx } from 'clsx'
 import styles from './max-width.module.css'
 
-type MaxWidthSize = 'sm' | 'md' | 'lg' | 'xl'
+type MaxWidthSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export default function MaxWidth({
   children,
@@ -15,7 +15,11 @@ export default function MaxWidth({
 }) {
   return (
     <div
-      className={clsx(styles["max-width"], styles[`max-width--${size}`], className)}
+      className={clsx(
+        styles['max-width'],
+        styles[`max-width--${size}`],
+        className
+      )}
     >
       {children}
     </div>

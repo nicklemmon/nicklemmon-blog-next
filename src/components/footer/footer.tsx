@@ -4,22 +4,27 @@ import { PageLink } from '../links'
 import Container from '../container'
 import ScreenReaderOnly from '../screen-reader-only'
 import styles from './footer.module.css'
+import {
+  CODEPEN_PROFILE_HREF,
+  GITHUB_PROFILE_HREF,
+  LINKEDIN_PROFILE_HREF,
+} from '../../constants'
 
 export default function Footer() {
   const iconDimensions = 'calc(1.25rem + 1vw)'
 
   return (
-    <footer className={styles["footer"]} data-cy="footer">
-      <Container size="lg" className={styles["container"]}>
-        <div className={styles["social-links"]}>
+    <footer className={styles['footer']} data-cy="footer">
+      <Container size="lg" className={styles['container']}>
+        <div className={styles['social-links']}>
           <a
-            href="https://codepen.io/nicklemmon"
+            href={CODEPEN_PROFILE_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles["social-link"]}
+            className={styles['social-link']}
           >
             <IoLogoCodepen
-              className={styles["social-icon"]}
+              className={styles['social-icon']}
               size={iconDimensions}
             />
 
@@ -29,12 +34,15 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://github.com/nicklemmon"
+            href={GITHUB_PROFILE_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles["social-link"]}
+            className={styles['social-link']}
           >
-            <IoLogoGithub className={styles["social-icon"]} size={iconDimensions} />
+            <IoLogoGithub
+              className={styles['social-icon']}
+              size={iconDimensions}
+            />
 
             <ScreenReaderOnly>
               Nick Lemmon on GitHub (Opens in a new tab)
@@ -42,13 +50,13 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://linkedin.com/in/nicklemmon"
+            href={LINKEDIN_PROFILE_HREF}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles["social-link"]}
+            className={styles['social-link']}
           >
             <IoLogoLinkedin
-              className={styles["social-icon"]}
+              className={styles['social-icon']}
               size={iconDimensions}
             />
 
@@ -61,7 +69,7 @@ export default function Footer() {
         <div>
           <p>
             All rights reserved,&nbsp;
-            <PageLink className={styles["footer-link"]} href="/">
+            <PageLink className={styles['footer-link']} href="/">
               <strong>Nick Lemmon</strong>
             </PageLink>
             &nbsp;{new Date().getFullYear()}
