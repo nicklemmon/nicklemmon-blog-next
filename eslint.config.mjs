@@ -1,7 +1,6 @@
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
-import cypressPlugin from 'eslint-plugin-cypress'
 import prettierConfig from 'eslint-config-prettier'
 
 const eslintConfig = [
@@ -42,23 +41,12 @@ const eslintConfig = [
     },
   },
 
-  // 5. Cypress test files
+  // 5. Playwright test files
   {
-    files: ['cypress/**/*.{js,ts}'],
-    plugins: {
-      cypress: cypressPlugin,
-    },
-    languageOptions: {
-      globals: {
-        ...cypressPlugin.environments.globals.globals,
-      },
-    },
+    files: ['e2e/**/*.ts'],
     rules: {
-      ...cypressPlugin.configs.recommended.rules,
-      // Cypress commands create false positives
-      'no-undef': 'off',
-      // Allow require() in Cypress files (CommonJS)
-      '@typescript-eslint/no-require-imports': 'off',
+      // Playwright tests use async/await extensively
+      '@typescript-eslint/no-floating-promises': 'off',
     },
   },
 
