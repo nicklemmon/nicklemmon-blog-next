@@ -53,7 +53,7 @@
 }
 
 .navigation.dark-theme .bar {
-  background-color: var(--text);
+  background-color: var(--on-interactive);
 }
 
 @media (min-width: 800px) {
