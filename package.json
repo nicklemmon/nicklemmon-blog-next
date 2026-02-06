@@ -33,7 +33,7 @@
     "@types/node": "24.10.11",
     "@types/react": "19.2.13",
     "del": "8.0.1",
-    "esbuild": "0.27.2",
+    "esbuild": "0.27.3",
     "eslint": "9.39.2",
     "eslint-config-next": "^16.1.1",
     "eslint-config-prettier": "10.1.8",
