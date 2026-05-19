@@ -31,7 +31,7 @@
     "@next/eslint-plugin-next": "16.2.6",
     "@playwright/test": "^1.57.0",
     "@types/node": "24.12.4",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.15",
     "del": "8.0.1",
     "esbuild": "0.28.0",
     "eslint": "9.39.4",
