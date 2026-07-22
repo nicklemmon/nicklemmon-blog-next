@@ -21,7 +21,7 @@
     "gray-matter": "4.0.3",
     "next": "16.2.11",
     "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react-dom": "19.2.8",
     "react-focus-lock": "2.13.7",
     "react-icons": "5.7.0"
   },
