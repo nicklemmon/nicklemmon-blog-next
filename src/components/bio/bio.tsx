@@ -24,10 +24,8 @@ export default function Bio({ className }: { className?: string }) {
         <Heading as="h4">About Me</Heading>
 
         <p>
-          I&rsquo;m a frontend engineering manager working for{' '}
-          <ExternalLink href="https://truist.com">
-            Truist Financial
-          </ExternalLink>{' '}
+          I&rsquo;m a Principal Software Engineer working for{' '}
+          <ExternalLink href="https://redhat.com">Red Hat</ExternalLink>{' '}
           currently based in Cary, North Carolina.
         </p>
 
