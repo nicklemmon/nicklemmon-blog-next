@@ -1,7 +1,7 @@
 import React from 'react'
 import { clsx } from 'clsx'
-import { PageLink } from '../links'
-import Navigation from '../navigation'
+import PageLink from '../links/page-link'
+import Navigation from '../navigation/navigation'
 import styles from './header.module.css'
 
 export default function Header({

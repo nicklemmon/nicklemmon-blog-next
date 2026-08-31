@@ -1,9 +1,9 @@
 import React from 'react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import MaxWidth from '../max-width'
-import Heading from '../heading'
-import Highlight from '../highlight'
+import MaxWidth from '../max-width/max-width'
+import Heading from '../heading/heading'
+import Highlight from '../highlight/highlight'
 import { formatDate } from '../../helpers'
 import styles from './page-title.module.css'
 

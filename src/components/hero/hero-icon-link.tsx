@@ -1,5 +1,5 @@
 import React from 'react'
-import ScreenReaderOnly from '../screen-reader-only'
+import ScreenReaderOnly from '../screen-reader-only/screen-reader-only'
 import styles from './hero.module.css'
 
 export default function HeroIconLink({

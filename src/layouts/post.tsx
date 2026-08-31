@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page } from './page'
-import LongForm from '../components/long-form'
-import Bio from '../components/bio'
+import LongForm from '../components/long-form/long-form'
+import Bio from '../components/bio/bio'
 import styles from './post.module.css'
 
 export function Post({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { clsx } from 'clsx'
-import { PageLink } from '../links'
+import PageLink from '../links/page-link'
 import styles from './button.module.css'
 
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost'

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { clsx } from 'clsx'
-import Card from '../card'
-import Heading from '../heading'
-import LongForm from '../long-form'
-import { ExternalLink } from '../links'
+import Card from '../card/card'
+import Heading from '../heading/heading'
+import LongForm from '../long-form/long-form'
+import ExternalLink from '../links/external-link'
 import styles from './bio.module.css'
 
 export default function Bio({ className }: { className?: string }) {

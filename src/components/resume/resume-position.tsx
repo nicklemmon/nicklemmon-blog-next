@@ -1,8 +1,8 @@
 import React from 'react'
-import Heading from '../heading'
-import Subdued from '../subdued'
-import LongForm from '../long-form'
-import ScreenReaderOnly from '../screen-reader-only'
+import Heading from '../heading/heading'
+import Subdued from '../subdued/subdued'
+import LongForm from '../long-form/long-form'
+import ScreenReaderOnly from '../screen-reader-only/screen-reader-only'
 import styles from './resume.module.css'
 
 export default function ResumePosition({
