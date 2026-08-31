@@ -1,6 +1,6 @@
 import React from 'react'
-import { Page } from '../layouts'
-import { PageLink } from '../components/links'
+import { Page } from '../layouts/page'
+import PageLink from '../components/links/page-link'
 
 export default function Error() {
   return (

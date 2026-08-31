@@ -1,7 +1,7 @@
 import React from 'react'
-import { Page } from '../layouts'
-import ArticleCards from '../components/article-cards'
-import ArticleCard from '../components/article-card'
+import { Page } from '../layouts/page'
+import ArticleCards from '../components/article-cards/article-cards'
+import ArticleCard from '../components/article-card/article-card'
 import { getPosts, sortPostsByDate } from '../helpers'
 import { Post } from '../types/posts'
 

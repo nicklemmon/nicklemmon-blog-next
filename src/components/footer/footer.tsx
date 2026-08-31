@@ -1,8 +1,8 @@
 import React from 'react'
 import { IoLogoCodepen, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
-import { PageLink } from '../links'
-import Container from '../container'
-import ScreenReaderOnly from '../screen-reader-only'
+import PageLink from '../links/page-link'
+import Container from '../container/container'
+import ScreenReaderOnly from '../screen-reader-only/screen-reader-only'
 import styles from './footer.module.css'
 import {
   CODEPEN_PROFILE_HREF,

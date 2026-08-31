@@ -1,11 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import Header from '../components/header'
-import Main from '../components/main'
-import Footer from '../components/footer'
-import Container from '../components/container'
-import MaxWidth from '../components/max-width'
-import PageTitle from '../components/page-title'
+import Header from '../components/header/header'
+import Main from '../components/main/main'
+import Footer from '../components/footer/footer'
+import Container from '../components/container/container'
+import MaxWidth from '../components/max-width/max-width'
+import PageTitle from '../components/page-title/page-title'
 import { Default } from './default'
 
 export function Page({

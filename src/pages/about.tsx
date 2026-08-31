@@ -1,6 +1,6 @@
 import React from 'react'
-import { Page } from '../layouts'
-import Bio from '../components/bio'
+import { Page } from '../layouts/page'
+import Bio from '../components/bio/bio'
 
 export default function AboutPage() {
   return (

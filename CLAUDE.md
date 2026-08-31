@@ -76,10 +76,10 @@ Four layout components in `src/layouts/`:
 
 ### Component Organization
 
-Components follow a barrel export pattern:
+No barrel files (`index.ts` re-exports) — components are imported directly from their file:
 - Each component in `src/components/<name>/`
-- Contains: `<name>.tsx`, `<name>.module.css`, `index.ts`
-- Index file re-exports the component
+- Contains: `<name>.tsx`, `<name>.module.css`
+- Imported as `components/<name>/<name>`, not `components/<name>`
 
 ### Redirects
 

@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import barrelFilesPlugin from 'eslint-plugin-barrel-files'
 import prettierConfig from 'eslint-config-prettier'
 
 const eslintConfig = [
@@ -41,7 +42,29 @@ const eslintConfig = [
     },
   },
 
-  // 5. Playwright test files
+  // 5. Ban barrel files (index.ts/index.tsx files that only re-export)
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    plugins: {
+      'barrel-files': barrelFilesPlugin,
+    },
+    rules: {
+      'barrel-files/avoid-barrel-files': [
+        'error',
+        // this codebase's barrel files historically re-exported a single default,
+        // which is below the rule's default threshold of 3 exports
+        { amountOfExportsToConsiderModuleAsBarrel: 0 },
+      ],
+      'barrel-files/avoid-importing-barrel-files': [
+        'error',
+        // framer-motion only ships a barrel entry point; there's no deep-import alternative
+        { allowList: ['framer-motion'] },
+      ],
+      'barrel-files/avoid-re-export-all': 'error',
+    },
+  },
+
+  // 6. Playwright test files
   {
     files: ['e2e/**/*.ts'],
     rules: {
@@ -50,7 +73,7 @@ const eslintConfig = [
     },
   },
 
-  // 6. Node.js scripts (build scripts, config files)
+  // 7. Node.js scripts (build scripts, config files)
   {
     files: ['scripts/**/*.{js,mjs}', '*.config.{js,ts,mjs}'],
     languageOptions: {
@@ -69,10 +92,10 @@ const eslintConfig = [
     },
   },
 
-  // 7. Prettier integration (must be last to override formatting rules)
+  // 8. Prettier integration (must be last to override formatting rules)
   prettierConfig,
 
-  // 8. Ignore patterns
+  // 9. Ignore patterns
   {
     ignores: [
       'node_modules/**',

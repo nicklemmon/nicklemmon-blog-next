@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import FocusLock from 'react-focus-lock'
 import { clsx } from 'clsx'
-import { PageLink } from '../links'
-import ScreenReaderOnly from '../screen-reader-only'
-import { useKeyPress } from '../../hooks'
+import PageLink from '../links/page-link'
+import ScreenReaderOnly from '../screen-reader-only/screen-reader-only'
+import useKeyPress from '../../hooks/use-key-press'
 import styles from './navigation.module.css'
 
 const animationStates = {
