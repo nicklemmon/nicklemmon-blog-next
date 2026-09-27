@@ -43,7 +43,7 @@
     "mdx-bundler": "10.1.1",
     "prettier": "3.9.9",
     "rehype": "13.0.2",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.51.0"
   }
