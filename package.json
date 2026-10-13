@@ -32,7 +32,7 @@
     "@playwright/test": "^1.57.0",
     "@types/node": "24.19.2",
     "@types/react": "19.3.0",
-    "del": "8.0.1",
+    "del": "9.0.1",
     "esbuild": "0.28.2",
     "eslint": "9.39.5",
     "eslint-config-next": "^16.1.1",
